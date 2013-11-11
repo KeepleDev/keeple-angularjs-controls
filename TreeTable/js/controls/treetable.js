@@ -6,39 +6,19 @@
 
     app.controller("treetableController", ["$rootScope", "$scope", function ($rootScope, $scope) {
         /// <param name="$scope" type="Object"></param>
-        $scope.toggleTreeTableRow = function (e, item) {
-            for (var i = 0; i < $scope.processedItens.length; i++) {
-                var subItem = $scope.processedItens[i];
-                if (subItem.parentId == item.id) {
-                    subItem.isVisible = !subItem.isVisible;
-                }
-            }
-            item.expanded = !item.expanded;
-        };
-
-        $scope.getItem = function (itemId) {
-            /// <returns type="Object" />
-            for (var i = 0; i < $scope.processedItens.length; i++) {
-                var processedItem = $scope.processedItens[i];
-                if (processedItem.id == itemId) {
-                    return processedItem;
-                }
-            }
-            return null;
-        };
-
-        $rootScope.$on("treetableToggleRow", $scope.toggleTreeTableRow);
-
-        $rootScope.$on("treetableAddItem", function (e, item) {
+        function addItem(item) {
             /// <param name="item" type="Object"></param>
             $scope.processedItens = $scope.processedItens || [];
             item.hasTemplate = !!item.template;
+            item.children = item.children || [];
             if (item.parentId === null) {
                 item.isVisible = true;
                 item.isExpanded = false;
+                $scope.processedItens.push(item);
             }
             else {
                 var parent = $scope.getItem(item.parentId);
+                var found = false;
                 item.isVisible = !!parent.isExpanded;
                 for (var i = 0; i < $scope.processedItens.length; i++) {
                     var processedItem = $scope.processedItens[i];
@@ -49,11 +29,49 @@
                         else {
                             $scope.processedItens.splice(i + 1, 0, item);
                         }
-                        return;
+                        found = true;
+                        break;
                     }
                 }
+                if (!found) {
+                    $scope.processedItens.push(item);
+                }
             }
-            $scope.processedItens.push(item);
+            for (var i = 0; i < item.children.length; i++) {
+                var childItem = item.children[i];
+                addItem(childItem);
+            }
+        }
+
+        function getItem(itemId) {
+            /// <returns type="Object" />
+            for (var i = 0; i < $scope.processedItens.length; i++) {
+                var processedItem = $scope.processedItens[i];
+                if (processedItem.id == itemId) {
+                    return processedItem;
+                }
+            }
+            return null;
+        }
+
+        function toggleTreeTableRow(item) {
+            for (var i = 0; i < $scope.processedItens.length; i++) {
+                var subItem = $scope.processedItens[i];
+                if (subItem.parentId == item.id) {
+                    subItem.isVisible = !subItem.isVisible;
+                }
+            }
+            item.expanded = !item.expanded;
+        }
+
+        $scope.getItem = getItem;
+
+        $rootScope.$on("treetableToggleRow", function (e, item) {
+            toggleTreeTableRow(item)
+        });
+
+        $rootScope.$on("treetableAddItem", function (e, item) {
+            addItem(item);
         });
 
         $rootScope.$emit("treetableReady");

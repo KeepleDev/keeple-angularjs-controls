@@ -68,6 +68,7 @@
     <Content Include="js\3rd\angular-cookies.js" />
     <Content Include="js\3rd\angular-mocks.js" />
     <Content Include="js\3rd\angular-resource.js" />
+    <Content Include="js\3rd\angular-sanitize.js" />
     <Content Include="js\3rd\angular.js" />
     <Content Include="js\3rd\bootstrap.js" />
     <Content Include="js\3rd\jquery-2.0.3.js" />
