@@ -61,7 +61,7 @@
                     subItem.isVisible = !subItem.isVisible;
                 }
             }
-            item.expanded = !item.expanded;
+            item.isExpanded = !item.isExpanded;
         }
 
         $scope.getItem = getItem;
@@ -100,8 +100,7 @@
             restrict: "A",
             templateUrl: "treetablerow.html",
             scope: {
-                item: "=item",
-                first: "=first"
+                item: "=item"
             }
         }
     });

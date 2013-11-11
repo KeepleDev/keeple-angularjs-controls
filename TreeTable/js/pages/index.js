@@ -4,7 +4,7 @@
 
     index.controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
         $scope.itens = [];
-        $scope.columns = ["Celular", "Ano de Fabricação"];
+        $scope.columns = ["Celular", "Ano de Fabricação", "CPU", "Memoria"];
         $rootScope.$on("treetableReady", function () {
             $http.get("data/itens.js").success(function (response) {
                 for (var i = 0; i < response.itens.length; i++) {
