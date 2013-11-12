@@ -3,7 +3,6 @@
 		{
 		    "id": 1,
 		    "parentId": null,
-		    "level": 1,
 		    "isParent": true,
 		    "columns": [{
 		        "colspan": 4,
@@ -13,7 +12,6 @@
                 {
                     "id": 2,
                     "parentId": 1,
-                    "level": 2,
                     "columns": [{
                         "colspan": 1,
                         "value": "Moto X™",
@@ -33,7 +31,6 @@
 		        {
 		            "id": 3,
 		            "parentId": 1,
-		            "level": 2,
 		            "columns": [{
 		                "colspan": 1,
 		                "value": "Moto G",
@@ -53,7 +50,6 @@
 		        {
 		            "id": 7,
 		            "parentId": 1,
-		            "level": 2,
 		            "columns": [{
 		                "colspan": 1,
 		                "value": "Motorola RAZR XT910",
@@ -75,7 +71,6 @@
         {
             "id": 4,
             "parentId": null,
-            "level": 1,
             "isParent": true,
             "columns": [{
                 "colspan": 4,
@@ -85,7 +80,6 @@
                 {
                     "id": 5,
                     "parentId": 4,
-                    "level": 2,
                     "columns": [{
                         "colspan": 1,
                         "value": "Samsung Galaxy Note 3",
@@ -105,7 +99,6 @@
 		        {
 		            "id": 6,
 		            "parentId": 4,
-		            "level": 2,
 		            "columns": [{
 		                "padding": "30px",
 		                "colspan": 1,

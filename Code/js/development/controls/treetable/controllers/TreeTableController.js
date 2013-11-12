@@ -7,6 +7,7 @@
         item.children = item.children || [];
         if (item.parentId === null) {
             item.isVisible = true;
+            item.level = 1;
             if (item.isExpanded === undefined) {
                 item.isExpanded = false;
             }
@@ -16,6 +17,7 @@
             var parent = $scope.getItem(item.parentId);
             var found = false;
             item.isVisible = !!parent.isExpanded;
+            item.level = parent.level + 1;
             for (var i = 0; i < $scope.processedItens.length; i++) {
                 var processedItem = $scope.processedItens[i];
                 if (processedItem.id == item.parentId) {
