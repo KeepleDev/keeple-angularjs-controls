@@ -1,4 +1,8 @@
-﻿.treetable {
+﻿table.treetable > tbody > tr.loading {
+    background-color: white;
+}
+
+.treetable {
 }
 
     .treetable > tbody > tr {

@@ -118,7 +118,7 @@
 
     $scope.$watch("itens", function () {
         processItens();
-    });
+    }, true);
 
     $rootScope.$emit("treetableReady");
 }]);
