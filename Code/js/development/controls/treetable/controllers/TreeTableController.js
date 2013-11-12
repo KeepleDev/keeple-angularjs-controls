@@ -1,4 +1,4 @@
-﻿angular.module("treetable").controller("treetableController", ["$rootScope", "$scope", function ($rootScope, $scope) {
+﻿angular.module("treetable").controller("treeTableController", ["$rootScope", "$scope", function ($rootScope, $scope) {
     /// <param name="$scope" type="Object"></param>
     function addItem(item) {
         /// <param name="item" type="Object"></param>
@@ -58,10 +58,22 @@
         item.isExpanded = !item.isExpanded;
     }
 
-    $scope.getItem = getItem;
+    function processItens() {
+        /// <param name="itens" type="Array"></param>
+        $scope.processedItens = [];
+        for (var i = 0; i < $scope.itens.length; i++) {
+            var item = $scope.itens[i];
+            addItem(item);
+        }
+    }
 
-    $rootScope.$on("treetableToggleRow", function (e, item) {
-        toggleTreeTableRow(item);
+    $scope.getItem = getItem;
+    $scope.toggleTreeTableRow = toggleTreeTableRow;
+    $scope.addItem = addItem;
+    $scope.processedItens = [];
+
+    $scope.$watch("itens", function () {
+        processItens();
     });
 
     $rootScope.$on("treetableAddItem", function (e, item) {

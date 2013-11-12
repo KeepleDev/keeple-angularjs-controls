@@ -1,4 +1,4 @@
-﻿angular.module("treetable").directive("ngTreetableCellTemplate", function ($compile) {
+﻿angular.module("treetable").directive("ngTreeTableCellTemplate", function ($compile) {
     return {
         restrict: "A",
         scope: {

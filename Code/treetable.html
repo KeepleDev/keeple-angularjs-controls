@@ -1,11 +1,11 @@
-﻿<table data-ng-controller="treetableController" class="treetable">
+﻿<table data-ng-controller="treeTableController" class="treetable">
     <thead>
         <tr>
             <th data-ng-repeat="column in columns">{{column}}</th>
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-treetable-row="" data-ng-repeat="item in (processedItens | treetableRowFilter)" data-item="item" class="l{{item.level}}">
+        <tr data-ng-tree-table-row="" data-ng-repeat="item in (processedItens | treetableRowFilter)" data-item="item" class="l{{item.level}}" data-toggle-tree-table-row="toggleTreeTableRow">
         </tr>
     </tbody>
 </table>
