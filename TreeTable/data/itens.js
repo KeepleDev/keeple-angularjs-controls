@@ -74,6 +74,12 @@
                     }, {
                         "colspan": 1,
                         "value": "2010"
+                    }, {
+                        "colspan": 1,
+                        "value": "Snapdragon"
+                    }, {
+                        "colspan": 1,
+                        "value": "1Gb"
                     }]
                 },
 		        {
@@ -89,6 +95,14 @@
 		            }, {
 		                "colspan": 1,
 		                "value": "2010"
+		            }, {
+		                "colspan": 1,
+		                "value": "Snapdragon",
+		                "hasTemplate": true,
+		                "template":"<ng-image-button data-btn-class=\"'btn-teste'\" data-text=\"'Snapdragon 2'\" >Teste</ng-image-button>"
+		            }, {
+		                "colspan": 1,
+		                "value": "1Gb"
 		            }]
 		        }
             ]

@@ -1,5 +1,0 @@
-C:\Projetos\TreeTable\TreeTable\bin\TreeTable.dll
-C:\Projetos\TreeTable\TreeTable\bin\TreeTable.pdb
-C:\Projetos\TreeTable\TreeTable\obj\Debug\TreeTable.csprojResolveAssemblyReference.cache
-C:\Projetos\TreeTable\TreeTable\obj\Debug\TreeTable.dll
-C:\Projetos\TreeTable\TreeTable\obj\Debug\TreeTable.pdb
