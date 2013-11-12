@@ -72,6 +72,7 @@
     <Content Include="js\development\3rd\angular.js" />
     <Content Include="js\development\3rd\bootstrap.js" />
     <Content Include="js\development\3rd\jquery-2.0.3.js" />
+    <Content Include="js\development\controls\imagebutton\imagebutton.js" />
     <Content Include="js\development\controls\treetable\controllers\TreeTableCellController.js" />
     <Content Include="js\development\controls\treetable\controllers\TreeTableController.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableDirective.js" />
