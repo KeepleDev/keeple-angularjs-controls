@@ -33,7 +33,7 @@
                 $scope.processedItens.push(item);
             }
         }
-        item.children.sort(sortItens);
+        item.children.sort(sortFunction);
         for (var j = 0; j < item.children.length; j++) {
             var childItem = item.children[j];
             addItem(childItem);
@@ -52,11 +52,22 @@
     }
 
     function toggleTreeTableRow(item) {
-        for (var i = 0; i < $scope.processedItens.length; i++) {
-            var subItem = $scope.processedItens[i];
-            if (subItem.parentId == item.id) {
-                subItem.isVisible = !subItem.isVisible;
+        if (item.isLoaded || !$scope.options.lazyLoad) {
+            for (var i = 0; i < $scope.processedItens.length; i++) {
+                var subItem = $scope.processedItens[i];
+                if (subItem.parentId == item.id) {
+                    subItem.isVisible = !subItem.isVisible;
+                }
             }
+        }
+        else {
+            item.isLoading = true;
+            $scope.loadChildren(item, function (success) {
+                item.isLoading = false;
+                if (success) {
+                    item.isLoaded = true;
+                }
+            });
         }
         item.isExpanded = !item.isExpanded;
     }
@@ -72,13 +83,15 @@
         processItens();
     }
 
-    function sortItens(itemA, itemB) {
-        if (itemA.columns[$scope.sortColumnIndex] && itemB.columns[$scope.sortColumnIndex]) {
+    function sortFunction(itemA, itemB) {
+        var itemASortColumn = itemA.columns[$scope.sortColumnIndex];
+        var itemBSortColumn = itemB.columns[$scope.sortColumnIndex];
+        if (itemASortColumn && itemBSortColumn) {
             if ($scope.sortAsc) {
-                return (itemA.columns[$scope.sortColumnIndex].value > itemB.columns[$scope.sortColumnIndex].value) ? 1 : -1;
+                return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
             }
             else {
-                return (itemA.columns[$scope.sortColumnIndex].value < itemB.columns[$scope.sortColumnIndex].value) ? 1 : -1;
+                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1;
             }
         }
         return 0;
@@ -86,7 +99,7 @@
 
     function processItens() {
         $scope.processedItens = [];
-        $scope.itens.sort(sortItens);
+        $scope.itens.sort(sortFunction);
         for (var i = 0; i < $scope.itens.length; i++) {
             var item = $scope.itens[i];
             addItem(item);
@@ -103,10 +116,6 @@
 
     $scope.$watch("itens", function () {
         processItens();
-    });
-
-    $rootScope.$on("treetableAddItem", function (e, item) {
-        addItem(item);
     });
 
     $rootScope.$emit("treetableReady");

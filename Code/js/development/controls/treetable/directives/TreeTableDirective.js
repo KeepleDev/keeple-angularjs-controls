@@ -5,7 +5,8 @@
         scope: {
             itens: "=itens",
             columns: "=columns",
-            options: "=options"
+            options: "=options",
+            loadChildren: "=loadChildren"
         }
     };
 });

@@ -6,13 +6,19 @@ angular.module("project", ["treetable"]).controller("indexController", ["$rootSc
     $scope.treetable.columns = ["Celular", "Ano de Fabricação", "CPU", "Memoria"];
     $scope.treetable.options = {};
     $scope.treetable.options.lazyLoad = false;
+    $scope.treetable.loadChildren = function (parentItem, callback) {
+        /// <param name="callback" type="Function">Description</param>
+        if (callback) {
+            setTimeout(function () {
+                callback(true);
+                $scope.$apply();
+            }, 2000);
+        }
+    };
     $rootScope.$on("treetableReady", function () {
-        $http.get("data/itens.js").success(function (response) {
+        var salt = Math.floor(Math.random() * 100000);
+        $http.get("data/itens.js?" + salt).success(function (response) {
             $scope.treetable.itens = response.itens;
-            //for (var i = 0; i < response.itens.length; i++) {
-            //    var item = response.itens[i];
-            //    $rootScope.$emit("treetableAddItem", item);
-            //}
         });
     });
 }]);
