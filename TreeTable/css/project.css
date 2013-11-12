@@ -44,3 +44,17 @@ body {
 code {
     font-size: 80%;
 }
+
+table td,
+table th {
+    padding: 6px;
+}
+
+table.treetable tr {
+    border: 1px solid black;
+}
+
+table.treetable td,
+table.treetable th {
+    border: 1px solid black;
+}
