@@ -9,7 +9,7 @@
     }
 
         .treetable > tbody > tr.l1 {
-            background-color: #d1d1d1;
+            /*background-color: #d1d1d1;*/
             font-weight: bold;
         }
 
@@ -17,7 +17,7 @@
             }
 
         .treetable > tbody > tr.l2 {
-            background-color: #d8d8d8;
+            /*background-color: #d8d8d8;*/
         }
 
             .treetable > tbody > tr.l2 > td:first-child {
@@ -25,7 +25,7 @@
             }
 
         .treetable > tbody > tr.l3 {
-            background-color: #e1e1e1;
+            /*background-color: #e1e1e1;*/
         }
 
             .treetable > tbody > tr.l3 > td:first-child {
@@ -33,7 +33,7 @@
             }
 
         .treetable > tbody > tr.l4 {
-            background-color: #e8e8e8;
+            /*background-color: #e8e8e8;*/
         }
 
             .treetable > tbody > tr.l4 > td:first-child {
@@ -41,7 +41,7 @@
             }
 
         .treetable > tbody > tr.l5 {
-            background-color: #f1f1f1;
+            /*background-color: #f1f1f1;*/
         }
 
             .treetable > tbody > tr.l5 > td:first-child {
@@ -49,7 +49,7 @@
             }
 
         .treetable > tbody > tr.l6 {
-            background-color: #f8f8f8;
+            /*background-color: #f8f8f8;*/
         }
 
             .treetable > tbody > tr.l6 > td:first-child {
@@ -57,16 +57,12 @@
             }
 
         .treetable > tbody > tr.l7 {
-            background-color: #fbfbfb;
+            /*background-color: #fbfbfb;*/
         }
 
             .treetable > tbody > tr.l7 > td:first-child {
                 padding-left: 180px;
             }
-
-        .treetable > tbody > tr > td > div.template {
-            display: inline-block;
-        }
 
         .treetable > tbody > tr > td:first-child > a.treetable-toggle {
             display: inline-block;
