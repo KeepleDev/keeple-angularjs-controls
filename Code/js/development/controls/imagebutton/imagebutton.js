@@ -7,7 +7,11 @@ angular.module("project").directive("ngImageButton", function ($compile) {
             btnClass: "=btnClass",
             text: "=text"
         },
-        template: "<span ng-class='btnClass' class='btn' ng-bind-html='text'><span>",
-        replace: true
-    }
+        template: "<a><span ng-class='btnClass' class='btn'></span><span ng-bind-html='text'></span><a/>",
+        link: function (scope, element) {
+            var html = this.template;
+            var e = $compile(html)(scope);
+            element.replaceWith(e);
+        }
+    };
 });
