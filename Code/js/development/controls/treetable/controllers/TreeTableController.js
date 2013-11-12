@@ -7,7 +7,9 @@
         item.children = item.children || [];
         if (item.parentId === null) {
             item.isVisible = true;
-            item.isExpanded = false;
+            if (item.isExpanded === undefined) {
+                item.isExpanded = false;
+            }
             $scope.processedItens.push(item);
         }
         else {
@@ -31,6 +33,7 @@
                 $scope.processedItens.push(item);
             }
         }
+        item.children.sort(sortItens);
         for (var j = 0; j < item.children.length; j++) {
             var childItem = item.children[j];
             addItem(childItem);
@@ -58,9 +61,32 @@
         item.isExpanded = !item.isExpanded;
     }
 
+    function sort(columnIndex) {
+        if ($scope.sortColumnIndex !== columnIndex) {
+            $scope.sortAsc = true;
+        }
+        else {
+            $scope.sortAsc = !$scope.sortAsc;
+        }
+        $scope.sortColumnIndex = columnIndex;
+        processItens();
+    }
+
+    function sortItens(itemA, itemB) {
+        if (itemA.columns[$scope.sortColumnIndex] && itemB.columns[$scope.sortColumnIndex]) {
+            if ($scope.sortAsc) {
+                return (itemA.columns[$scope.sortColumnIndex].value > itemB.columns[$scope.sortColumnIndex].value) ? 1 : -1;
+            }
+            else {
+                return (itemA.columns[$scope.sortColumnIndex].value < itemB.columns[$scope.sortColumnIndex].value) ? 1 : -1;
+            }
+        }
+        return 0;
+    }
+
     function processItens() {
-        /// <param name="itens" type="Array"></param>
         $scope.processedItens = [];
+        $scope.itens.sort(sortItens);
         for (var i = 0; i < $scope.itens.length; i++) {
             var item = $scope.itens[i];
             addItem(item);
@@ -71,6 +97,9 @@
     $scope.toggleTreeTableRow = toggleTreeTableRow;
     $scope.addItem = addItem;
     $scope.processedItens = [];
+    $scope.sortColumnIndex = 0;
+    $scope.sortAsc = false;
+    $scope.sort = sort;
 
     $scope.$watch("itens", function () {
         processItens();

@@ -83,8 +83,8 @@
     <Content Include="js\development\project.js" />
     <Content Include="js\development\treetable.js" />
     <Content Include="js\development\utils.js" />
-    <Content Include="treetable.html" />
-    <Content Include="treetablerow.html" />
+    <Content Include="js\development\controls\treetable\templates\treetable.html" />
+    <Content Include="js\development\controls\treetable\templates\treetablerow.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

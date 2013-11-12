@@ -186,8 +186,8 @@ function GoppHelper(grunt) {
             files: {
                 src: [
                     scriptsDevelopmentFolder + "/utils.js",
-                    scriptsDevelopmentFolder + "/controls/**/*",
-                    scriptsDevelopmentFolder + "/pages/**/*"
+                    scriptsDevelopmentFolder + "/controls/**/*.js",
+                    scriptsDevelopmentFolder + "/pages/**/*.js"
                 ]
             }
         };
