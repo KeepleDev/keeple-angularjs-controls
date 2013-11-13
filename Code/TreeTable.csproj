@@ -72,13 +72,16 @@
     <Content Include="js\development\3rd\angular.js" />
     <Content Include="js\development\3rd\bootstrap.js" />
     <Content Include="js\development\3rd\jquery-2.0.3.js" />
-    <Content Include="js\development\controls\imagebutton\imagebutton.js" />
+    <Content Include="js\development\controls\imagebutton\controllers\ImageButtonController.js" />
+    <Content Include="js\development\controls\imagebutton\directives\ImageButtonDirective.js" />
+    <Content Include="js\development\controls\imagebutton\ImageButtonModuleInitialization.js" />
     <Content Include="js\development\controls\treetable\controllers\TreeTableController.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableCellTemplateDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableRowDirective.js" />
     <Content Include="js\development\controls\treetable\filters\TreeTableRowFilter.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
+    <Content Include="js\development\imagebutton.js" />
     <Content Include="js\development\pages\index.js" />
     <Content Include="js\development\project.js" />
     <Content Include="js\development\treetable.js" />

@@ -26,8 +26,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-clean");
 
     // Default task(s).
-    grunt.registerTask("default", ["test", "concat:project", "concat:treetable", "uglify"]);
-    grunt.registerTask("dev", ["test", "concat:project", "concat:treetable", "cssmin", "watch"]);
+    grunt.registerTask("default", ["test", "concat", "uglify"]);
+    grunt.registerTask("dev", ["test", "concat", "cssmin", "watch"]);
     grunt.registerTask("prod", ["clean", "uglify", "cssmin"]);
     grunt.registerTask("test", ["jshint"]);
 };
@@ -42,6 +42,7 @@ function GoppHelper(grunt) {
     function getUglifyOptions() {
         var projectMapping = {};
         var treeTableMapping = {};
+        var imageButtonMapping = {};
         projectMapping[scriptsDevelopmentFolder + "/project.js"] = [
             scriptsDevelopmentFolder + "/3rd/jquery-2.0.3.js",
             scriptsDevelopmentFolder + "/3rd/bootstrap.js",
@@ -58,6 +59,12 @@ function GoppHelper(grunt) {
             scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
         ];
 
+        imageButtonMapping[scriptsDevelopmentFolder + "/imagebutton.js"] = [
+            scriptsDevelopmentFolder + "/controls/imagebutton/ImageButtonModuleInitialization.js",
+            scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
+            scriptsDevelopmentFolder + "/controls/imagebutton/directives/ImageButtonDirective.js"
+        ]
+
         var uglify = {
             options: {
                 banner: "/*! <%= pkg.name %> - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
@@ -67,6 +74,9 @@ function GoppHelper(grunt) {
             },
             treeTable: {
                 files: treeTableMapping
+            },
+            imageButton: {
+                files: imageButtonMapping
             }
         };
 
@@ -110,7 +120,7 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + "/utils.js"
                 ]
             },
-            treetable: {
+            treeTable: {
                 dest: scriptsDevelopmentFolder + "/treetable.js",
                 src: [
                     scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
@@ -119,6 +129,14 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
                     scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",
                     scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
+                ]
+            },
+            imageButton: {
+                dest: scriptsDevelopmentFolder + "/imagebutton.js",
+                src: [
+                    scriptsDevelopmentFolder + "/controls/imagebutton/ImageButtonModuleInitialization.js",
+                    scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
+                    scriptsDevelopmentFolder + "/controls/imagebutton/directives/ImageButtonDirective.js"
                 ]
             }
         }
@@ -203,9 +221,13 @@ function GoppHelper(grunt) {
                 files: [scriptsDevelopmentFolder + "/3rd/**/*", scriptsDevelopmentFolder + "/utils.js"],
                 tasks: ["concat:project"]
             },
-            treetable: {
-                files: scriptsDevelopmentFolder + "/controls/**/*",
-                tasks: ["concat:treetable"]
+            treeTable: {
+                files: scriptsDevelopmentFolder + "/controls/treetable/**/*",
+                tasks: ["concat:treeTable"]
+            },
+            imageButton: {
+                files: scriptsDevelopmentFolder + "/controls/imagebutton/**/*",
+                tasks: ["concat:imageButton"]
             }
         };
     }

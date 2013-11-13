@@ -1,5 +1,5 @@
 ﻿/// <reference path="../3rd/angular.js" />
-angular.module("project", ["treetable"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
+angular.module("project", ["treetable", "imageButton"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
     /// <param name="$scope" type="Object"></param>
     var children = {};
 
@@ -15,7 +15,7 @@ angular.module("project", ["treetable"]).controller("indexController", ["$rootSc
                 parentItem.children = children[parentItem.id];
                 callback(true);
                 $scope.$apply();
-            }, 1000);
+            }, 300);
         }
     };
     $rootScope.$on("treetableReady", function () {

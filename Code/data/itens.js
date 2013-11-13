@@ -112,7 +112,7 @@
 		                "colspan": 1,
 		                "value": "Quad-core 1.6 GHz Cortex-A15",
 		                "hasTemplate": true,
-		                "template":"<ng-image-button data-btn-class=\"'btn-info'\" data-text=\"'Snapdragon 2'\" >Teste</ng-image-button>"
+		                "template":"<ng-image-button data-btn-class=\"'glyphicon-list'\" data-text=\"itemColumn.value\" data-identifier=\"6\" >Teste</ng-image-button>"
 		            }, {
 		                "colspan": 1,
 		                "value": "2Gb"
