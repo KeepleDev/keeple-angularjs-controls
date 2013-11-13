@@ -1,7 +1,11 @@
 ﻿/// <reference path="../3rd/angular.js" />
-angular.module("project", ["treetable", "imageButton"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
+angular.module("project", ["treetable", "imageButton", "modal"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
     /// <param name="$scope" type="Object"></param>
     var children = {};
+
+    $scope.modal = {};
+    $scope.modal.title = "Dados do Celular";
+    $scope.modal.show = false;
 
     $scope.treetable = {};
     $scope.treetable.itens = [];
@@ -31,4 +35,28 @@ angular.module("project", ["treetable", "imageButton"]).controller("indexControl
             $scope.treetable.itens = response.itens;
         });
     });
+
+    $rootScope.$on("imageButtonClick", function (e, identifier) {
+        var item = findItem($scope.treetable.itens, identifier);
+        if (item) {
+            $scope.modal.show = true;
+            $scope.modal.item = item;
+        }
+    });
+
+    function findItem(itens, itemId) {
+        for (var i = 0; i < itens.length; i++) {
+            var item = itens[i];
+            if (item.id == itemId) {
+                return item;
+            }
+            else if (item.children) {
+                var itemFound = findItem(item.children, itemId);
+                if (itemFound !== null) {
+                    return itemFound;
+                }
+            }
+        }
+        return null;
+    }
 }]);

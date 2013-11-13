@@ -90,7 +90,9 @@
                         "value": "2013"
                     }, {
                         "colspan": 1,
-                        "value": "Quad-core 2.3 GHz Krait 400"
+                        "value": "Quad-core 2.3 GHz Krait 400",
+                        "hasTemplate": true,
+                        "template":"<ng-image-button data-btn-class=\"'glyphicon-tasks'\" data-text=\"itemColumn.value\" data-identifier=\"5\" >Teste</ng-image-button>"
                     }, {
                         "colspan": 1,
                         "value": "3Gb"
@@ -112,7 +114,7 @@
 		                "colspan": 1,
 		                "value": "Quad-core 1.6 GHz Cortex-A15",
 		                "hasTemplate": true,
-		                "template":"<ng-image-button data-btn-class=\"'glyphicon-list'\" data-text=\"itemColumn.value\" data-identifier=\"6\" >Teste</ng-image-button>"
+		                "template":"<ng-image-button data-btn-class=\"'glyphicon-tasks'\" data-text=\"itemColumn.value\" data-identifier=\"6\" >Teste</ng-image-button>"
 		            }, {
 		                "colspan": 1,
 		                "value": "2Gb"

@@ -75,6 +75,10 @@
     <Content Include="js\development\controls\imagebutton\controllers\ImageButtonController.js" />
     <Content Include="js\development\controls\imagebutton\directives\ImageButtonDirective.js" />
     <Content Include="js\development\controls\imagebutton\ImageButtonModuleInitialization.js" />
+    <Content Include="js\development\controls\modal\controllers\ModalController.js" />
+    <Content Include="js\development\controls\modal\directives\ModalDirective.js" />
+    <Content Include="js\development\controls\modal\ModalModuleInitialization.js" />
+    <Content Include="js\development\controls\modal\templates\modal.html" />
     <Content Include="js\development\controls\treetable\controllers\TreeTableController.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableCellTemplateDirective.js" />
@@ -82,6 +86,7 @@
     <Content Include="js\development\controls\treetable\filters\TreeTableRowFilter.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
     <Content Include="js\development\imagebutton.js" />
+    <Content Include="js\development\modal.js" />
     <Content Include="js\development\pages\index.js" />
     <Content Include="js\development\project.js" />
     <Content Include="js\development\treetable.js" />

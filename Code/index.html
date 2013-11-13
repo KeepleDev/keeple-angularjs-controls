@@ -64,6 +64,15 @@
             </div>
             <p class="lead">Tree Table feita em Angular JS <code>&lt;div data-ng-tree-table="" data-itens="treetable.itens" data-columns="treetable.columns" data-options="treetable.options"&gt;&lt;/div&gt;</code>.</p>
             <div data-ng-tree-table="" data-itens="treetable.itens" data-columns="treetable.columns" data-options="treetable.options" data-load-children="treetable.loadChildren" data-tree-table-class="'table table-bordered'"></div>
+
+            <div data-ng-modal="" data-title="modal.title" data-show="modal.show">
+                <div data-ng-if="modal.item.level > 1">
+                    <div>Modelo: {{modal.item.columns[0].value}}</div>
+                    <div>Ano de Fabricação: {{modal.item.columns[1].value}}</div>
+                    <div>Chipset: {{modal.item.columns[2].value}}</div>
+                    <div>Memória: {{modal.item.columns[3].value}}</div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -72,9 +81,16 @@
             <p class="text-muted credit">Keeple Controls</p>
         </div>
     </div>
-    <script src="js/development/project.js"></script><!--Arquivo gerado pelo grunt: "grunt dev"-->
-    <script src="js/development/treetable.js"></script><!--Arquivo gerado pelo grunt: "grunt dev"-->
-    <script src="js/development/imagebutton.js"></script><!--Arquivo gerado pelo grunt: "grunt dev"-->
+
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/project.js"></script>
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/treetable.js"></script>
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/imagebutton.js"></script>
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/modal.js"></script>
+
     <script src="js/development/pages/index.js"></script>
 </body>
 </html>

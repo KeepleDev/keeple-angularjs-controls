@@ -120,12 +120,5 @@
         processItens();
     }, true);
 
-    $rootScope.$on("imageButtonClick", function (e, identifier) {
-        var item = getItem(identifier);
-        if (item) {
-
-        }
-    });
-
     $rootScope.$emit("treetableReady");
 }]);

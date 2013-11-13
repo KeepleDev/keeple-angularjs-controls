@@ -138,6 +138,13 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
                     scriptsDevelopmentFolder + "/controls/imagebutton/directives/ImageButtonDirective.js"
                 ]
+            },
+            modal: {
+                dest: scriptsDevelopmentFolder + "/modal.js",
+                src: [
+                    scriptsDevelopmentFolder + "/controls/modal/ModalModuleInitialization.js",
+                    scriptsDevelopmentFolder + "/controls/modal/directives/ModalDirective.js"
+                ]
             }
         }
     }
@@ -228,6 +235,10 @@ function GoppHelper(grunt) {
             imageButton: {
                 files: scriptsDevelopmentFolder + "/controls/imagebutton/**/*",
                 tasks: ["concat:imageButton"]
+            },
+            modal: {
+                files: scriptsDevelopmentFolder + "/controls/modal/**/*",
+                tasks: ["concat:modal"]
             }
         };
     }
