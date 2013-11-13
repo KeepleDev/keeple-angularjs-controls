@@ -75,7 +75,6 @@
     <Content Include="js\development\controls\imagebutton\controllers\ImageButtonController.js" />
     <Content Include="js\development\controls\imagebutton\directives\ImageButtonDirective.js" />
     <Content Include="js\development\controls\imagebutton\ImageButtonModuleInitialization.js" />
-    <Content Include="js\development\controls\modal\controllers\ModalController.js" />
     <Content Include="js\development\controls\modal\directives\ModalDirective.js" />
     <Content Include="js\development\controls\modal\ModalModuleInitialization.js" />
     <Content Include="js\development\controls\modal\templates\modal.html" />

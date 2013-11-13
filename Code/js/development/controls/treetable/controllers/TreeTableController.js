@@ -54,12 +54,14 @@
     }
 
     function toggleTreeTableRow(item) {
+        item.isExpanded = !item.isExpanded;
+        item.children = item.children || [];
         if (item.isLoaded || !$scope.options.lazyLoad) {
-            for (var i = 0; i < $scope.processedItens.length; i++) {
-                var subItem = $scope.processedItens[i];
-                if (subItem.parentId == item.id) {
-                    subItem.isVisible = !subItem.isVisible;
-                }
+            if (!item.isExpanded) {
+                hideChildItens(item);
+            }
+            else {
+                showChildItens(item);
             }
         }
         else {
@@ -71,7 +73,31 @@
                 }
             });
         }
-        item.isExpanded = !item.isExpanded;
+    }
+
+    function hideChildItens(parentItem) {
+        var itens = parentItem.children || [];
+        for (var i = 0; i < itens.length; i++) {
+            var item = itens[i];
+            item.isVisible = false;
+            if (item.children) {
+                hideItens(item.children);
+            }
+        }
+    }
+
+    function showChildItens(parentItem) {
+        parentItem.isVisible = true;
+        var itens = parentItem.children || [];
+        for (var i = 0; i < itens.length; i++) {
+            var item = itens[i];
+            if (parentItem.isExpanded) {
+                item.isVisible = true;
+                if (item.children) {
+                    showItens(item, item.children);
+                }
+            }
+        }
     }
 
     function sort(columnIndex) {
