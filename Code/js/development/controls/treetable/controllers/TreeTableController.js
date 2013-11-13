@@ -80,9 +80,7 @@
         for (var i = 0; i < itens.length; i++) {
             var item = itens[i];
             item.isVisible = false;
-            if (item.children) {
-                hideItens(item.children);
-            }
+            hideChildItens(item);
         }
     }
 
@@ -93,9 +91,7 @@
             var item = itens[i];
             if (parentItem.isExpanded) {
                 item.isVisible = true;
-                if (item.children) {
-                    showItens(item, item.children);
-                }
+                showChildItens(item);
             }
         }
     }
