@@ -6,7 +6,8 @@
             itens: "=itens",
             columns: "=columns",
             options: "=options",
-            loadChildren: "=loadChildren"
+            loadChildren: "=loadChildren",
+            treeTableClass: "=treeTableClass"
         }
     };
 });
