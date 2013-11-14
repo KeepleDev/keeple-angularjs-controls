@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-tree-table-row="" data-ng-repeat-start="item in (processedItens | treetableRowFilter)" data-item="item" class="l{{item.level}}" data-toggle-tree-table-row="toggleTreeTableRow">
+        <tr data-ng-tree-table-row="" data-ng-repeat-start="item in (processedItens | treetableRowFilter)" data-item="item" class="l{{item.level}}">
         </tr>
         <tr data-ng-repeat-end="" data-ng-if="item.isLoading" class="l{{item.level+1}} loading">
             <td colspan="999">Carregando

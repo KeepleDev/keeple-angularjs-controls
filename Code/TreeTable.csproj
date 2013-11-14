@@ -64,6 +64,7 @@
     <Content Include="css\images\toggle-exp-dark.png" />
     <Content Include="css\project.css" />
     <Content Include="css\treetable.css" />
+    <Content Include="data\tests\itens.js" />
     <Content Include="index.html" />
     <Content Include="js\development\3rd\angular-cookies.js" />
     <Content Include="js\development\3rd\angular-mocks.js" />
@@ -71,6 +72,7 @@
     <Content Include="js\development\3rd\angular-sanitize.js" />
     <Content Include="js\development\3rd\angular.js" />
     <Content Include="js\development\3rd\bootstrap.js" />
+    <Content Include="js\development\3rd\jasmine.js" />
     <Content Include="js\development\3rd\jquery-2.0.3.js" />
     <Content Include="js\development\controls\imagebutton\controllers\ImageButtonController.js" />
     <Content Include="js\development\controls\imagebutton\directives\ImageButtonDirective.js" />
@@ -83,6 +85,7 @@
     <Content Include="js\development\controls\treetable\directives\TreeTableCellTemplateDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableRowDirective.js" />
     <Content Include="js\development\controls\treetable\filters\TreeTableRowFilter.js" />
+    <Content Include="js\development\controls\treetable\tests\TreeTableControllerTests.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
     <Content Include="js\development\imagebutton.js" />
     <Content Include="js\development\modal.js" />

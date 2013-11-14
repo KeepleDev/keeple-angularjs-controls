@@ -16,8 +16,9 @@
         else {
             var parent = $scope.getItem(item.parentId);
             var found = false;
-            item.isVisible = !!parent.isExpanded;
+            item.isVisible = !!parent.isExpanded && parent.isVisible;
             item.level = parent.level + 1;
+            item.isExpanded = !!item.isExpanded;
             for (var i = 0; i < $scope.processedItens.length; i++) {
                 var processedItem = $scope.processedItens[i];
                 if (processedItem.id == item.parentId) {
@@ -35,11 +36,24 @@
                 return;
             }
         }
-        item.children.sort(sortFunction);
-        var childrenToInsert = item.children.slice(0).reverse();
-        for (var j = 0; j < childrenToInsert.length; j++) {
-            var childItem = childrenToInsert[j];
-            addItem(childItem);
+        if ($scope.options.lazyLoad && !item.isLoaded) {
+            if (item.isExpanded) {
+                item.isLoading = true;
+                $scope.loadChildren(item, function (success) {
+                    item.isLoading = false;
+                    if (success) {
+                        item.isLoaded = true;
+                    }
+                });
+            }
+        } else {
+            var childrenToInsert = item.children.slice(0);
+            childrenToInsert.reverse();
+            childrenToInsert.sort(sortFunction);
+            for (var j = 0; j < childrenToInsert.length; j++) {
+                var childItem = childrenToInsert[j];
+                addItem(childItem);
+            }
         }
     }
 
@@ -52,49 +66,6 @@
             }
         }
         return null;
-    }
-
-    function toggleTreeTableRow(item) {
-        item.isExpanded = !item.isExpanded;
-        item.children = item.children || [];
-        if (item.isLoaded || !$scope.options.lazyLoad) {
-            if (!item.isExpanded) {
-                hideChildItens(item);
-            }
-            else {
-                showChildItens(item);
-            }
-        }
-        else {
-            item.isLoading = true;
-            $scope.loadChildren(item, function (success) {
-                item.isLoading = false;
-                if (success) {
-                    item.isLoaded = true;
-                }
-            });
-        }
-    }
-
-    function hideChildItens(parentItem) {
-        var itens = parentItem.children || [];
-        for (var i = 0; i < itens.length; i++) {
-            var item = itens[i];
-            item.isVisible = false;
-            hideChildItens(item);
-        }
-    }
-
-    function showChildItens(parentItem) {
-        parentItem.isVisible = true;
-        var itens = parentItem.children || [];
-        for (var i = 0; i < itens.length; i++) {
-            var item = itens[i];
-            if (parentItem.isExpanded) {
-                item.isVisible = true;
-                showChildItens(item);
-            }
-        }
     }
 
     function sort(columnIndex) {
@@ -113,10 +84,10 @@
         var itemBSortColumn = itemB.columns[$scope.sortColumnIndex];
         if (itemASortColumn && itemBSortColumn) {
             if ($scope.sortAsc) {
-                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1;
+                return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
             }
             else {
-                return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
+                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1; 
             }
         }
         return 0;
@@ -124,8 +95,8 @@
 
     function processItens() {
         $scope.processedItens = [];
-        $scope.itens.sort(sortFunction);
         var itensToInsert = $scope.itens.slice(0).reverse();
+        itensToInsert.sort(sortFunction);
         for (var i = 0; i < itensToInsert.length; i++) {
             var item = itensToInsert[i];
             addItem(item);
@@ -133,12 +104,12 @@
     }
 
     $scope.getItem = getItem;
-    $scope.toggleTreeTableRow = toggleTreeTableRow;
     $scope.addItem = addItem;
     $scope.processedItens = [];
-    $scope.sortColumnIndex = 0;
+    $scope.sortColumnIndex = -1;
     $scope.sortAsc = undefined;
     $scope.sort = sort;
+    $scope.options = $scope.options || {};
 
     $scope.$watch("itens", function () {
         processItens();
