@@ -87,7 +87,7 @@
                 return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
             }
             else {
-                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1; 
+                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1;
             }
         }
         return 0;
