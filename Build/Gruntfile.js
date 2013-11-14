@@ -274,7 +274,12 @@ function GoppHelper(grunt) {
                 ],
                 helpers: [
                     webProjectFolder + "/data/tests/itens.js"
-                ]
+                ],
+                template: require("grunt-template-jasmine-istanbul"),
+                templateOptions: {
+                    coverage: "tests/coverage/coverage.json",
+                    report: "tests/coverage"
+                }
             }
         };
     }
