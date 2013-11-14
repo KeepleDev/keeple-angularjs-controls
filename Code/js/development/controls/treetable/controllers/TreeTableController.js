@@ -36,8 +36,9 @@
             }
         }
         item.children.sort(sortFunction);
-        for (var j = 0; j < item.children.length; j++) {
-            var childItem = item.children[j];
+        var childrenToInsert = item.children.slice(0).reverse();
+        for (var j = 0; j < childrenToInsert.length; j++) {
+            var childItem = childrenToInsert[j];
             addItem(childItem);
         }
     }
@@ -112,10 +113,10 @@
         var itemBSortColumn = itemB.columns[$scope.sortColumnIndex];
         if (itemASortColumn && itemBSortColumn) {
             if ($scope.sortAsc) {
-                return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
+                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1;
             }
             else {
-                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1;
+                return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
             }
         }
         return 0;
@@ -124,8 +125,9 @@
     function processItens() {
         $scope.processedItens = [];
         $scope.itens.sort(sortFunction);
-        for (var i = 0; i < $scope.itens.length; i++) {
-            var item = $scope.itens[i];
+        var itensToInsert = $scope.itens.slice(0).reverse();
+        for (var i = 0; i < itensToInsert.length; i++) {
+            var item = itensToInsert[i];
             addItem(item);
         }
     }

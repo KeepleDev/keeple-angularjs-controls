@@ -6,6 +6,7 @@ module.exports = function (grunt) {
     var cleanOptions = helper.getCleanOptions();
     var jsHintOptions = helper.getJsHintOptions();
     var watchOptions = helper.getWatchOptions();
+    var jasmineOptions = helper.getJasmineOptions();
 
     // Project configuration.
     grunt.initConfig({
@@ -15,7 +16,8 @@ module.exports = function (grunt) {
         jshint: jsHintOptions,
         cssmin: cssMinOptions,
         clean: cleanOptions,
-        watch: watchOptions
+        watch: watchOptions,
+        jasmine: jasmineOptions
     });
 
     grunt.loadNpmTasks("grunt-contrib-jshint");
@@ -24,12 +26,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
 
     // Default task(s).
     grunt.registerTask("default", ["test", "concat", "uglify"]);
     grunt.registerTask("dev", ["test", "concat", "cssmin", "watch"]);
     grunt.registerTask("prod", ["clean", "uglify", "cssmin"]);
-    grunt.registerTask("test", ["jshint"]);
+    grunt.registerTask("test", ["jshint", "jasmine"]);
 };
 
 function GoppHelper(grunt) {
@@ -245,6 +248,39 @@ function GoppHelper(grunt) {
 
     //#endregion
 
+    //#region Jasmine
+
+    function getJasmineOptions() {
+        return {
+            src: [
+                scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
+                scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
+                scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableCellTemplateDirective.js",
+                scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
+                scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",
+                scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
+            ],
+            options: {
+                specs: [
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableControllerTests.js"
+                ],
+                vendor: [
+                    scriptsDevelopmentFolder + "/3rd/jquery-2.0.3.js",
+                    scriptsDevelopmentFolder + "/3rd/bootstrap.js",
+                    scriptsDevelopmentFolder + "/3rd/angular.js",
+                    scriptsDevelopmentFolder + "/3rd/angular-mocks.js",
+                    scriptsDevelopmentFolder + "/3rd/angular-sanitize.js",
+                    scriptsDevelopmentFolder + "/utils.js"
+                ],
+                helpers: [
+                    webProjectFolder + "/data/tests/itens.js"
+                ]
+            }
+        };
+    }
+
+    //#endregion
+
     function getFilesByPattern(pattern) {
         var structures = grunt.file.expand(pattern);
         var files = [];
@@ -265,4 +301,5 @@ function GoppHelper(grunt) {
     this.getCleanOptions = getCleanOptions;
     this.getJsHintOptions = getJsHintOptions;
     this.getWatchOptions = getWatchOptions;
+    this.getJasmineOptions = getJasmineOptions;
 }
