@@ -5,6 +5,22 @@
 .treetable {
 }
 
+    .treetable > thead > tr span.sort {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-position: center center;
+        vertical-align: middle;
+    }
+
+        .treetable > thead > tr span.sort.sort-asc {
+            background-image: url(images/asc.png);
+        }
+
+        .treetable > thead > tr span.sort.sort-desc {
+            background-image: url(images/desc.png);
+        }
+
     .treetable > tbody > tr {
     }
 

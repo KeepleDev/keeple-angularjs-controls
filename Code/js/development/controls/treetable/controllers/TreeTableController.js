@@ -11,7 +11,7 @@
             if (item.isExpanded === undefined) {
                 item.isExpanded = false;
             }
-            $scope.processedItens.push(item);
+            $scope.processedItens.splice(0, 0, item);
         }
         else {
             var parent = $scope.getItem(item.parentId);
@@ -32,7 +32,7 @@
                 }
             }
             if (!found) {
-                $scope.processedItens.push(item);
+                return;
             }
         }
         item.children.sort(sortFunction);
@@ -135,7 +135,7 @@
     $scope.addItem = addItem;
     $scope.processedItens = [];
     $scope.sortColumnIndex = 0;
-    $scope.sortAsc = false;
+    $scope.sortAsc = undefined;
     $scope.sort = sort;
 
     $scope.$watch("itens", function () {
