@@ -87,6 +87,9 @@
     <Content Include="js\development\controls\treetable\filters\TreeTableRowFilter.js" />
     <Content Include="js\development\controls\treetable\tests\TreeTableCellTemplateDirectiveTests.js" />
     <Content Include="js\development\controls\treetable\tests\TreeTableControllerTests.js" />
+    <Content Include="js\development\controls\treetable\tests\TreeTableDirectiveTests.js" />
+    <Content Include="js\development\controls\treetable\tests\TreeTableRowDirectiveTests.js" />
+    <Content Include="js\development\controls\treetable\tests\TreeTableRowFilterTests.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
     <Content Include="js\development\imagebutton.js" />
     <Content Include="js\development\modal.js" />
@@ -140,8 +143,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PreBuildEvent>cd $(SolutionDir)../Build
+grunt_teste.bat</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
