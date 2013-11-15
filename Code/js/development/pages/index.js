@@ -16,7 +16,7 @@ angular.module("project", ["treetable", "imageButton", "modal"]).controller("ind
         /// <param name="callback" type="Function">Description</param>
         if (callback) {
             setTimeout(function () {
-                parentItem.children = children[parentItem.id];
+                parentItem.children = children[parentItem.nodeId];
                 callback(true);
                 $scope.$apply();
             }, 300);
@@ -44,14 +44,14 @@ angular.module("project", ["treetable", "imageButton", "modal"]).controller("ind
         }
     });
 
-    function findItem(itens, itemId) {
+    function findItem(itens, itemNodeId) {
         for (var i = 0; i < itens.length; i++) {
             var item = itens[i];
-            if (item.id == itemId) {
+            if (item.nodeId == itemNodeId) {
                 return item;
             }
             else if (item.children) {
-                var itemFound = findItem(item.children, itemId);
+                var itemFound = findItem(item.children, itemNodeId);
                 if (itemFound !== null) {
                     return itemFound;
                 }

@@ -41,8 +41,8 @@ describe("TreeTable Directive", function () {
         scope.treetable.columns = ["Coluna1", "Coluna2"];
         scope.treetable.itens = testItens;
         compile = $compile;
-        $templateCache.put("js/development/controls/treetable/templates/treetable.html", treeTableTemplate);
-        $templateCache.put("js/development/controls/treetable/templates/treetablerow.html", treeTableRowTemplate);
+        $templateCache.put("templates/treetable.html", treeTableTemplate);
+        $templateCache.put("templates/treetablerow.html", treeTableRowTemplate);
     }));
 
     it("should add the same number of header cells as the number columns", function () {

@@ -1,0 +1,18 @@
+﻿<table data-ng-controller="treeTableController" class="treetable" data-ng-class="treeTableClass">
+    <thead>
+        <tr>
+            <th data-ng-repeat="column in columns">
+                <a href="#" data-ng-click="sort($index)" data-ng-bind="column"></a>
+                <span data-ng-if="sortColumnIndex == $index" data-ng-class="{true: 'sort-asc' , false: 'sort-desc'}[sortAsc]" class="sort"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-tree-table-row="" data-ng-repeat-start="item in (processedItens | treetableRowFilter)" data-item="item" class="l{{item.level}}">
+        </tr>
+        <tr data-ng-repeat-end="" data-ng-if="item.isLoading" class="l{{item.level+1}} loading">
+            <td colspan="999">Carregando
+            </td>
+        </tr>
+    </tbody>
+</table>

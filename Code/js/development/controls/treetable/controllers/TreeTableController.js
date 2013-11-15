@@ -4,7 +4,7 @@
         /// <param name="item" type="Object"></param>
         item.hasTemplate = !!item.template;
         item.children = item.children || [];
-        if (item.parentId === null) {
+        if (item.parentNodeId === null) {
             item.isVisible = true;
             item.level = 1;
             if (item.isExpanded === undefined) {
@@ -13,7 +13,7 @@
             $scope.processedItens.push(item);
         }
         else {
-            var parent = $scope.getItem(item.parentId);
+            var parent = $scope.getItem(item.parentNodeId);
             if (parent) {
             var found = false;
                 item.isVisible = !!parent.isExpanded && parent.isVisible;
@@ -21,7 +21,7 @@
                 item.isExpanded = !!item.isExpanded;
                 for (var i = 0; i < $scope.processedItens.length; i++) {
                     var processedItem = $scope.processedItens[i];
-                    if (processedItem.id == item.parentId) {
+                    if (processedItem.nodeId == item.parentNodeId) {
                         if (i === $scope.processedItens.length - 1) {
                             $scope.processedItens.push(item);
                         }
@@ -58,11 +58,11 @@
         }
     }
 
-    function getItem(itemId) {
+    function getItem(itemNodeId) {
         /// <returns type="Object" />
         for (var i = 0; i < $scope.processedItens.length; i++) {
             var processedItem = $scope.processedItens[i];
-            if (processedItem.id == itemId) {
+            if (processedItem.nodeId == itemNodeId) {
                 return processedItem;
             }
         }

@@ -19,7 +19,7 @@ describe("TreeTable Directive", function () {
         scope = $rootScope.$new();
         scope.item = testItens[0];
         compile = $compile;
-        $templateCache.put("js/development/controls/treetable/templates/treetablerow.html", treeTableRowTemplate);
+        $templateCache.put("templates/treetablerow.html", treeTableRowTemplate);
     }));
 
     it("should add the same number of cells as the number of item columns", function () {

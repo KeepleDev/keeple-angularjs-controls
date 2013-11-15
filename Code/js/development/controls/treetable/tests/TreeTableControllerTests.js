@@ -80,7 +80,7 @@ describe("TreeTable Controller", function () {
 
     it("should not add item with invalid parent id", function () {
         var testItem = testItens[0];
-        testItem.children[0].parentId = "xxx";
+        testItem.children[0].parentNodeId = "xxx";
         scope.itens = [testItem];
         scope.$apply();
 
@@ -93,7 +93,7 @@ describe("TreeTable Controller", function () {
         scope.itens = [testItem];
         scope.$apply();
 
-        expect(originalChildItem.id).toBe(testItem.children[0].id);
+        expect(originalChildItem.nodeId).toBe(testItem.children[0].nodeId);
     });
 
     it("should set item level", function () {
