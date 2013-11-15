@@ -262,7 +262,9 @@ function GoppHelper(grunt) {
             ],
             options: {
                 specs: [
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableControllerTests.js"
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableControllerTests.js",
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableCellTemplateDirectiveTests.js",
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableDirectiveTests.js"
                 ],
                 vendor: [
                     scriptsDevelopmentFolder + "/3rd/jquery-2.0.3.js",
@@ -273,7 +275,10 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + "/utils.js"
                 ],
                 helpers: [
-                    webProjectFolder + "/data/tests/itens.js"
+                    webProjectFolder + "/data/tests/itens.js",
+                    scriptsDevelopmentFolder + "/controls/imagebutton/ImageButtonModuleInitialization.js",
+                    scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
+                    scriptsDevelopmentFolder + "/controls/imagebutton/directives/ImageButtonDirective.js"
                 ],
                 template: require("grunt-template-jasmine-istanbul"),
                 templateOptions: {

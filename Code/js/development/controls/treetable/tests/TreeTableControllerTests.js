@@ -59,6 +59,13 @@ describe("TreeTable Controller", function () {
         expect(parentItemIndex).toBeLessThan(childItemIndex);
     });
 
+    it("should add all itens on processed list", function () {
+        scope.itens = testItens;
+        scope.$apply();
+
+        expect(scope.processedItens.length).toBe(7);
+    });
+
     it("should add itens on processed list according to original itens order", function () {
         var testItem = testItens[0];
         scope.itens = [testItem];
@@ -69,6 +76,15 @@ describe("TreeTable Controller", function () {
         var thirdChildItemIndex = scope.processedItens.indexOf(testItem.children[2]);
         expect(firstChildItemIndex).toBe(secondChildItemIndex - 1);
         expect(secondChildItemIndex).toBe(thirdChildItemIndex - 1);
+    });
+
+    it("should not add item with invalid parent id", function () {
+        var testItem = testItens[0];
+        testItem.children[0].parentId = "xxx";
+        scope.itens = [testItem];
+        scope.$apply();
+
+        expect(scope.processedItens.length).toBe(3);
     });
 
     it("should not change order of itens in original object", function () {
@@ -183,6 +199,21 @@ describe("TreeTable Controller", function () {
         scope.$apply();
     });
 
+    it("should set isLoading to false after loadChildren error", function () {
+        var testItem = testItens[0];
+        scope.options = { lazyLoad: true };
+        scope.itens = [testItem];
+        scope.$apply();
+        scope.loadChildren = function (item, callback) {
+            callback(false);
+            expect(testItem.isLoading).toBe(false);
+        };
+        spyOn(scope, "loadChildren").andCallThrough();
+        testItem.isExpanded = !testItem.isExpanded;
+        scope.$apply();
+        expect(scope.loadChildren).toHaveBeenCalled();
+    });
+
     it("should set isLoaded to true after done loading if lazyLoad is true", function () {
         var testItem = testItens[0];
         scope.options = { lazyLoad: true };
@@ -229,5 +260,53 @@ describe("TreeTable Controller", function () {
         testItem.isExpanded = false;
         scope.$apply();
         expect(testItem.children[0].isExpanded).toBe(true);
+    });
+
+    it("should sort root ascending on first column sort", function () {
+        testItens[0].children = [];
+        testItens[0].columns[0].value = "2";
+        testItens[1].children = [];
+        testItens[1].columns[0].value = "1";
+        scope.itens = testItens;
+        scope.$apply();
+        scope.sort(0);
+        expect(scope.processedItens[1].columns[0].value < scope.processedItens[0].columns[0].value).toBe(true);
+    });
+
+    it("should sort children ascending on first column sort", function () {
+        var testItem = testItens[0];
+        testItem.children[0].columns[0].value = 1;
+        testItem.children[1].columns[0].value = 2;
+        testItem.children[2].columns[0].value = 0;
+        scope.itens = [testItem];
+        scope.$apply();
+        scope.sort(0);
+        expect(scope.processedItens[1].columns[0].value < scope.processedItens[2].columns[0].value).toBe(true);
+        expect(scope.processedItens[1].columns[0].value < scope.processedItens[3].columns[0].value).toBe(true);
+    });
+
+    it("should sort root descending on second column sort", function () {
+        testItens[0].children = [];
+        testItens[0].columns[0].value = "2";
+        testItens[1].children = [];
+        testItens[1].columns[0].value = "1";
+        scope.itens = testItens;
+        scope.$apply();
+        scope.sort(0);
+        scope.sort(0);
+        expect(scope.processedItens[1].columns[0].value > scope.processedItens[0].columns[0].value).toBe(true);
+    });
+
+    it("should sort children ascending on second column sort", function () {
+        var testItem = testItens[0];
+        testItem.children[0].columns[0].value = 1;
+        testItem.children[1].columns[0].value = 2;
+        testItem.children[2].columns[0].value = 0;
+        scope.itens = [testItem];
+        scope.$apply();
+        scope.sort(0);
+        scope.sort(0);
+        expect(scope.processedItens[1].columns[0].value > scope.processedItens[2].columns[0].value).toBe(true);
+        expect(scope.processedItens[1].columns[0].value > scope.processedItens[3].columns[0].value).toBe(true);
     });
 });

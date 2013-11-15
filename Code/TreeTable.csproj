@@ -85,6 +85,7 @@
     <Content Include="js\development\controls\treetable\directives\TreeTableCellTemplateDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableRowDirective.js" />
     <Content Include="js\development\controls\treetable\filters\TreeTableRowFilter.js" />
+    <Content Include="js\development\controls\treetable\tests\TreeTableCellTemplateDirectiveTests.js" />
     <Content Include="js\development\controls\treetable\tests\TreeTableControllerTests.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
     <Content Include="js\development\imagebutton.js" />

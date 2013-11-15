@@ -1,6 +1,3 @@
-﻿<td data-ng-repeat="column in item.columns" colspan="{{column.colspan}}">
+﻿<td data-ng-repeat="column in item.columns" colspan="{{column.colspan}}" data-ng-tree-table-cell-template="" data-item="item" data-item-column="column" >
     <a data-ng-if="$first && item.isParent" href="#" data-ng-click="item.isExpanded = !item.isExpanded" data-ng-class="{true:'collapse', false:'expand'}[item.isExpanded]" class="treetable-toggle"></a>
-    <div data-ng-if="column.hasTemplate" data-ng-tree-table-cell-template="" data-item="item" data-item-column="column" class="template">
-    </div>
-    {{column.hasTemplate ? "" : column.value}}
 </td>

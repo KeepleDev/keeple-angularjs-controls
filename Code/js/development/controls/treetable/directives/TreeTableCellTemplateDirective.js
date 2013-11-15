@@ -9,7 +9,10 @@
             if (scope.itemColumn.hasTemplate) {
                 var html = scope.itemColumn.template;
                 var e = $compile(html)(scope);
-                element.replaceWith(e);
+                element.append(e);
+            }
+            else {
+                element.append(scope.itemColumn.value);
             }
         }
     };

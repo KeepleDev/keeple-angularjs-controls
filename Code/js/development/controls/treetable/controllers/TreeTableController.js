@@ -2,7 +2,6 @@
     /// <param name="$scope" type="Object"></param>
     function addItem(item) {
         /// <param name="item" type="Object"></param>
-        $scope.processedItens = $scope.processedItens || [];
         item.hasTemplate = !!item.template;
         item.children = item.children || [];
         if (item.parentId === null) {
@@ -11,28 +10,30 @@
             if (item.isExpanded === undefined) {
                 item.isExpanded = false;
             }
-            $scope.processedItens.splice(0, 0, item);
+            $scope.processedItens.push(item);
         }
         else {
             var parent = $scope.getItem(item.parentId);
+            if (parent) {
             var found = false;
-            item.isVisible = !!parent.isExpanded && parent.isVisible;
-            item.level = parent.level + 1;
-            item.isExpanded = !!item.isExpanded;
-            for (var i = 0; i < $scope.processedItens.length; i++) {
-                var processedItem = $scope.processedItens[i];
-                if (processedItem.id == item.parentId) {
-                    if (i === $scope.processedItens.length - 1) {
-                        $scope.processedItens.push(item);
+                item.isVisible = !!parent.isExpanded && parent.isVisible;
+                item.level = parent.level + 1;
+                item.isExpanded = !!item.isExpanded;
+                for (var i = 0; i < $scope.processedItens.length; i++) {
+                    var processedItem = $scope.processedItens[i];
+                    if (processedItem.id == item.parentId) {
+                        if (i === $scope.processedItens.length - 1) {
+                            $scope.processedItens.push(item);
+                        }
+                        else {
+                            $scope.processedItens.splice(i + 1, 0, item);
+                        }
+                        found = true;
+                        break;
                     }
-                    else {
-                        $scope.processedItens.splice(i + 1, 0, item);
-                    }
-                    found = true;
-                    break;
                 }
             }
-            if (!found) {
+            else {
                 return;
             }
         }
