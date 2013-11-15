@@ -264,7 +264,9 @@ function GoppHelper(grunt) {
                 specs: [
                     scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableControllerTests.js",
                     scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableCellTemplateDirectiveTests.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableDirectiveTests.js"
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableDirectiveTests.js",
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableRowDirectiveTests.js",
+                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableRowFilterTests.js"
                 ],
                 vendor: [
                     scriptsDevelopmentFolder + "/3rd/jquery-2.0.3.js",
