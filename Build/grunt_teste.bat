@@ -3,3 +3,4 @@ if "%ERRORLEVEL%" == "3" (
 output.txt
 exit /B 3
 )
+type output.txt
