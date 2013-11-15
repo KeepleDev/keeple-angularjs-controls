@@ -251,6 +251,44 @@ describe("TreeTable Controller", function () {
         expect(loadChildrenCallCount).toBe(1);
     });
 
+    it("should not call loadChildren on node if is Loading", function () {
+        var testItem = testItens[0];
+        scope.options = { lazyLoad: true };
+        scope.itens = [testItem];
+        scope.$apply();
+        var loadChildrenCallCount = 0;
+        scope.loadChildren = function (item, callback) {
+            loadChildrenCallCount++;
+            callback(true);
+        };
+        spyOn(scope, "loadChildren").andCallThrough();
+
+        testItem.isLoading = true;
+        testItem.isExpanded = true;
+        scope.$apply();
+        expect(scope.loadChildren).wasNotCalled();
+        expect(loadChildrenCallCount).toBe(0);
+    });
+
+    it("should not call loadChildren if node is not parent", function () {
+        var testItem = testItens[0];
+        scope.options = { lazyLoad: true };
+        scope.itens = [testItem];
+        scope.$apply();
+        var loadChildrenCallCount = 0;
+        scope.loadChildren = function (item, callback) {
+            loadChildrenCallCount++;
+            callback(true);
+        };
+        spyOn(scope, "loadChildren").andCallThrough();
+
+        testItem.isParent = false;
+        testItem.isExpanded = true;
+        scope.$apply();
+        expect(scope.loadChildren).wasNotCalled();
+        expect(loadChildrenCallCount).toBe(0);
+    });
+
     it("should not change isExpanded on children if parentItem isExpanded changes", function () {
         var testItem = testItens[0];
         testItem.isExpanded = true;

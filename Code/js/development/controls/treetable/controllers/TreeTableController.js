@@ -38,12 +38,15 @@
             }
         }
         if ($scope.options.lazyLoad && !item.isLoaded) {
-            if (item.isExpanded) {
+            if (item.isExpanded && !item.isLoading && item.isParent) {
                 item.isLoading = true;
                 $scope.loadChildren(item, function (success) {
                     item.isLoading = false;
                     if (success) {
                         item.isLoaded = true;
+                        if (!$scope.$$phase && !$scope.$root.$$phase) {
+                            $scope.$apply();
+                        }
                     }
                 });
             }

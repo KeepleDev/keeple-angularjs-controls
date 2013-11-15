@@ -86,12 +86,15 @@
             height: 20px;
             background-position: center center;
             vertical-align: middle;
+			cursor: default;
         }
 
             .treetable > tbody > tr > td:first-child > a.treetable-toggle.expand {
                 background-image: url(images/toggle-exp-dark.png);
+				cursor: pointer;
             }
 
             .treetable > tbody > tr > td:first-child > a.treetable-toggle.collapse {
                 background-image: url(images/toggle-col-dark.png);
+				cursor: pointer;
             }
