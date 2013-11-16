@@ -10,28 +10,15 @@
             if (item.isExpanded === undefined) {
                 item.isExpanded = false;
             }
-            $scope.processedItens.push(item);
+            insertItemInProcessedItens(item);
         }
         else {
             var parent = $scope.getItem(item.parentNodeId);
             if (parent) {
-            var found = false;
                 item.isVisible = !!parent.isExpanded && parent.isVisible;
                 item.level = parent.level + 1;
                 item.isExpanded = !!item.isExpanded;
-                for (var i = 0; i < $scope.processedItens.length; i++) {
-                    var processedItem = $scope.processedItens[i];
-                    if (processedItem.nodeId == item.parentNodeId) {
-                        if (i === $scope.processedItens.length - 1) {
-                            $scope.processedItens.push(item);
-                        }
-                        else {
-                            $scope.processedItens.splice(i + 1, 0, item);
-                        }
-                        found = true;
-                        break;
-                    }
-                }
+                insertItemInProcessedItens(item);
             }
             else {
                 return;
@@ -44,13 +31,11 @@
                     item.isLoading = false;
                     if (success) {
                         item.isLoaded = true;
-                        if (!$scope.$$phase && !$scope.$root.$$phase) {
-                            $scope.$apply();
-                        }
                     }
                 });
             }
-        } else {
+        }
+        else {
             var childrenToInsert = item.children.slice(0);
             childrenToInsert.reverse();
             childrenToInsert.sort(sortFunction);
@@ -59,6 +44,26 @@
                 addItem(childItem);
             }
         }
+    }
+
+    function insertItemInProcessedItens(item) {
+        var indexToInsert = getIndexToInsertItem(item);
+        $scope.processedItens.splice(indexToInsert, 0, item);
+        item.hasBeenAddedInTreeTable = true;
+    }
+
+    function getIndexToInsertItem(item) {
+        var i = 0;
+        if (item.parentNodeId === null) {
+            return 0;
+        }
+        for (i = 0; i < $scope.processedItens.length; i++) {
+            var processedItem = $scope.processedItens[i];
+            if (processedItem.nodeId == item.parentNodeId) {
+                return i + 1;
+            }
+        }
+        return i;
     }
 
     function getItem(itemNodeId) {
@@ -98,9 +103,9 @@
     }
 
     function processItens() {
-        $scope.processedItens = [];
         var itensToInsert = $scope.itens.slice(0).reverse();
         itensToInsert.sort(sortFunction);
+        $scope.processedItens = [];
         for (var i = 0; i < itensToInsert.length; i++) {
             var item = itensToInsert[i];
             addItem(item);
@@ -115,7 +120,7 @@
     $scope.sort = sort;
     $scope.options = $scope.options || {};
 
-    $scope.$watch("itens", function () {
+    $scope.$watch("itens", function itensChangedWatch() {
         processItens();
     }, true);
 

@@ -5,7 +5,7 @@
             item: "=item",
             itemColumn: "=itemColumn"
         },
-        link: function (scope, element) {
+        link: function ngTreeTableCellTemplate(scope, element) {
             if (scope.itemColumn.hasTemplate) {
                 var html = scope.itemColumn.template;
                 var e = $compile(html)(scope);

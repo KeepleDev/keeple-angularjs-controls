@@ -1,5 +1,5 @@
 ﻿angular.module("treetable").filter("treetableRowFilter", function () {
-    return function (itens) {
+    return function treetableRowFilter(itens) {
         var filtered = [];
         for (var i = 0; i < itens.length; i++) {
             var item = itens[i];

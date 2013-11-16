@@ -28,7 +28,7 @@ angular.module("project", ["treetable", "imageButton", "modal"]).controller("ind
             for (var i = 0; i < response.itens.length; i++) {
                 var item = response.itens[i];
                 if (item.children) {
-                    children[item.id] = item.children;
+                    children[item.nodeId] = item.children;
                     item.children = [];
                 }
             }

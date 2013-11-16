@@ -76,6 +76,15 @@ describe("TreeTable Controller", function () {
         var thirdChildItemIndex = scope.processedItens.indexOf(testItem.children[2]);
         expect(firstChildItemIndex).toBe(secondChildItemIndex - 1);
         expect(secondChildItemIndex).toBe(thirdChildItemIndex - 1);
+
+        testItens[0].children = [];
+        testItens[1].children = [];
+        scope.itens = testItens;
+        scope.$apply();
+
+        firstChildItemIndex = scope.processedItens.indexOf(testItens[0]);
+        secondChildItemIndex = scope.processedItens.indexOf(testItens[1]);
+        expect(firstChildItemIndex).toBe(secondChildItemIndex - 1);
     });
 
     it("should not add item with invalid parent id", function () {
@@ -308,7 +317,7 @@ describe("TreeTable Controller", function () {
         scope.itens = testItens;
         scope.$apply();
         scope.sort(0);
-        expect(scope.processedItens[1].columns[0].value < scope.processedItens[0].columns[0].value).toBe(true);
+        expect(scope.processedItens[1].columns[0].value > scope.processedItens[0].columns[0].value).toBe(true);
     });
 
     it("should sort children ascending on first column sort", function () {
@@ -332,7 +341,7 @@ describe("TreeTable Controller", function () {
         scope.$apply();
         scope.sort(0);
         scope.sort(0);
-        expect(scope.processedItens[1].columns[0].value > scope.processedItens[0].columns[0].value).toBe(true);
+        expect(scope.processedItens[1].columns[0].value < scope.processedItens[0].columns[0].value).toBe(true);
     });
 
     it("should sort children ascending on second column sort", function () {

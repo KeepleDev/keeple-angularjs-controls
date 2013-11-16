@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th data-ng-repeat="column in columns">
-                <a href="#" data-ng-click="sort($index)" data-ng-bind="column"></a>
+                <a data-ng-click="sort($index)" data-ng-bind="column"></a>
                 <span data-ng-if="sortColumnIndex == $index" data-ng-class="{true: 'sort-asc' , false: 'sort-desc'}[sortAsc]" class="sort"></span>
             </th>
         </tr>
