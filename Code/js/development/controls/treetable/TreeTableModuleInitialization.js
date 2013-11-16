@@ -1,1 +1,1 @@
-﻿angular.module("treetable", ["ngSanitize"]);
+﻿angular.module("treetable", []);

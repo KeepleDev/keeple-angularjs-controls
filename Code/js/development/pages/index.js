@@ -1,5 +1,5 @@
 ﻿/// <reference path="../3rd/angular.js" />
-angular.module("project", ["treetable", "imageButton", "modal"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
+angular.module("project", ["treetable", "imageButton", "modal", "ngSanitize"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
     /// <param name="$scope" type="Object"></param>
     var children = {};
 
