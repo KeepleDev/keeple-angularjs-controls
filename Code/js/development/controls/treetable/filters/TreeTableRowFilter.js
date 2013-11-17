@@ -1,4 +1,4 @@
-﻿angular.module("treetable").filter("treetableRowFilter", function () {
+﻿angular.module("keeple.controls.treeTable").filter("treetableRowFilter", function () {
     return function treetableRowFilter(itens) {
         var filtered = [];
         for (var i = 0; i < itens.length; i++) {

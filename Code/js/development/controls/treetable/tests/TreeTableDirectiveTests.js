@@ -10,7 +10,7 @@ describe("TreeTable Directive", function () {
 
     var template = "<div data-ng-tree-table=\"\" data-itens=\"treetable.itens\" data-columns=\"treetable.columns\" data-options=\"treetable.options\" data-load-children=\"treetable.loadChildren\" data-tree-table-class=\"'table table-bordered'\"></div>";
 
-    var treeTableTemplate = "<table data-ng-controller=\"treeTableController\" class=\"treetable\" data-ng-class=\"treeTableClass\">";
+    var treeTableTemplate = "<table data-ng-controller=\"treeTableController\" class=\"tree-table\" data-ng-class=\"treeTableClass\">";
     treeTableTemplate = treeTableTemplate + "<thead>";
     treeTableTemplate = treeTableTemplate + "<tr>";
     treeTableTemplate = treeTableTemplate + "<th data-ng-repeat=\"column in columns\">";
@@ -30,11 +30,11 @@ describe("TreeTable Directive", function () {
     treeTableTemplate = treeTableTemplate + "</table>";
 
     var treeTableRowTemplate = "<td data-ng-repeat=\"column in item.columns\" colspan=\"{{column.colspan}}\" data-ng-tree-table-cell-template=\"\" data-item=\"item\" data-item-column=\"column\" >";
-    treeTableRowTemplate = treeTableRowTemplate + "<a data-ng-if=\"$first && item.isParent\" href=\"#\" data-ng-click=\"item.isExpanded = !item.isExpanded\" data-ng-class=\"{true:'collapse', false:'expand'}[item.isExpanded]\" class=\"treetable-toggle\"></a>";
+    treeTableRowTemplate = treeTableRowTemplate + "<a data-ng-if=\"$first && item.isParent\" href=\"#\" data-ng-click=\"item.isExpanded = !item.isExpanded\" data-ng-class=\"{true:'collapse', false:'expand'}[item.isExpanded]\" class=\"tree-table-toggle\"></a>";
     treeTableRowTemplate = treeTableRowTemplate + "</td>";
 
 
-    beforeEach(angular.mock.module("treetable"));
+    beforeEach(angular.mock.module("keeple.controls.treeTable"));
     beforeEach(angular.mock.inject(function ($rootScope, $controller, $compile, $templateCache) {
         scope = $rootScope.$new();
         scope.treetable = {};

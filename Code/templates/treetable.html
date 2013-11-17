@@ -1,17 +1,19 @@
-﻿<table data-ng-controller="treeTableController" class="treetable" data-ng-class="treeTableClass">
+﻿<table data-ng-controller="treeTableController" class="tree-table" data-ng-class="treeTableClass">
     <thead>
-        <tr>
-            <th data-ng-repeat="column in columns">
-                <a data-ng-click="sort($index)" data-ng-bind="column"></a>
-                <span data-ng-if="sortColumnIndex == $index" data-ng-class="{true: 'sort-asc' , false: 'sort-desc'}[sortAsc]" class="sort"></span>
+        <tr data-ng-repeat="line in headerLines">
+            <th data-ng-repeat="column in line.columns" colspan="{{column.colspan}}" data-ng-class="column.class">
+                <a data-ng-if="column.isSortable" href="javascript:void()" data-ng-click="sort($index)" data-ng-bind="column.value"></a>
+                <span data-ng-if="column.isSortable && sortColumnIndex == $index" data-ng-class="{true: 'sort-asc' , false: 'sort-desc'}[sortAsc]" class="tree-table-sort"></span>
+                <span data-ng-if="!column.isSortable" data-ng-bind="column.value"></span>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr data-ng-tree-table-row="" data-ng-repeat-start="item in (processedItens | treetableRowFilter)" data-item="item" class="l{{item.level}}">
         </tr>
-        <tr data-ng-repeat-end="" data-ng-if="item.isLoading" class="l{{item.level+1}} loading">
-            <td colspan="999">Carregando
+        <tr data-ng-repeat-end="" data-ng-if="item.isLoading" class="l{{item.level+1}} tree-table-loading">
+            <td colspan="999">
+                <span class="loading-animation"></span>Carregando
             </td>
         </tr>
     </tbody>

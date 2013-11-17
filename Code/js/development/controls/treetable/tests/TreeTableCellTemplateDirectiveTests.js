@@ -8,7 +8,7 @@ describe("TreeTable Cell Template Directive", function () {
     var compile = {};
     var testItem = getTestItens()[0].children[0];
 
-    beforeEach(angular.mock.module("treetable"));
+    beforeEach(angular.mock.module("keeple.controls.treeTable"));
     beforeEach(angular.mock.inject(function ($rootScope, $controller, $compile) {
         scope = $rootScope.$new();
         testItem = getTestItens()[0].children[0];

@@ -1,5 +1,5 @@
 ﻿/// <reference path="../3rd/angular.js" />
-angular.module("project", ["treetable", "imageButton", "modal", "ngSanitize"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
+angular.module("project", ["keeple.controls.treeTable", "imageButton", "modal", "ngSanitize"]).controller("indexController", ["$rootScope", "$http", "$scope", function ($rootScope, $http, $scope) {
     /// <param name="$scope" type="Object"></param>
     var children = {};
 
@@ -9,7 +9,7 @@ angular.module("project", ["treetable", "imageButton", "modal", "ngSanitize"]).c
 
     $scope.treetable = {};
     $scope.treetable.itens = [];
-    $scope.treetable.columns = ["Fabricante/Celular", "Ano de Fabricação", "CPU", "Memoria"];
+    $scope.treetable.columns = [{ line: 1, value: "Fabricante/Celular" }, { line: 1, value: "Ano de Fabricação" }, { line: 1, value: "CPU" }, { line: 1, value: "Memoria" }];
     $scope.treetable.options = {};
     $scope.treetable.options.lazyLoad = true;
     $scope.treetable.loadChildren = function (parentItem, callback) {

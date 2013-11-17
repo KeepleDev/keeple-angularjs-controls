@@ -8,7 +8,7 @@ describe("TreeTable Controller", function () {
     var scope = { processedItens: [] };
     var testItens = getTestItens();
 
-    beforeEach(angular.mock.module("treetable"));
+    beforeEach(angular.mock.module("keeple.controls.treeTable"));
     beforeEach(angular.mock.inject(function ($rootScope, $controller) {
         scope = $rootScope.$new();
         ctrl = $controller("treeTableController", { $scope: scope });

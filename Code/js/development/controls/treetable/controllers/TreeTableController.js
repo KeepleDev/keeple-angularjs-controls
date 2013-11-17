@@ -1,4 +1,4 @@
-﻿angular.module("treetable").controller("treeTableController", ["$rootScope", "$scope", function ($rootScope, $scope) {
+﻿angular.module("keeple.controls.treeTable").controller("treeTableController", ["$rootScope", "$scope", function ($rootScope, $scope) {
     /// <param name="$scope" type="Object"></param>
     function addItem(item) {
         /// <param name="item" type="Object"></param>
@@ -112,6 +112,29 @@
         }
     }
 
+    function processColumns() {
+        $scope.columns = $scope.columns || [];
+        $scope.headerLines = [];
+        for (var i = 0; i < $scope.columns.length; i++) {
+            var column = $scope.columns[i];
+            if (typeof column === "string") {
+                var value = column;
+                column = {};
+                column.value = value;
+                column.line = 1;
+            }
+            if (!column.colspan) {
+                column.colspan = 1;
+            }
+            if (column.isSortable === undefined) {
+                column.isSortable = true;
+            }
+            $scope.headerLines[column.line - 1] = $scope.headerLines[column.line - 1] || [];
+            $scope.headerLines[column.line - 1].columns = $scope.headerLines[column.line - 1].columns || [];
+            $scope.headerLines[column.line - 1].columns.push(column);
+        }
+    }
+
     $scope.getItem = getItem;
     $scope.addItem = addItem;
     $scope.processedItens = [];
@@ -119,10 +142,17 @@
     $scope.sortAsc = undefined;
     $scope.sort = sort;
     $scope.options = $scope.options || {};
+    $scope.headerLines = [];
 
     $scope.$watch("itens", function itensChangedWatch() {
         processItens();
     }, true);
+
+    $scope.$watch("columns", function columnsChangedWatch() {
+        processColumns();
+    }, true);
+
+    processColumns();
 
     $rootScope.$emit("treetableReady");
 }]);

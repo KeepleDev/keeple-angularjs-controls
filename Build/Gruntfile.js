@@ -113,18 +113,8 @@ function GoppHelper(grunt) {
                     return separator + src;
                 }
             },
-            project: {
-                dest: scriptsDevelopmentFolder + "/project.js",
-                src: [
-                    scriptsDevelopmentFolder + "/3rd/jquery-2.0.3.js",
-                    scriptsDevelopmentFolder + "/3rd/bootstrap.js",
-                    scriptsDevelopmentFolder + "/3rd/angular.js",
-                    scriptsDevelopmentFolder + "/3rd/angular-sanitize.js",
-                    scriptsDevelopmentFolder + "/utils.js"
-                ]
-            },
             treeTable: {
-                dest: scriptsDevelopmentFolder + "/treetable.js",
+                dest: scriptsProductionFolder + "/treetable.js",
                 src: [
                     scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
                     scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
@@ -135,7 +125,7 @@ function GoppHelper(grunt) {
                 ]
             },
             imageButton: {
-                dest: scriptsDevelopmentFolder + "/imagebutton.js",
+                dest: scriptsProductionFolder + "/imagebutton.js",
                 src: [
                     scriptsDevelopmentFolder + "/controls/imagebutton/ImageButtonModuleInitialization.js",
                     scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
@@ -143,7 +133,7 @@ function GoppHelper(grunt) {
                 ]
             },
             modal: {
-                dest: scriptsDevelopmentFolder + "/modal.js",
+                dest: scriptsProductionFolder + "/modal.js",
                 src: [
                     scriptsDevelopmentFolder + "/controls/modal/ModalModuleInitialization.js",
                     scriptsDevelopmentFolder + "/controls/modal/directives/ModalDirective.js"
