@@ -1,13 +1,40 @@
-﻿angular.module("keeple.controls.treeTable").directive("ngTreeTableRow", function () {
-    var template = "<td data-ng-repeat=\"column in item.columns\" colspan=\"{{column.colspan}}\" data-ng-tree-table-cell-template=\"\" data-item=\"item\" data-item-column=\"column\" >";
-    template += "<a data-ng-if=\"$first\" data-ng-click=\"item.isExpanded = !item.isExpanded\" data-ng-class=\"{collapse: item.isExpanded && item.isParent, expand: !item.isExpanded && item.isParent}\" class=\"tree-table-toggle\"></a>";
-    template += "</td>";
+﻿/// <reference path="../../../3rd/jquery-2.0.3.js" />
+angular.module("keeple.controls.treeTable").directive("treeTableRow", ["$compile", function ($compile) {
+    var template = "<a data-ng-click=\"toggleRow(item)\" data-ng-class=\"{collapse: item.isExpanded && item.isParent, expand: !item.isExpanded && item.isParent}\" class=\"tree-table-toggle\"></a> ";
+    var loadingRowTemplate = "<tr class=\"l{{item.level+1}} tree-table-loading\"><td colspan=\"999\"><span class=\"loading-animation\"></span>Carregando</td></tr>";
 
     return {
         restrict: "A",
-        template: template,
+        controller: "treeTableRowController",
         scope: {
-            item: "=item"
+            item: "=treeTableRow"
+        },
+        link: function (scope, element) {
+            var loadingRow = $compile(loadingRowTemplate)(scope);
+            var firstCell = element.children("td:first");
+            var toggleAnchor = $compile(template)(scope);
+            if (firstCell.length > 0) {
+                element.children("td:first").prepend(toggleAnchor);
+            }
+            element.on("DOMNodeInserted", function addToggleAnchor() {
+                firstCell = element.children("td:first");
+                var isAnchorPresent = firstCell.find(toggleAnchor).length > 0;
+                if (firstCell.length > 0 && !isAnchorPresent) {
+                    setTimeout(function () {
+                        element.children("td:first").prepend(toggleAnchor);
+                    }, 1);
+                }
+
+            });
+            scope.$watch("item.isLoading", function () {
+                if (scope.item.isLoading) {
+                    element.after(loadingRow);
+                }
+                else {
+                    loadingRow.detach();
+                }
+            });
         }
+
     };
-});
+}]);

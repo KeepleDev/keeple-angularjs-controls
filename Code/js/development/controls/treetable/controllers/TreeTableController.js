@@ -1,5 +1,8 @@
 ﻿angular.module("keeple.controls.treeTable").controller("treeTableController", ["$rootScope", "$scope", function ($rootScope, $scope) {
     /// <param name="$scope" type="Object"></param>
+
+    var preProcessedItens = [];
+
     function addItem(item) {
         /// <param name="item" type="Object"></param>
         item.hasTemplate = !!item.template;
@@ -13,7 +16,7 @@
             insertItemInProcessedItens(item);
         }
         else {
-            var parent = $scope.getItem(item.parentNodeId);
+            var parent = getItem(item.parentNodeId);
             if (parent) {
                 item.isVisible = !!parent.isExpanded && parent.isVisible;
                 item.level = parent.level + 1;
@@ -24,10 +27,10 @@
                 return;
             }
         }
-        if ($scope.options.lazyLoad && !item.isLoaded) {
+        if ($scope.treeTable.options.lazyLoad && !item.isLoaded) {
             if (item.isExpanded && !item.isLoading && item.isParent) {
                 item.isLoading = true;
-                $scope.loadChildren(item, function (success) {
+                $scope.treeTable.loadChildren(item, function (success) {
                     item.isLoading = false;
                     if (success) {
                         item.isLoaded = true;
@@ -38,7 +41,6 @@
         else {
             var childrenToInsert = item.children.slice(0);
             childrenToInsert.reverse();
-            childrenToInsert.sort(sortFunction);
             for (var j = 0; j < childrenToInsert.length; j++) {
                 var childItem = childrenToInsert[j];
                 addItem(childItem);
@@ -48,7 +50,7 @@
 
     function insertItemInProcessedItens(item) {
         var indexToInsert = getIndexToInsertItem(item);
-        $scope.processedItens.splice(indexToInsert, 0, item);
+        preProcessedItens.splice(indexToInsert, 0, item);
         item.hasBeenAddedInTreeTable = true;
     }
 
@@ -57,8 +59,8 @@
         if (item.parentNodeId === null) {
             return 0;
         }
-        for (i = 0; i < $scope.processedItens.length; i++) {
-            var processedItem = $scope.processedItens[i];
+        for (i = 0; i < preProcessedItens.length; i++) {
+            var processedItem = preProcessedItens[i];
             if (processedItem.nodeId == item.parentNodeId) {
                 return i + 1;
             }
@@ -68,8 +70,8 @@
 
     function getItem(itemNodeId) {
         /// <returns type="Object" />
-        for (var i = 0; i < $scope.processedItens.length; i++) {
-            var processedItem = $scope.processedItens[i];
+        for (var i = 0; i < preProcessedItens.length; i++) {
+            var processedItem = preProcessedItens[i];
             if (processedItem.nodeId == itemNodeId) {
                 return processedItem;
             }
@@ -77,82 +79,34 @@
         return null;
     }
 
-    function sort(columnIndex) {
-        if ($scope.sortColumnIndex !== columnIndex) {
-            $scope.sortAsc = true;
-        }
-        else {
-            $scope.sortAsc = !$scope.sortAsc;
-        }
-        $scope.sortColumnIndex = columnIndex;
-        processItens();
-    }
-
-    function sortFunction(itemA, itemB) {
-        var itemASortColumn = itemA.columns[$scope.sortColumnIndex];
-        var itemBSortColumn = itemB.columns[$scope.sortColumnIndex];
-        if (itemASortColumn && itemBSortColumn) {
-            if ($scope.sortAsc) {
-                return (itemASortColumn.value < itemBSortColumn.value) ? 1 : -1;
-            }
-            else {
-                return (itemASortColumn.value > itemBSortColumn.value) ? 1 : -1;
-            }
-        }
-        return 0;
-    }
-
     function processItens() {
-        var itensToInsert = $scope.itens.slice(0).reverse();
-        itensToInsert.sort(sortFunction);
-        $scope.processedItens = [];
+        var itensToInsert = $scope.treeTable.itens.slice(0).reverse();
+        preProcessedItens = [];
         for (var i = 0; i < itensToInsert.length; i++) {
             var item = itensToInsert[i];
             addItem(item);
         }
+        $scope.treeTable.preProcessedItens = preProcessedItens;
+        $scope.treeTable.processedItens = treetableRowFilter(preProcessedItens);
     }
 
-    function processColumns() {
-        $scope.columns = $scope.columns || [];
-        $scope.headerLines = [];
-        for (var i = 0; i < $scope.columns.length; i++) {
-            var column = $scope.columns[i];
-            if (typeof column === "string") {
-                var value = column;
-                column = {};
-                column.value = value;
-                column.line = 1;
+    function treetableRowFilter(itens) {
+        var filtered = [];
+        for (var i = 0; i < itens.length; i++) {
+            var item = itens[i];
+            if (item.isVisible) {
+                filtered.push(item);
             }
-            if (!column.colspan) {
-                column.colspan = 1;
-            }
-            if (column.isSortable === undefined) {
-                column.isSortable = true;
-            }
-            $scope.headerLines[column.line - 1] = $scope.headerLines[column.line - 1] || [];
-            $scope.headerLines[column.line - 1].columns = $scope.headerLines[column.line - 1].columns || [];
-            $scope.headerLines[column.line - 1].columns.push(column);
         }
+        return filtered;
     }
 
-    $scope.getItem = getItem;
-    $scope.addItem = addItem;
-    $scope.processedItens = [];
-    $scope.sortColumnIndex = -1;
-    $scope.sortAsc = undefined;
-    $scope.sort = sort;
-    $scope.options = $scope.options || {};
-    $scope.headerLines = [];
+    $scope.treeTable.options = $scope.treeTable.options || {};
+    $scope.treeTable.processedItens = [];
 
-    $scope.$watch("itens", function itensChangedWatch() {
+    $scope.$watch("treeTable.itens", function itensChangedWatch() {
         processItens();
     }, true);
-
-    $scope.$watch("columns", function columnsChangedWatch() {
-        processColumns();
-    }, true);
-
-    processColumns();
 
     $rootScope.$emit("treetableReady");
 }]);

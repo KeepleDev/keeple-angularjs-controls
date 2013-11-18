@@ -11,95 +11,96 @@ describe("TreeTable Controller", function () {
     beforeEach(angular.mock.module("keeple.controls.treeTable"));
     beforeEach(angular.mock.inject(function ($rootScope, $controller) {
         scope = $rootScope.$new();
+        scope.treeTable = {};
         ctrl = $controller("treeTableController", { $scope: scope });
         testItens = getTestItens();
     }));
 
     it("should initialize with no processed itens", function () {
-        expect(scope.processedItens.length).toBe(0);
+        expect(scope.treeTable.processedItens.length).toBe(0);
     });
 
     it("should initialize with default value for options", function () {
-        expect(scope.options).toBeDefined();
+        expect(scope.treeTable.options).toBeDefined();
     });
 
-    it("should add itens on processed list when itens are added", function () {
+    it("should add itens on preProcessedItens list when itens are added", function () {
         var testItem = testItens[0];
         testItem.children = [];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
-        expect(scope.processedItens.length).toBe(1);
+        expect(scope.treeTable.preProcessedItens.length).toBe(1);
     });
 
-    it("should add child itens on processed list when itens are added", function () {
+    it("should add child itens on preProcessedItens list when itens are added", function () {
         var testItem = testItens[0];
         var childItem = testItens[0].children[0];
         testItem.children = [];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         testItem.children = [childItem];
         scope.$apply();
-        expect(scope.processedItens.length).toBe(2);
+        expect(scope.treeTable.preProcessedItens.length).toBe(2);
     });
 
-    it("should add itens and descendants on processed list when itens are added", function () {
+    it("should add itens and descendants on preProcessedItens list when itens are added", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
-        expect(scope.processedItens.length).toBe(4);
+        expect(scope.treeTable.preProcessedItens.length).toBe(4);
     });
 
-    it("should add descendants on processed list after the parents", function () {
+    it("should add descendants on preProcessedItens list after the parents", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
 
-        var parentItemIndex = scope.processedItens.indexOf(testItem);
-        var childItemIndex = scope.processedItens.indexOf(testItem.children[0]);
+        var parentItemIndex = scope.treeTable.preProcessedItens.indexOf(testItem);
+        var childItemIndex = scope.treeTable.preProcessedItens.indexOf(testItem.children[0]);
         expect(parentItemIndex).toBeLessThan(childItemIndex);
     });
 
-    it("should add all itens on processed list", function () {
-        scope.itens = testItens;
+    it("should add all itens on preProcessedItens list", function () {
+        scope.treeTable.itens = testItens;
         scope.$apply();
 
-        expect(scope.processedItens.length).toBe(7);
+        expect(scope.treeTable.preProcessedItens.length).toBe(7);
     });
 
-    it("should add itens on processed list according to original itens order", function () {
+    it("should add itens on preProcessedItens list according to original itens order", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
 
-        var firstChildItemIndex = scope.processedItens.indexOf(testItem.children[0]);
-        var secondChildItemIndex = scope.processedItens.indexOf(testItem.children[1]);
-        var thirdChildItemIndex = scope.processedItens.indexOf(testItem.children[2]);
+        var firstChildItemIndex = scope.treeTable.preProcessedItens.indexOf(testItem.children[0]);
+        var secondChildItemIndex = scope.treeTable.preProcessedItens.indexOf(testItem.children[1]);
+        var thirdChildItemIndex = scope.treeTable.preProcessedItens.indexOf(testItem.children[2]);
         expect(firstChildItemIndex).toBe(secondChildItemIndex - 1);
         expect(secondChildItemIndex).toBe(thirdChildItemIndex - 1);
 
         testItens[0].children = [];
         testItens[1].children = [];
-        scope.itens = testItens;
+        scope.treeTable.itens = testItens;
         scope.$apply();
 
-        firstChildItemIndex = scope.processedItens.indexOf(testItens[0]);
-        secondChildItemIndex = scope.processedItens.indexOf(testItens[1]);
+        firstChildItemIndex = scope.treeTable.preProcessedItens.indexOf(testItens[0]);
+        secondChildItemIndex = scope.treeTable.preProcessedItens.indexOf(testItens[1]);
         expect(firstChildItemIndex).toBe(secondChildItemIndex - 1);
     });
 
     it("should not add item with invalid parent id", function () {
         var testItem = testItens[0];
         testItem.children[0].parentNodeId = "xxx";
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
 
-        expect(scope.processedItens.length).toBe(3);
+        expect(scope.treeTable.preProcessedItens.length).toBe(3);
     });
 
     it("should not change order of itens in original object", function () {
         var testItem = testItens[0];
         var originalChildItem = testItem.children[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
 
         expect(originalChildItem.nodeId).toBe(testItem.children[0].nodeId);
@@ -107,28 +108,28 @@ describe("TreeTable Controller", function () {
 
     it("should set item level", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.level).toBe(1);
     });
 
     it("should set child item level", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.children[0].level).toBe(2);
     });
 
     it("should set root item to visible", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.isVisible).toBeTruthy();
     });
 
     it("should set root item to not expanded if not defined", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.isExpanded).toBe(false);
     });
@@ -136,7 +137,7 @@ describe("TreeTable Controller", function () {
     it("should not change root item expanded if defined", function () {
         var testItem = testItens[0];
         testItem.isExpanded = true;
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.isExpanded).toBe(true);
     });
@@ -144,7 +145,7 @@ describe("TreeTable Controller", function () {
     it("should set child item to visible if parent item is expanded", function () {
         var testItem = testItens[0];
         testItem.isExpanded = true;
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.children[0].isVisible).toBe(true);
     });
@@ -152,7 +153,7 @@ describe("TreeTable Controller", function () {
     it("should set child item to not visible if parent item is not expanded", function () {
         var testItem = testItens[0];
         testItem.isExpanded = true;
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         testItem.isExpanded = false;
         scope.$apply();
@@ -161,7 +162,7 @@ describe("TreeTable Controller", function () {
 
     it("should set item hasTemplate to false if template is falsy", function () {
         var testItem = testItens[0];
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.hasTemplate).toBe(false);
     });
@@ -169,7 +170,7 @@ describe("TreeTable Controller", function () {
     it("should set item hasTemplate to true if template is truthy", function () {
         var testItem = testItens[0];
         testItem.template = "Teste";
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         expect(testItem.hasTemplate).toBe(true);
     });
@@ -177,7 +178,7 @@ describe("TreeTable Controller", function () {
     it("should set expanded to true on toggle if expanded is false", function () {
         var testItem = testItens[0];
         testItem.isExpanded = false;
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         testItem.isExpanded = !testItem.isExpanded;
         scope.$apply();
@@ -187,7 +188,7 @@ describe("TreeTable Controller", function () {
     it("should set expanded to false on toggle if expanded is true", function () {
         var testItem = testItens[0];
         testItem.isExpanded = true;
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         testItem.isExpanded = !testItem.isExpanded;
         scope.$apply();
@@ -196,10 +197,10 @@ describe("TreeTable Controller", function () {
 
     it("should set isLoading to true only while loading if lazyLoad is true", function () {
         var testItem = testItens[0];
-        scope.options = { lazyLoad: true };
-        scope.itens = [testItem];
+        scope.treeTable.options = { lazyLoad: true };
+        scope.treeTable.itens = [testItem];
         scope.$apply();
-        scope.loadChildren = function (item, callback) {
+        scope.treeTable.loadChildren = function (item, callback) {
             expect(testItem.isLoading).toBe(true);
             callback(true);
             expect(testItem.isLoading).toBe(false);
@@ -210,45 +211,45 @@ describe("TreeTable Controller", function () {
 
     it("should set isLoading to false after loadChildren error", function () {
         var testItem = testItens[0];
-        scope.options = { lazyLoad: true };
-        scope.itens = [testItem];
+        scope.treeTable.options = { lazyLoad: true };
+        scope.treeTable.itens = [testItem];
         scope.$apply();
-        scope.loadChildren = function (item, callback) {
+        scope.treeTable.loadChildren = function (item, callback) {
             callback(false);
             expect(testItem.isLoading).toBe(false);
         };
-        spyOn(scope, "loadChildren").andCallThrough();
+        spyOn(scope.treeTable, "loadChildren").andCallThrough();
         testItem.isExpanded = !testItem.isExpanded;
         scope.$apply();
-        expect(scope.loadChildren).toHaveBeenCalled();
+        expect(scope.treeTable.loadChildren).toHaveBeenCalled();
     });
 
     it("should set isLoaded to true after done loading if lazyLoad is true", function () {
         var testItem = testItens[0];
-        scope.options = { lazyLoad: true };
-        scope.itens = [testItem];
+        scope.treeTable.options = { lazyLoad: true };
+        scope.treeTable.itens = [testItem];
         scope.$apply();
-        scope.loadChildren = function (item, callback) {
+        scope.treeTable.loadChildren = function (item, callback) {
             callback(true);
             expect(testItem.isLoaded).toBe(true);
         };
-        spyOn(scope, "loadChildren").andCallThrough();
+        spyOn(scope.treeTable, "loadChildren").andCallThrough();
         testItem.isExpanded = !testItem.isExpanded;
         scope.$apply();
-        expect(scope.loadChildren).toHaveBeenCalled();
+        expect(scope.treeTable.loadChildren).toHaveBeenCalled();
     });
 
     it("should not call loadChildren on second expand if lazyLoad is true", function () {
         var testItem = testItens[0];
-        scope.options = { lazyLoad: true };
-        scope.itens = [testItem];
+        scope.treeTable.options = { lazyLoad: true };
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         var loadChildrenCallCount = 0;
-        scope.loadChildren = function (item, callback) {
+        scope.treeTable.loadChildren = function (item, callback) {
             loadChildrenCallCount++;
             callback(true);
         };
-        spyOn(scope, "loadChildren").andCallThrough();
+        spyOn(scope.treeTable, "loadChildren").andCallThrough();
 
         testItem.isExpanded = !testItem.isExpanded;
         scope.$apply();
@@ -256,45 +257,45 @@ describe("TreeTable Controller", function () {
         scope.$apply();
         testItem.isExpanded = !testItem.isExpanded;
         scope.$apply();
-        expect(scope.loadChildren).toHaveBeenCalled();
+        expect(scope.treeTable.loadChildren).toHaveBeenCalled();
         expect(loadChildrenCallCount).toBe(1);
     });
 
     it("should not call loadChildren on node if is Loading", function () {
         var testItem = testItens[0];
-        scope.options = { lazyLoad: true };
-        scope.itens = [testItem];
+        scope.treeTable.options = { lazyLoad: true };
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         var loadChildrenCallCount = 0;
-        scope.loadChildren = function (item, callback) {
+        scope.treeTable.loadChildren = function (item, callback) {
             loadChildrenCallCount++;
             callback(true);
         };
-        spyOn(scope, "loadChildren").andCallThrough();
+        spyOn(scope.treeTable, "loadChildren").andCallThrough();
 
         testItem.isLoading = true;
         testItem.isExpanded = true;
         scope.$apply();
-        expect(scope.loadChildren).wasNotCalled();
+        expect(scope.treeTable.loadChildren).wasNotCalled();
         expect(loadChildrenCallCount).toBe(0);
     });
 
     it("should not call loadChildren if node is not parent", function () {
         var testItem = testItens[0];
-        scope.options = { lazyLoad: true };
-        scope.itens = [testItem];
+        scope.treeTable.options = { lazyLoad: true };
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         var loadChildrenCallCount = 0;
-        scope.loadChildren = function (item, callback) {
+        scope.treeTable.loadChildren = function (item, callback) {
             loadChildrenCallCount++;
             callback(true);
         };
-        spyOn(scope, "loadChildren").andCallThrough();
+        spyOn(scope.treeTable, "loadChildren").andCallThrough();
 
         testItem.isParent = false;
         testItem.isExpanded = true;
         scope.$apply();
-        expect(scope.loadChildren).wasNotCalled();
+        expect(scope.treeTable.loadChildren).wasNotCalled();
         expect(loadChildrenCallCount).toBe(0);
     });
 
@@ -302,58 +303,10 @@ describe("TreeTable Controller", function () {
         var testItem = testItens[0];
         testItem.isExpanded = true;
         testItem.children[0].isExpanded = true;
-        scope.itens = [testItem];
+        scope.treeTable.itens = [testItem];
         scope.$apply();
         testItem.isExpanded = false;
         scope.$apply();
         expect(testItem.children[0].isExpanded).toBe(true);
-    });
-
-    it("should sort root ascending on first column sort", function () {
-        testItens[0].children = [];
-        testItens[0].columns[0].value = "2";
-        testItens[1].children = [];
-        testItens[1].columns[0].value = "1";
-        scope.itens = testItens;
-        scope.$apply();
-        scope.sort(0);
-        expect(scope.processedItens[1].columns[0].value > scope.processedItens[0].columns[0].value).toBe(true);
-    });
-
-    it("should sort children ascending on first column sort", function () {
-        var testItem = testItens[0];
-        testItem.children[0].columns[0].value = 1;
-        testItem.children[1].columns[0].value = 2;
-        testItem.children[2].columns[0].value = 0;
-        scope.itens = [testItem];
-        scope.$apply();
-        scope.sort(0);
-        expect(scope.processedItens[1].columns[0].value < scope.processedItens[2].columns[0].value).toBe(true);
-        expect(scope.processedItens[1].columns[0].value < scope.processedItens[3].columns[0].value).toBe(true);
-    });
-
-    it("should sort root descending on second column sort", function () {
-        testItens[0].children = [];
-        testItens[0].columns[0].value = "2";
-        testItens[1].children = [];
-        testItens[1].columns[0].value = "1";
-        scope.itens = testItens;
-        scope.$apply();
-        scope.sort(0);
-        scope.sort(0);
-        expect(scope.processedItens[1].columns[0].value < scope.processedItens[0].columns[0].value).toBe(true);
-    });
-
-    it("should sort children ascending on second column sort", function () {
-        var testItem = testItens[0];
-        testItem.children[0].columns[0].value = 1;
-        testItem.children[1].columns[0].value = 2;
-        testItem.children[2].columns[0].value = 0;
-        scope.itens = [testItem];
-        scope.$apply();
-        scope.sort(0);
-        scope.sort(0);
-        expect(scope.processedItens[1].columns[0].value > scope.processedItens[2].columns[0].value).toBe(true);
-        expect(scope.processedItens[1].columns[0].value > scope.processedItens[3].columns[0].value).toBe(true);
     });
 });

@@ -118,6 +118,7 @@ function GoppHelper(grunt) {
                 src: [
                     scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
                     scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
+                    scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableRowController.js",
                     scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableCellTemplateDirective.js",
                     scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
                     scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",
@@ -245,6 +246,7 @@ function GoppHelper(grunt) {
             src: [
                 scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
                 scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
+                scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableRowController.js",
                 scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableCellTemplateDirective.js",
                 scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
                 scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",

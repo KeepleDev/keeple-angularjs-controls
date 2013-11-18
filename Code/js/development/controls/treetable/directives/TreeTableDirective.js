@@ -1,4 +1,4 @@
-﻿angular.module("keeple.controls.treeTable").directive("ngTreeTable", function () {
+﻿angular.module("keeple.controls.treeTable").directive("treeTable", function () {
     var template = "<table data-ng-controller=\"treeTableController\" class=\"tree-table\" data-ng-class=\"treeTableClass\">";
     template += "<thead>";
     template += "<tr data-ng-repeat=\"line in headerLines\">";
@@ -22,13 +22,9 @@
 
     return {
         restrict: "A",
-        template: template,
+        controller: "treeTableController",
         scope: {
-            itens: "=itens",
-            columns: "=columns",
-            options: "=options",
-            loadChildren: "=loadChildren",
-            treeTableClass: "=treeTableClass"
+            treeTable: "=treeTable"
         }
     };
 });

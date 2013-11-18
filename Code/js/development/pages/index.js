@@ -7,12 +7,12 @@ angular.module("project", ["keeple.controls.treeTable", "imageButton", "modal", 
     $scope.modal.title = "Dados do Celular";
     $scope.modal.show = false;
 
-    $scope.treetable = {};
-    $scope.treetable.itens = [];
-    $scope.treetable.columns = [{ line: 1, value: "Fabricante/Celular" }, { line: 1, value: "Ano de Fabricação" }, { line: 1, value: "CPU" }, { line: 1, value: "Memoria" }];
-    $scope.treetable.options = {};
-    $scope.treetable.options.lazyLoad = true;
-    $scope.treetable.loadChildren = function (parentItem, callback) {
+    $scope.treeTable = {};
+    $scope.treeTable.itens = [];
+    $scope.treeTable.columns = [{ line: 1, value: "Fabricante/Celular" }, { line: 1, value: "Ano de Fabricação" }, { line: 1, value: "CPU" }, { line: 1, value: "Memoria" }];
+    $scope.treeTable.options = {};
+    $scope.treeTable.options.lazyLoad = true;
+    $scope.treeTable.loadChildren = function (parentItem, callback) {
         /// <param name="callback" type="Function">Description</param>
         if (callback) {
             setTimeout(function () {
@@ -27,17 +27,20 @@ angular.module("project", ["keeple.controls.treeTable", "imageButton", "modal", 
         $http.get("data/itens.js?" + salt).success(function (response) {
             for (var i = 0; i < response.itens.length; i++) {
                 var item = response.itens[i];
+                item.colspan = item.tipo === "Fabricante" ? 4 : 1;
                 if (item.children) {
                     children[item.nodeId] = item.children;
                     item.children = [];
                 }
             }
-            $scope.treetable.itens = response.itens;
+            //angular.copy(response.itens, $scope.treeTable.itens);
+            $scope.treeTable.itens = response.itens;
+            $scope.treeTable.itens[0].test = "true";
         });
     });
 
     $rootScope.$on("imageButtonClick", function (e, identifier) {
-        var item = findItem($scope.treetable.itens, identifier);
+        var item = findItem($scope.treeTable.itens, identifier);
         if (item) {
             $scope.modal.show = true;
             $scope.modal.item = item;
