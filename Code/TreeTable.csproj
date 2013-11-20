@@ -60,6 +60,9 @@
     <Content Include="css\bootstrap\bootstrap-theme.css" />
     <Content Include="css\bootstrap\bootstrap.css" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\images\asc.png" />
+    <Content Include="css\images\desc.png" />
+    <Content Include="css\images\loader.gif" />
     <Content Include="css\images\toggle-col-dark.png" />
     <Content Include="css\images\toggle-exp-dark.png" />
     <Content Include="css\project.css" />

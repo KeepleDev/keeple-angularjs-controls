@@ -3,7 +3,7 @@
 }
 
     table.tree-table > tbody > tr.tree-table-loading span.loading-animation {
-        background-color: white;
+        background-image: url(images/loader.gif);
     }
 
 .tree-table {
