@@ -108,5 +108,5 @@
         processItens();
     }, true);
 
-    $rootScope.$emit("treetableReady");
+    $rootScope.$emit("treeTableReady");
 }]);

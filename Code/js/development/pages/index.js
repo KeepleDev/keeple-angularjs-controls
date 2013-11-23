@@ -22,7 +22,7 @@ angular.module("project", ["keeple.controls.treeTable", "imageButton", "modal", 
             }, 300);
         }
     };
-    $rootScope.$on("treetableReady", function () {
+    $rootScope.$on("treeTableReady", function () {
         var salt = Math.floor(Math.random() * 100000);
         $http.get("data/itens.js?" + salt).success(function (response) {
             for (var i = 0; i < response.itens.length; i++) {
