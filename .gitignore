@@ -1,12 +1,6 @@
-/Code/obj
-/Code/bin
-/Code/js/development/project.js
-/Code/js/development/treetable.js
-/Code/js/development/imagebutton.js
+/TreeTable/Build/.grunt
+/TreeTable/Build/tests
 
-/Code/js/development/modal.js
-/Build/tests
-/Build/.grunt
-/Build/output.txt
+/TreeTable/Code/bin
 
-/Code/js/production
+/TreeTable/Code/obj

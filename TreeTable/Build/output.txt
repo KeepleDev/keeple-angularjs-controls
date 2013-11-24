@@ -1,0 +1,10 @@
+Running "jshint:files" (jshint) task
+>> 19 files lint free.
+
+Running "jasmine:src" (jasmine) task
+Testing jasmine specs via phantom
+........................................
+40 specs in 0.43s.
+>> 0 failures
+
+Done, without errors.
