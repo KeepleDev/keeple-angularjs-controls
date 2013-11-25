@@ -1,6 +1,6 @@
 keeple-angularjs-controls
 ===================================
-[![Build Status](https://secure.travis-ci.org/webbers/dongle.js.png)](http://travis-ci.org/webbers/dongle.js)
+[![Build Status](https://api.travis-ci.org/KeepleDev/keeple-angularjs-controls.png)](http://travis-ci.org/KeepleDev/keeple-angularjs-controls)
 
 * Features that are useful in handy on a day-to-day AngularJS Keeple Programmer.
 
