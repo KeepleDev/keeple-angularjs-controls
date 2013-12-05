@@ -1,2 +1,5 @@
 /Code/obj
 /Code/bin
+
+.grunt
+tests

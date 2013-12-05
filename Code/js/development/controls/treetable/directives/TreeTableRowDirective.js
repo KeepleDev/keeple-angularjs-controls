@@ -24,7 +24,6 @@ angular.module("keeple.controls.treeTable").directive("treeTableRow", ["$compile
                         element.children("td:first").prepend(toggleAnchor);
                     }, 1);
                 }
-
             });
             scope.$watch("item.isLoading", function () {
                 if (scope.item.isLoading) {

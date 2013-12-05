@@ -1,0 +1,56 @@
+﻿.fixed-table {
+    position: relative;
+}
+
+    .fixed-table.internal-scroll {
+        overflow: hidden;
+    }
+
+        .fixed-table.internal-scroll > table {
+            position: relative;
+        }
+
+            .fixed-table.internal-scroll > table > thead > tr > div.bottom-scroll {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #F0F0F0;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                padding-left: 10px;
+                padding-right: 3%;
+                z-index: 99;
+            }
+
+        .fixed-table.internal-scroll > div.top-scroll {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding-left: 0;
+            padding-right: 3%;
+        }
+
+    .fixed-table > table {
+        border-collapse: separate;
+        border: 0;
+    }
+
+        .fixed-table > table > tbody th.fixed-column,
+        .fixed-table > table > tbody td.fixed-column {
+            position: relative;
+            z-index: 7;
+        }
+
+        .fixed-table > table > thead th.fixed-header,
+        .fixed-table > table > thead td.fixed-header {
+            position: relative;
+            z-index: 8;
+        }
+
+        .fixed-table > table > thead th.fixed-column,
+        .fixed-table > table > thead td.fixed-column {
+            position: relative;
+            z-index: 9;
+        }

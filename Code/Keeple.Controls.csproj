@@ -60,6 +60,7 @@
     <Content Include="css\bootstrap\bootstrap-theme.css" />
     <Content Include="css\bootstrap\bootstrap.css" />
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="css\fixedtable.css" />
     <Content Include="css\images\asc.png" />
     <Content Include="css\images\desc.png" />
     <Content Include="css\images\loader.gif" />
@@ -68,6 +69,7 @@
     <Content Include="css\project.css" />
     <Content Include="css\treetable.css" />
     <Content Include="data\tests\itens.js" />
+    <Content Include="fixedtable.html" />
     <Content Include="index.html" />
     <Content Include="js\development\3rd\angular-cookies.js" />
     <Content Include="js\development\3rd\angular-mocks.js" />
@@ -77,6 +79,8 @@
     <Content Include="js\development\3rd\bootstrap.js" />
     <Content Include="js\development\3rd\jasmine.js" />
     <Content Include="js\development\3rd\jquery-2.0.3.js" />
+    <Content Include="js\development\controls\fixedtable\directives\FixedTableDirective.js" />
+    <Content Include="js\development\controls\fixedtable\FixedTableModulesInitialization.js" />
     <Content Include="js\development\controls\imagebutton\controllers\ImageButtonController.js" />
     <Content Include="js\development\controls\imagebutton\directives\ImageButtonDirective.js" />
     <Content Include="js\development\controls\imagebutton\ImageButtonModuleInitialization.js" />
@@ -95,6 +99,7 @@
     <Content Include="js\development\controls\treetable\tests\TreeTableRowDirectiveTests.js" />
     <Content Include="js\development\controls\treetable\tests\TreeTableRowFilterTests.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
+    <Content Include="js\development\pages\fixedtable.js" />
     <Content Include="js\development\pages\index.js" />
     <Content Include="templates\modal.html" />
     <Content Include="js\development\utils.js" />
