@@ -84,6 +84,7 @@
     <Content Include="js\development\controls\modal\ModalModuleInitialization.js" />
     <Content Include="js\development\controls\modal\templates\modal.html" />
     <Content Include="js\development\controls\treetable\controllers\TreeTableController.js" />
+    <Content Include="js\development\controls\treetable\controllers\TreeTableRowController.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableCellTemplateDirective.js" />
     <Content Include="js\development\controls\treetable\directives\TreeTableRowDirective.js" />
@@ -94,12 +95,8 @@
     <Content Include="js\development\controls\treetable\tests\TreeTableRowDirectiveTests.js" />
     <Content Include="js\development\controls\treetable\tests\TreeTableRowFilterTests.js" />
     <Content Include="js\development\controls\treetable\TreeTableModuleInitialization.js" />
-    <Content Include="js\development\imagebutton.js" />
-    <Content Include="js\development\modal.js" />
     <Content Include="js\development\pages\index.js" />
-    <Content Include="js\development\project.js" />
     <Content Include="templates\modal.html" />
-    <Content Include="js\development\treetable.js" />
     <Content Include="js\development\utils.js" />
     <Content Include="templates\treetable.html" />
     <Content Include="templates\treetablerow.html" />
