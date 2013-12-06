@@ -38,6 +38,11 @@
         border: 0;
     }
 
+        .fixed-table > table td,
+        .fixed-table > table th {
+            background-color: inherit;
+        }
+
         .fixed-table > table > tbody th.fixed-column,
         .fixed-table > table > tbody td.fixed-column {
             position: relative;

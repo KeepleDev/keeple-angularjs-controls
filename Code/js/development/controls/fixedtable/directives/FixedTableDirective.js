@@ -2,24 +2,31 @@
 angular.module("keeple.controls.fixedTable").directive("fixedTable",
     ["FixedTableHelperFactory", "FixedTablePositionCalculatorFactory", "FixedTablePositionUpdaterFactory", "FixedTableCustomScrollFactory",
         function (HelperFactory, PositionCalculatorFactory, PositionUpdaterFactory, CustomScrollFactory) {
-            var template = "<div class=\"fixed-table\"></div>";
             return {
                 restrict: "A",
                 replace: true,
                 scope: {
                     fixedTable: "=fixedTable"
                 },
-                compile: function () {
+                compile: function (tElement) {
 
-                    return function (scope, tableElement) {
-                        /// <param name="tableElement" type="jQuery"></param>
+                    tElement.addClass("fixed-table");
+
+                    return function (scope, wrapper) {
+                        /// <param name="wrapper" type="jQuery"></param>
                         var settings = scope.fixedTable || {};
 
-                        var $template = $(template);
-                        tableElement.after($template);
-                        $template.append(tableElement);
+                        var table = wrapper.children("table");
 
-                        var wrapper = tableElement.parent();
+                        if (table.attr("border") === undefined) {
+                            table.attr("border", 0)
+                        }
+                        if (table.attr("cellpadding") === undefined) {
+                            table.attr("cellpadding", 0)
+                        }
+                        if (table.attr("cellspacing") === undefined) {
+                            table.attr("cellspacing", 0)
+                        }
 
                         var helperService = new HelperFactory(settings, wrapper);
                         var positionCalculatorService = new PositionCalculatorFactory(helperService);
@@ -46,6 +53,9 @@ angular.module("keeple.controls.fixedTable").directive("fixedTable",
                             if (settings.useCustomScroll) {
                                 customScrollService.updateWrapperWidth();
                                 customScrollService.updateScroller();
+
+                                var position = positionCalculatorService.calculatePositions();
+                                positionsUpdaterService.updatePositions(position.X, position.Y);
                             }
                             if (helperService.isCustomScrollEnabled()) {
                                 wrapper.addClass("custom-scroll");

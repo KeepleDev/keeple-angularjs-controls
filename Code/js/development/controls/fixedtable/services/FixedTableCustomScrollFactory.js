@@ -34,6 +34,7 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableCustomScrollFact
             wrapper.on("focusout", onFocusOut);
             wrapper.on("focusin", onFocusIn);
             scroller.on("slide", onSlide);
+            scroller.on("slidestop", onSlideEnd);
             $window.on("resize", onWindowResize);
         }
 
@@ -105,6 +106,10 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableCustomScrollFact
             wrapper.trigger("scroll");
         }
 
+        function onSlideEnd() {
+            wrapper.trigger("scroll");
+        }
+
         function onWindowResize() {
             updateWrapperWidth();
             if (!helperService.getSettings().useCustomScrollOnPageBottom) {
@@ -156,6 +161,7 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableCustomScrollFact
             updateScrollerTimeOutId = setTimeout(function () {
                 var scrollDiv = helperService.getScrollSlider();
                 var totalDefaultColumnsLength = helperService.getFixedColumnsTotalWidth(table);
+                var step = (wrapper.width() - totalDefaultColumnsLength) / table.width() * 10;
 
                 if (helperService.getSettings().fixedColumns === 0) {
                     scrollDiv.parent().hide();
@@ -164,6 +170,8 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableCustomScrollFact
                 else {
                     scrollDiv.parent().show();
                 }
+
+                scrollDiv.slider("option", "step", step);
 
                 scrollDiv.css({
                     "margin-left": totalDefaultColumnsLength

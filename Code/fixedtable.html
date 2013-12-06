@@ -49,20 +49,22 @@
             <br />
             <button data-ng-click="fixedColumnsCount = fixedColumnsCount + 1">Adicionar coluna fixa</button>
             <button data-ng-click="fixedColumnsCount = fixedColumnsCount - 1">Remover coluna fixa</button>
-            <table class="table table-bordered" data-fixed-table="fixedTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th data-ng-repeat="col in columns">{{col}}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="row in rows">
-                        <td>{{row.id}}</td>
-                        <td data-ng-repeat="col in columns">{{col}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div data-fixed-table="fixedTable">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th data-ng-repeat="col in columns" data-ng-if="$index % 2 == 1">{{col}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="row in rows">
+                            <td>{{row.id}}</td>
+                            <th data-ng-repeat="col in columns" data-ng-if="$index % 2 == 1">{{col}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

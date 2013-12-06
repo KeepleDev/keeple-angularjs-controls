@@ -114,7 +114,7 @@ function GoppHelper(grunt) {
                 }
             },
             treeTable: {
-                dest: scriptsProductionFolder + "/treetable.js",
+                dest: scriptsProductionFolder + "/angular-treetable.js",
                 src: [
                     scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
                     scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
@@ -126,7 +126,7 @@ function GoppHelper(grunt) {
                 ]
             },
             fixedTable: {
-                dest: scriptsProductionFolder + "/fixedtable.js",
+                dest: scriptsProductionFolder + "/angular-fixedtable.js",
                 src: [
                     scriptsDevelopmentFolder + "/controls/fixedtable/FixedTableModulesInitialization.js",
                     scriptsDevelopmentFolder + "/controls/fixedtable/directives/FixedTableDirective.js",

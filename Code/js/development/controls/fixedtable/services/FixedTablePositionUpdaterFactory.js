@@ -9,11 +9,17 @@ angular.module("keeple.controls.fixedTable").factory("FixedTablePositionUpdaterF
 
         var lastFixedColumns = helperService.getSettings().fixedColumns;
 
+        var fixedColumnsCellsChangedTimeoutId;
+
         var memoryElements = {
             headerCells: $(),
             headerCellsFixedColumn: $(),
             bodyCellsFixedColumn: $()
         };
+
+        table.children("thead").children("tr").children("td, th").each(function () { processAddedBodyCell($(this)); });
+
+        table.children("tbody").children("tr").children("td, th").each(function () { processAddedBodyCell($(this)); });
 
         table.children("thead").on("DOMNodeInserted", function addHeaderCell(evt) {
             var target = evt.originalEvent.target;
@@ -78,24 +84,49 @@ angular.module("keeple.controls.fixedTable").factory("FixedTablePositionUpdaterF
             if (cell.closest("table")[0] == table[0]) {
                 var index = getVirtualColumnCount(cell.prevAll("td, th"));
                 if (index < helperService.getSettings().fixedColumns) {
+                    cell.removeClass("fixed-header");
                     cell.addClass("fixed-column");
                     memoryElements.headerCellsFixedColumn = memoryElements.headerCellsFixedColumn.add(cell);
+                    processAffectedHeaderCells(cell);
                 }
                 else {
+                    cell.removeClass("fixed-column");
                     cell.addClass("fixed-header");
                     memoryElements.headerCells = memoryElements.headerCells.add(cell);
                 }
-                helperService.getWrapper().trigger("fixedColumnsCellsChanged");
+
+                emitFixedColumnsCellsChangedEvent();
             }
         }
 
         function processRemovedHeaderCell(cell) {
             if (cell.closest("table")[0] == table[0]) {
-                memoryElements.headerCells.remove(cell);
-                if (memoryElements.headerCellsFixedColumn.is(cell)) {
-                    memoryElements.headerCellsFixedColumn.remove(cell);
+                var headerCellIndex = memoryElements.headerCells.index(cell);
+                if (headerCellIndex >= 0) {
+                    memoryElements.headerCells = memoryElements.headerCells.not(":eq(" + headerCellIndex + ")");
                 }
-                helperService.getWrapper().trigger("fixedColumnsCellsChanged");
+                else {
+                    var headerCellFixedColumnIndex = memoryElements.headerCellsFixedColumn.index(cell);
+                    if (headerCellFixedColumnIndex >= 0) {
+                        memoryElements.headerCellsFixedColumn = memoryElements.headerCellsFixedColumn.not(":eq(" + headerCellFixedColumnIndex + ")");
+                    }
+                }
+                
+                var index = getVirtualColumnCount(cell.prevAll("td, th"));
+                if (index < helperService.getSettings().fixedColumns) {
+                    processAffectedHeaderCells(cell);
+                }
+
+                emitFixedColumnsCellsChangedEvent();
+            }
+        }
+
+        function processAffectedHeaderCells(cell) {
+            if (cell.closest("table")[0] == table[0]) {
+                var changedCells = cell.nextAll("td, th");
+                if (changedCells.length > 0) {
+                    changedCells.each(function () { processAddedHeaderCell($(this)); });
+                }
             }
         }
 
@@ -106,11 +137,53 @@ angular.module("keeple.controls.fixedTable").factory("FixedTablePositionUpdaterF
                     cell.addClass("fixed-column");
                     memoryElements.bodyCellsFixedColumn = memoryElements.bodyCellsFixedColumn.add(cell);
                 }
+                else {
+                    cell.removeClass("fixed-column");
+                }
+
+                var index = getVirtualColumnCount(cell.prevAll("td, th"));
+                if (index < helperService.getSettings().fixedColumns) {
+                    processAffectedBodyCells(cell);
+                }
+
+                emitFixedColumnsCellsChangedEvent();
             }
         }
 
         function processRemovedBodyCell(cell) {
-            memoryElements.bodyCellsFixedColumn = memoryElements.bodyCellsFixedColumn.remove(cell);
+            if (cell.closest("table")[0] == table[0]) {
+                var index = memoryElements.bodyCellsFixedColumn.index(cell);
+                if (index >= 0) {
+                    memoryElements.bodyCellsFixedColumn = memoryElements.bodyCellsFixedColumn.not(":eq(" + index + ")");
+                }
+
+                var virtualIndex = getVirtualColumnCount(cell.prevAll("td, th"));
+                if (virtualIndex < helperService.getSettings().fixedColumns) {
+                    processAffectedBodyCells(cell);
+                }
+
+                emitFixedColumnsCellsChangedEvent();
+            }
+        }
+
+        function processAffectedBodyCells(cell) {
+            var changedCells = cell.nextAll("td, th");
+            if (changedCells.length > 0) {
+                changedCells.each(function () {
+                    var virtualIndex = getVirtualColumnCount($(this).prevAll("td, th"));
+                    if (virtualIndex < helperService.getSettings().fixedColumns) {
+                        memoryElements.bodyCellsFixedColumn = memoryElements.bodyCellsFixedColumn.add($(this));
+                        $(this).addClass("fixed-column");
+                    }
+                    else {
+                        var index = memoryElements.bodyCellsFixedColumn.index($(this));
+                        if (index >= 0) {
+                            $(this).removeClass("fixed-column");
+                            memoryElements.bodyCellsFixedColumn = memoryElements.bodyCellsFixedColumn.not(":eq(" + index + ")");
+                        }
+                    }
+                });
+            }
         }
 
         function updatePositions(positionX, positionY) {
@@ -162,6 +235,15 @@ angular.module("keeple.controls.fixedTable").factory("FixedTablePositionUpdaterF
                 });
                 lastFixedColumns = helperService.getSettings().fixedColumns;
             }
+        }
+
+        function emitFixedColumnsCellsChangedEvent() {
+            if (fixedColumnsCellsChangedTimeoutId) {
+                clearTimeout(fixedColumnsCellsChangedTimeoutId);
+            }
+            fixedColumnsCellsChangedTimeoutId = setTimeout(function () {
+                helperService.getWrapper().trigger("fixedColumnsCellsChanged");
+            }, 50);
         }
 
         function getVirtualColumnCount(cells) {
