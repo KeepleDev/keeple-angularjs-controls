@@ -14,13 +14,17 @@
 
     <!-- Custom styles for this template -->
     <link href="css/project.css" rel="stylesheet" />
-
+    <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link href="css/fixedtable.css" rel="stylesheet" />
 
     <style type="text/css">
         table.table td,
         table.table th {
             background-color: white;
+        }
+
+        table.table {
+            margin: 10px;
         }
     </style>
 </head>
@@ -45,22 +49,20 @@
             <br />
             <button data-ng-click="fixedColumnsCount = fixedColumnsCount + 1">Adicionar coluna fixa</button>
             <button data-ng-click="fixedColumnsCount = fixedColumnsCount - 1">Remover coluna fixa</button>
-            <div data-fixed-table="fixedTable" class="fixed-table">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th data-ng-repeat="col in columns">{{col}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-ng-repeat="row in rows">
-                            <td>{{row.id}}</td>
-                            <td data-ng-repeat="col in columns">{{col}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="table table-bordered" data-fixed-table="fixedTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th data-ng-repeat="col in columns">{{col}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="row in rows">
+                        <td>{{row.id}}</td>
+                        <td data-ng-repeat="col in columns">{{col}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -72,6 +74,7 @@
 
     <!--Arquivo gerado pelo grunt: "grunt dev"-->
     <script src="js/development/3rd/jquery-2.0.3.js"></script>
+    <script src="js/development/3rd/jquery-ui-1.10.3.custom.js"></script>
     <script src="js/development/3rd/angular.js"></script>
     <script src="js/development/3rd/bootstrap.js"></script>
     <script src="js/development/3rd/angular-sanitize.js"></script>
@@ -81,6 +84,8 @@
     <script src="js/development/controls/fixedtable/services/FixedTableHelperFactory.js"></script>
     <script src="js/development/controls/fixedtable/services/FixedTablePositionCalculatorFactory.js"></script>
     <script src="js/development/controls/fixedtable/services/FixedTablePositionUpdaterFactory.js"></script>
+    <script src="js/development/controls/fixedtable/services/FixedTableCustomScrollFactory.js"></script>
+
 
     <script src="js/development/pages/fixedtable.js"></script>
     <script src="data/tests/itens.js"></script>

@@ -66,6 +66,7 @@
     <Content Include="css\images\loader.gif" />
     <Content Include="css\images\toggle-col-dark.png" />
     <Content Include="css\images\toggle-exp-dark.png" />
+    <Content Include="css\jquery-ui-1.10.3.custom.css" />
     <Content Include="css\project.css" />
     <Content Include="css\treetable.css" />
     <Content Include="data\tests\itens.js" />
@@ -79,8 +80,13 @@
     <Content Include="js\development\3rd\bootstrap.js" />
     <Content Include="js\development\3rd\jasmine.js" />
     <Content Include="js\development\3rd\jquery-2.0.3.js" />
+    <Content Include="js\development\3rd\jquery-ui-1.10.3.custom.js" />
     <Content Include="js\development\controls\fixedtable\directives\FixedTableDirective.js" />
     <Content Include="js\development\controls\fixedtable\FixedTableModulesInitialization.js" />
+    <Content Include="js\development\controls\fixedtable\services\FixedTableHelperFactory.js" />
+    <Content Include="js\development\controls\fixedtable\services\FixedTableCustomScrollFactory.js" />
+    <Content Include="js\development\controls\fixedtable\services\FixedTablePositionCalculatorFactory.js" />
+    <Content Include="js\development\controls\fixedtable\services\FixedTablePositionUpdaterFactory.js" />
     <Content Include="js\development\controls\imagebutton\controllers\ImageButtonController.js" />
     <Content Include="js\development\controls\imagebutton\directives\ImageButtonDirective.js" />
     <Content Include="js\development\controls\imagebutton\ImageButtonModuleInitialization.js" />

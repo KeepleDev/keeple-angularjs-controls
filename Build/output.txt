@@ -1,10 +1,8 @@
 Running "jshint:files" (jshint) task
->> 22 files lint free.
+Linting ../Code/js/development/controls/fixedtable/services/FixedTableCustomScrollFactory.js ...ERROR
+[L9:C34] W098: 'fixedTableSliderValue' is defined but never used.
+        var fixedTableSliderValue = 0;
 
-Running "jasmine:src" (jasmine) task
-Testing jasmine specs via phantom
-........................................
-40 specs in 0.533s.
->> 0 failures
+Warning: Task "jshint:files" failed. Use --force to continue.
 
-Done, without errors.
+Aborted due to warnings.

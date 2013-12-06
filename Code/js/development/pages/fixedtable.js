@@ -9,9 +9,10 @@ angular.module("project", ["keeple.controls.fixedTable", "ngSanitize"]).controll
             $scope.columns = [];
             $scope.rows = [];
 
-            $scope.fixedColumnsCount = 0;
+            $scope.fixedColumnsCount = 2;
             $scope.fixedTable = {
-                fixedColumns: 0
+                fixedColumns: 2,
+                useCustomScroll: true
             };
 
             for (var i = 0; i < $scope.columnsCount; i++) {

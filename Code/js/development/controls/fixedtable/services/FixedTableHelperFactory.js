@@ -17,7 +17,7 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableHelperFactory", 
         }
 
         function getScrollSlider() {
-            if (settings.useInternalScrollOnPageBottom) {
+            if (settings.useCustomScrollOnPageBottom) {
                 return wrapper.find(".bottom-scroll");
             }
             else {
@@ -32,8 +32,8 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableHelperFactory", 
             return isPresent;
         }
 
-        function isInternalScrollEnabled() {
-            return settings.useInternalScroll && settings.fixedColumns > 0;
+        function isCustomScrollEnabled() {
+            return settings.useCustomScroll && settings.fixedColumns > 0;
         }
 
         function isValidTable() {
@@ -56,13 +56,13 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableHelperFactory", 
                 fixedColumns: 0,
                 parentContainerX: null,
                 parentContainerY: null,
-                useInternalScroll: false,
-                useInternalScrollOnPageBottom: true,
+                useCustomScroll: false,
+                useCustomScrollOnPageBottom: true,
                 autoScroll: false
             };
         }
 
-        function isInternalScrollNeeded() {
+        function isCustomScrollNeeded() {
             return wrapper.width() < table.width();
         }
 
@@ -70,12 +70,50 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableHelperFactory", 
             return wrapper.find(table).length === 1;
         }
 
+        function getFixedColumnsTotalWidth() {
+            var totalDefaultColumnsLength = 0;
+            var columnCount = 0;
+            table.find("thead tr:first th").slice(0, settings.fixedColumns).each(function () {
+                if ($(this).attr("colspan") > 0) {
+                    columnCount += parseInt($(this).attr("colspan"), 10);
+                }
+                else {
+                    columnCount++;
+                }
+                totalDefaultColumnsLength += $(this).outerWidth();
+
+                if (columnCount >= settings.fixedColumns) {
+                    return false;
+                }
+            });
+
+            totalDefaultColumnsLength = totalDefaultColumnsLength + 5;
+
+            return totalDefaultColumnsLength;
+        }
+
         function getParentContainerX() {
-            return settings.parentContainerX || $(window);
+            if (settings.parentContainerX) {
+                return $(settings.parentContainerX);
+            }
+            else if (settings.parentContainer) {
+                return $(settings.parentContainer);
+            }
+            else {
+                return $(window);
+            }
         }
 
         function getParentContainerY() {
-            return settings.parentContainerY || $(window);
+            if (settings.parentContainerY) {
+                return $(settings.parentContainerY);
+            }
+            else if (settings.parentContainer) {
+                return $(settings.parentContainer);
+            }
+            else {
+                return $(window);
+            }
         }
 
         function getTable() {
@@ -97,10 +135,10 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableHelperFactory", 
         this.getSlidedWidth = getSlidedWidth;
         this.getScrollSlider = getScrollSlider;
         this.isHorizontalScrollbarPresent = isHorizontalScrollbarPresent;
-        this.isInternalScrollEnabled = isInternalScrollEnabled;
+        this.isCustomScrollEnabled = isCustomScrollEnabled;
         this.isValidTable = isValidTable;
         this.getDefaultSettings = getDefaultSettings;
-        this.isInternalScrollNeeded = isInternalScrollNeeded;
+        this.isCustomScrollNeeded = isCustomScrollNeeded;
         this.isInitialized = isInitialized;
         this.getParentContainerX = getParentContainerX;
         this.getParentContainerY = getParentContainerY;
@@ -108,6 +146,7 @@ angular.module("keeple.controls.fixedTable").factory("FixedTableHelperFactory", 
         this.getWrapper = getWrapper;
         this.getSettings = getSettings;
         this.setSettings = setSettings;
+        this.getFixedColumnsTotalWidth = getFixedColumnsTotalWidth;
     }
 
     return HelperService;

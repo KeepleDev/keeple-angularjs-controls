@@ -2,15 +2,15 @@
     position: relative;
 }
 
-    .fixed-table.internal-scroll {
+    .fixed-table.custom-scroll {
         overflow: hidden;
     }
 
-        .fixed-table.internal-scroll > table {
+        .fixed-table.custom-scroll > table {
             position: relative;
         }
 
-            .fixed-table.internal-scroll > table > thead > tr > div.bottom-scroll {
+            .fixed-table.custom-scroll > table > thead > tr > div.top-scroll {
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -24,12 +24,13 @@
                 z-index: 99;
             }
 
-        .fixed-table.internal-scroll > div.top-scroll {
+        .fixed-table.custom-scroll > div.bottom-scroll {
             -moz-box-sizing: border-box;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
             padding-left: 0;
             padding-right: 3%;
+            /*float: right;*/
         }
 
     .fixed-table > table {

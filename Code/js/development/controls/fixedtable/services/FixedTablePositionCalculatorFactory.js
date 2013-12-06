@@ -21,19 +21,19 @@ angular.module("keeple.controls.fixedTable").factory("FixedTablePositionCalculat
         }
 
         function calculatePositionX() {
-            if (helperService.isInternalScrollEnabled()) {
-                return calculatePositionXWithInternalScroll();
+            if (helperService.isCustomScrollEnabled()) {
+                return calculatePositionXWithCustomScroll();
             }
             else {
-                return calculatePositionXWithoutInternalScroll();
+                return calculatePositionXWithoutCustomScroll();
             }
         }
 
-        function calculatePositionXWithInternalScroll() {
+        function calculatePositionXWithCustomScroll() {
             return helperService.getSlidedWidth();
         }
 
-        function calculatePositionXWithoutInternalScroll() {
+        function calculatePositionXWithoutCustomScroll() {
             var positionX = 0;
             if (containerX[0] == window) {
                 positionX = containerX.scrollLeft() - table.offset().left;

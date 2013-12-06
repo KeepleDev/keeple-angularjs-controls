@@ -125,6 +125,17 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
                 ]
             },
+            fixedTable: {
+                dest: scriptsProductionFolder + "/fixedtable.js",
+                src: [
+                    scriptsDevelopmentFolder + "/controls/fixedtable/FixedTableModulesInitialization.js",
+                    scriptsDevelopmentFolder + "/controls/fixedtable/directives/FixedTableDirective.js",
+                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTableHelperFactory.js",
+                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTablePositionCalculatorFactory.js",
+                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTablePositionUpdaterFactory.js",
+                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTableCustomScrollFactory.js"
+                ]
+            },
             imageButton: {
                 dest: scriptsProductionFolder + "/imagebutton.js",
                 src: [
