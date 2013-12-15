@@ -1,0 +1,1 @@
+﻿angular.module('keeple.controls.fixed-notification', ['ngAnimate']);

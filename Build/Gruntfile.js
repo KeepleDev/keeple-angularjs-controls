@@ -54,12 +54,12 @@ function GoppHelper(grunt) {
         ];
 
         treeTableMapping[scriptsDevelopmentFolder + "/treetable.js"] = [
-            scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
-            scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
-            scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableCellTemplateDirective.js",
-            scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
-            scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",
-            scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
+            scriptsDevelopmentFolder + "/controls/tree-table/TreeTableModuleInitialization.js",
+            scriptsDevelopmentFolder + "/controls/tree-table/controllers/TreeTableController.js",
+            scriptsDevelopmentFolder + "/controls/tree-table/directives/TreeTableCellTemplateDirective.js",
+            scriptsDevelopmentFolder + "/controls/tree-table/directives/TreeTableDirective.js",
+            scriptsDevelopmentFolder + "/controls/tree-table/directives/TreeTableRowDirective.js",
+            scriptsDevelopmentFolder + "/controls/tree-table/filters/TreeTableRowFilter.js"
         ];
 
         imageButtonMapping[scriptsDevelopmentFolder + "/imagebutton.js"] = [
@@ -114,41 +114,33 @@ function GoppHelper(grunt) {
                 }
             },
             treeTable: {
-                dest: scriptsProductionFolder + "/angular-treetable.js",
+                dest: scriptsProductionFolder + "/keeple.controls.tree-table.js",
                 src: [
-                    scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableRowController.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableCellTemplateDirective.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
+                    scriptsDevelopmentFolder + "/controls/tree-table/tree-table.module.initialization.js",
+                    scriptsDevelopmentFolder + "/controls/tree-table/tree-table.controller.main.js",
+                    scriptsDevelopmentFolder + "/controls/tree-table/tree-table.controller.row.js",
+                    scriptsDevelopmentFolder + "/controls/tree-table/tree-table.directive.main.js",
+                    scriptsDevelopmentFolder + "/controls/tree-table/tree-table.directive.row.js"
                 ]
             },
             fixedTable: {
-                dest: scriptsProductionFolder + "/angular-fixedtable.js",
+                dest: scriptsProductionFolder + "/keeple.controls.fixed-table.js",
                 src: [
-                    scriptsDevelopmentFolder + "/controls/fixedtable/FixedTableModulesInitialization.js",
-                    scriptsDevelopmentFolder + "/controls/fixedtable/directives/FixedTableDirective.js",
-                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTableHelperFactory.js",
-                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTablePositionCalculatorFactory.js",
-                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTablePositionUpdaterFactory.js",
-                    scriptsDevelopmentFolder + "/controls/fixedtable/services/FixedTableCustomScrollFactory.js"
+                    scriptsDevelopmentFolder + "/controls/fixed-table/fixed-table.module.initialization.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-table/fixed-table.directive.main.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-table/fixed-table.factory.helper.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-table/fixed-table.factory.position-calculator.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-table/fixed-table.factory.position-updater.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-table/fixed-table.factory.custom-scroll.js"
                 ]
             },
-            imageButton: {
-                dest: scriptsProductionFolder + "/imagebutton.js",
+            fixedNotification: {
+                dest: scriptsProductionFolder + "/keeple.controls.fixed-notification.js",
                 src: [
-                    scriptsDevelopmentFolder + "/controls/imagebutton/ImageButtonModuleInitialization.js",
-                    scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
-                    scriptsDevelopmentFolder + "/controls/imagebutton/directives/ImageButtonDirective.js"
-                ]
-            },
-            modal: {
-                dest: scriptsProductionFolder + "/modal.js",
-                src: [
-                    scriptsDevelopmentFolder + "/controls/modal/ModalModuleInitialization.js",
-                    scriptsDevelopmentFolder + "/controls/modal/directives/ModalDirective.js"
+                    scriptsDevelopmentFolder + "/controls/fixed-notification/fixed-notification.module.initialization.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-notification/fixed-notification.service.helper.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-notification/fixed-notification.directive.main.js",
+                    scriptsDevelopmentFolder + "/controls/fixed-notification/fixed-notification.directive.message.js"
                 ]
             }
         }
@@ -200,7 +192,7 @@ function GoppHelper(grunt) {
                 newcap: true,
                 noarg: true,
                 nonew: true,
-                quotmark: "double",
+                quotmark: "single",
                 unused: true,
                 trailing: true,
                 browser: true,
@@ -234,7 +226,7 @@ function GoppHelper(grunt) {
                 tasks: ["concat:project"]
             },
             treeTable: {
-                files: scriptsDevelopmentFolder + "/controls/treetable/**/*",
+                files: scriptsDevelopmentFolder + "/controls/tree-table/**/*",
                 tasks: ["concat:treeTable"]
             },
             imageButton: {
@@ -255,21 +247,17 @@ function GoppHelper(grunt) {
     function getJasmineOptions() {
         return {
             src: [
-                scriptsDevelopmentFolder + "/controls/treetable/TreeTableModuleInitialization.js",
-                scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableController.js",
-                scriptsDevelopmentFolder + "/controls/treetable/controllers/TreeTableRowController.js",
-                scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableCellTemplateDirective.js",
-                scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableDirective.js",
-                scriptsDevelopmentFolder + "/controls/treetable/directives/TreeTableRowDirective.js",
-                scriptsDevelopmentFolder + "/controls/treetable/filters/TreeTableRowFilter.js"
+                scriptsDevelopmentFolder + "/controls/tree-table/tree-table.module.initialization.js",
+                scriptsDevelopmentFolder + "/controls/tree-table/tree-table.controller.main.js",
+                scriptsDevelopmentFolder + "/controls/tree-table/tree-table.controller.row.js",
+                scriptsDevelopmentFolder + "/controls/tree-table/tree-table.directive.main.js",
+                scriptsDevelopmentFolder + "/controls/tree-table/tree-table.directive.row.js"
             ],
             options: {
                 specs: [
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableControllerTests.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableCellTemplateDirectiveTests.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableDirectiveTests.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableRowDirectiveTests.js",
-                    scriptsDevelopmentFolder + "/controls/treetable/tests/TreeTableRowFilterTests.js"
+                    scriptsDevelopmentFolder + "/controls/tree-table/tests/tree-table.controller.main.spec.js",
+                    scriptsDevelopmentFolder + "/controls/tree-table/tests/tree-table.directive.main.spec.js",
+                    scriptsDevelopmentFolder + "/controls/tree-table/tests/tree-table.directive.row.spec.js"
                 ],
                 vendor: [
                     scriptsDevelopmentFolder + "/3rd/jquery-2.0.3.js",
@@ -280,10 +268,7 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + "/utils.js"
                 ],
                 helpers: [
-                    webProjectFolder + "/data/tests/itens.js",
-                    scriptsDevelopmentFolder + "/controls/imagebutton/ImageButtonModuleInitialization.js",
-                    scriptsDevelopmentFolder + "/controls/imagebutton/controllers/ImageButtonController.js",
-                    scriptsDevelopmentFolder + "/controls/imagebutton/directives/ImageButtonDirective.js"
+                    webProjectFolder + "/data/tests/itens.js"
                 ],
                 template: require("grunt-template-jasmine-istanbul"),
                 templateOptions: {

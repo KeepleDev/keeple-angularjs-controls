@@ -1,0 +1,84 @@
+﻿.fixed-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    -ms-border-bottom-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    -ms-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    vertical-align: middle;
+}
+
+    .fixed-notification > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0 10px;
+    }
+
+.fixed-notification-repeat {
+    list-style: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    padding: 0 10px;
+    position: relative;
+    margin: 5px;
+    line-height: 30px;
+}
+
+    .fixed-notification-repeat.ng-move,
+    .fixed-notification-repeat.ng-enter,
+    .fixed-notification-repeat.ng-leave {
+        -webkit-transition: all linear 0.5s;
+        -moz-transition: all linear 0.5s;
+        -ms-transition: all linear 0.5s;
+        -o-transition: all linear 0.5s;
+        transition: all linear 0.5s;
+    }
+
+        .fixed-notification-repeat.ng-leave.ng-leave-active,
+        .fixed-notification-repeat.ng-move,
+        .fixed-notification-repeat.ng-enter {
+            -ms-opacity: 0;
+            opacity: 0;
+            max-height: 0;
+        }
+
+            .fixed-notification-repeat.ng-leave,
+            .fixed-notification-repeat.ng-move.ng-move-active,
+            .fixed-notification-repeat.ng-enter.ng-enter-active {
+                -ms-opacity: 1;
+                opacity: 1;
+                max-height: 40px;
+            }
+
+.fixed-notification-message-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+}
+
+.fixed-notification-message-text {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 30px;
+    vertical-align: top;
+}
+
+.fixed-notification-close-button {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(images/fixed-notification-close-button.png) no-repeat center;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -8px;
+    cursor: pointer;
+}

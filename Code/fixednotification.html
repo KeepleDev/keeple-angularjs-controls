@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="project">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fixed Notification</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap/bootstrap-theme.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/project.css" rel="stylesheet" />
+    <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="css/keeple.controls.fixed-notification.css" rel="stylesheet" />
+
+    <style type="text/css">
+        body {
+            height: 2000px;
+        }
+
+        .label-key {
+            display: block;
+        }
+
+        .fixed-notification {
+            background: #F8F8F8;
+        }
+
+        .fixed-notification-message-icon {
+            background: url(css/images/fixed-notification-message-icons.png) no-repeat;
+        }
+
+        .fixed-notification-message-success {
+            background-color: #D6FAD1;
+            border: 1px solid #9CE191;
+            color: #1F5B1B;
+        }
+
+            .fixed-notification-message-success > .fixed-notification-message-icon {
+                background-position: 0;
+            }
+
+        .fixed-notification-message-warning {
+            background-color: #FFF0A5;
+            border: 1px solid #FED22F;
+        }
+
+            .fixed-notification-message-warning > .fixed-notification-message-icon {
+                background-position: -16px 0;
+            }
+
+        .fixed-notification-message-error {
+            background-color: #F7D7CD;
+            border: 1px solid #F4ACA8;
+            color: #B00000;
+        }
+
+            .fixed-notification-message-error > .fixed-notification-message-icon {
+                background-position: -32px 0;
+            }
+
+        .fixed-notification-message-info {
+            background-color: #DCEFFB;
+            border: 1px solid #B6C7DA;
+            color: #3D6C9B;
+        }
+
+            .fixed-notification-message-info > .fixed-notification-message-icon {
+                background-position: -64px 0;
+            }
+    </style>
+</head>
+
+<body style="">
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+        <!-- Fixed navbar -->
+
+        <!-- Begin page content -->
+        <div class="container" data-ng-controller="project.controller.fixed-notification.main">
+            <div class="page-header">
+                <h1>Demonstração Fixed Notification</h1>
+            </div>
+            <p class="lead">Fixed Notification feita em Angular JS.</p>
+            <span class="label-key">Mensagem</span>
+            <input type="text" data-ng-model="message" />
+            <span class="label-key">Tipo</span>
+            <select data-ng-model="type">
+                <option value="success">Sucesso</option>
+                <option value="error">Erro</option>
+                <option value="warning">Alerta</option>
+                <option value="info">Informação</option>
+            </select><br />
+            <br />
+            <button data-ng-click="sendNotification()">Enviar notificação</button>
+            <div data-fixed-notification=""></div>
+            <br />
+            <br />
+            <span class="label-key">Estilização</span>
+            <br />
+            <pre style="font-family:Consolas;font-size:13;color:black;background:white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background</span>:&nbsp;<span style="color:blue;">#F8F8F8</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-icon</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background</span>:&nbsp;<span style="color:blue;">url(css/images/fixed-notification-message-icons.png)</span>&nbsp;<span style="color:blue;">no-repeat</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-success</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-color</span>:&nbsp;<span style="color:blue;">#D6FAD1</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">border</span>:&nbsp;<span style="color:blue;">1px</span>&nbsp;<span style="color:blue;">solid</span>&nbsp;<span style="color:blue;">#9CE191</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">color</span>:&nbsp;<span style="color:blue;">#1F5B1B</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-success</span>&nbsp;<span style="color:maroon;">&gt;</span>&nbsp;<span style="color:maroon;">.fixed-notification-message-icon</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-position</span>:&nbsp;<span style="color:blue;">0</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-warning</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-color</span>:&nbsp;<span style="color:blue;">#FFF0A5</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">border</span>:&nbsp;<span style="color:blue;">1px</span>&nbsp;<span style="color:blue;">solid</span>&nbsp;<span style="color:blue;">#FED22F</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-warning</span>&nbsp;<span style="color:maroon;">&gt;</span>&nbsp;<span style="color:maroon;">.fixed-notification-message-icon</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-position</span>:&nbsp;<span style="color:blue;">-16px</span>&nbsp;<span style="color:blue;">0</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-error</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-color</span>:&nbsp;<span style="color:blue;">#F7D7CD</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">border</span>:&nbsp;<span style="color:blue;">1px</span>&nbsp;<span style="color:blue;">solid</span>&nbsp;<span style="color:blue;">#F4ACA8</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">color</span>:&nbsp;<span style="color:blue;">#B00000</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-error</span>&nbsp;<span style="color:maroon;">&gt;</span>&nbsp;<span style="color:maroon;">.fixed-notification-message-icon</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-position</span>:&nbsp;<span style="color:blue;">-32px</span>&nbsp;<span style="color:blue;">0</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-info</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-color</span>:&nbsp;<span style="color:blue;">#DCEFFB</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">border</span>:&nbsp;<span style="color:blue;">1px</span>&nbsp;<span style="color:blue;">solid</span>&nbsp;<span style="color:blue;">#B6C7DA</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">color</span>:&nbsp;<span style="color:blue;">#3D6C9B</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:maroon;">.fixed-notification-message-info</span>&nbsp;<span style="color:maroon;">&gt;</span>&nbsp;<span style="color:maroon;">.fixed-notification-message-icon</span>&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red;">background-position</span>:&nbsp;<span style="color:blue;">-64px</span>&nbsp;<span style="color:blue;">0</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</pre>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted credit">Keeple Controls</p>
+        </div>
+    </div>
+
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/3rd/jquery-2.0.3.js"></script>
+    <script src="js/development/3rd/jquery-ui-1.10.3.custom.js"></script>
+    <script src="js/development/3rd/angular.js"></script>
+    <script src="js/development/3rd/angular-animate.js"></script>
+    <script src="js/development/3rd/bootstrap.js"></script>
+    <script src="js/development/3rd/angular-sanitize.js"></script>
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/controls/fixed-notification/fixed-notification.module.initialization.js"></script>
+    <script src="js/development/controls/fixed-notification/fixed-notification.directive.main.js"></script>
+    <script src="js/development/controls/fixed-notification/fixed-notification.directive.message.js"></script>
+    <script src="js/development/controls/fixed-notification/fixed-notification.service.helper.js"></script>
+
+
+    <script src="js/development/pages/fixed-notification.js"></script>
+</body>
+</html>
