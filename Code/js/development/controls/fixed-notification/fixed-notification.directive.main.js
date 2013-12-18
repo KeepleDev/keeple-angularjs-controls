@@ -1,7 +1,7 @@
 ﻿angular.module('keeple.controls.fixed-notification').directive('fixedNotification',
     ['$interval', 'fixed-notification.service.helper',
         function ($interval, fixedNotificationHelper) {
-            var template = '<div class="fixed-notification"><ul><li class="fixed-notification-repeat" data-ng-repeat="notification in notifications" data-fixed-notification-message="" data-notification="notification" data-close-notification="closeNotification"></li></ul></div>';
+            var template = '<div class="pas alert panel-primary fixed-notification" data-ng-if="notifications.length > 0"><ul><li class="fixed-notification-repeat" data-ng-repeat="notification in notifications" data-fixed-notification-message="" data-notification="notification" data-close-notification="closeNotification"></li></ul></div>';
             return {
                 restrict: 'A',
                 replace: true,

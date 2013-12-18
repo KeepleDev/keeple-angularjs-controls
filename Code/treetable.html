@@ -10,12 +10,44 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-theme.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
     <link href="css/project.css" rel="stylesheet" />
+    <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="css/flat-ui/flat-ui.css" rel="stylesheet" />
 
     <link href="css/keeple.controls.tree-table.css" rel="stylesheet" />
+
+    <style type="text/css">
+        /*.tree-table > tbody > tr.l1 {
+            background-color: #d1d1d1;
+            font-weight: bold;
+        }
+
+        .tree-table > tbody > tr.l2 {
+            background-color: #d8d8d8;
+        }
+
+        .tree-table > tbody > tr.l3 {
+            background-color: #e1e1e1;
+        }
+
+        .tree-table > tbody > tr.l4 {
+            background-color: #e8e8e8;
+        }
+
+        .tree-table > tbody > tr.l5 {
+            background-color: #f1f1f1;
+        }
+
+        .tree-table > tbody > tr.l6 {
+            background-color: #f8f8f8;
+        }
+
+        .tree-table > tbody > tr.l7 {
+            background-color: #fbfbfb;
+        }*/
+    </style>
 </head>
 
 <body style="">
@@ -23,66 +55,62 @@
     <!-- Wrap all page content here -->
     <div id="wrap">
 
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="http://getbootstrap.com/examples/sticky-footer-navbar/#">Tree Table</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#">Home</a></li>
-                        <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#about">About</a></li>
-                        <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#contact">Contact</a></li>
-                        <li class="dropdown">
-                            <a href="http://getbootstrap.com/examples/sticky-footer-navbar/#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#">Action</a></li>
-                                <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#">Another action</a></li>
-                                <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#">Separated link</a></li>
-                                <li><a href="http://getbootstrap.com/examples/sticky-footer-navbar/#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
         <!-- Begin page content -->
         <div class="container" data-ng-controller="project.controller.tree-table.main">
-            <div class="page-header">
+            <div class="page-header primary mtn">
                 <h1>Demonstração Tree Table</h1>
             </div>
-            <p class="lead">Tree Table feita em Angular JS.</p>
-            <!--<div data-ng-tree-table="" data-columns="treetable.columns" data-tree-table-class="''"></div>-->
-            <table data-tree-table="" data-options="treeTable" class="tree-table table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Fabricante/Celular</th>
-                        <th>Ano de Fabricação</th>
-                        <th>CPU</th>
-                        <th>Memoria</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-ng-repeat="item in treeTable.processedItens" data-tree-table-row="item" data-ng-switch="item.tipo" class="l{{item.level}}">
-                        <td colspan="4" data-ng-switch-when="Fabricante">{{item.nome}}</td>
-                        <td data-ng-switch-when="Celular">{{item.nome}}</td>
-                        <td data-ng-switch-when="Celular">{{item.ano}}</td>
-                        <td data-ng-switch-when="Celular">{{item.cpu}}</td>
-                        <td data-ng-switch-when="Celular">{{item.memoria}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <p class="lead">Tree Table feita usando Angular JS e Bootstrap.</p>
+            <div class="col-sm-6">
+                <table data-tree-table="" data-options="treeTable" class="tree-table table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Fabricante / Celular</th>
+                            <th>Ano de Fabricação</th>
+                            <th>CPU</th>
+                            <th>Memoria</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="item in treeTable.processedItens" data-tree-table-row="item" data-ng-switch="item.tipo">
+                            <td colspan="4" data-ng-switch-when="Fabricante">{{item.nome}}</td>
+                            <td data-ng-switch-when="Celular">{{item.nome}}</td>
+                            <td data-ng-switch-when="Celular">{{item.ano}}</td>
+                            <td data-ng-switch-when="Celular">{{item.cpu}}</td>
+                            <td data-ng-switch-when="Celular">{{item.memoria}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert-danger pal">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    É necessário o preenchimento dos campos "nodeId" e "parentNodeId" nos itens passados para a Tree Table.
+                </div>
+                <hr />
+            </div>
+            <div class="col-sm-6">
+                <h6 class="mtn">HTML:</h6>
+                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;"><span style="color:blue;">&lt;</span><span style="color:maroon;">table</span>&nbsp;<span style="color:red;">data-tree-table</span><span style="color:blue;">=</span><span style="color:blue;">&quot;&quot;</span>&nbsp;<span style="color:red;">data-options</span><span style="color:blue;">=</span><span style="color:blue;">&quot;treeTable&quot;</span>&nbsp;<span style="color:red;">class</span><span style="color:blue;">=</span><span style="color:blue;">&quot;tree-table&quot;</span><span style="color:blue;">&gt;</span>
+</pre>
+                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;"><span style="color:blue;">&lt;</span><span style="color:maroon;">tr</span>&nbsp;<span style="color:red;">data-ng-repeat</span><span style="color:blue;">=</span><span style="color:blue;">&quot;item&nbsp;in&nbsp;treeTable.processedItens&quot;</span>&nbsp;<span style="color:red;">data-tree-table-row</span><span style="color:blue;">=</span><span style="color:blue;">&quot;item&quot;</span><span style="color:blue;">&gt;</span>
+</pre>
+                <h6>JS:</h6>
+                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">angular.module(<span style="color:#a31515;">&#39;project&#39;</span>,&nbsp;[<span style="color:#a31515;">&#39;keeple.controls.tree-table&#39;</span>])
+</pre>
+                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">$rootScope.$on(<span style="color:#a31515;">&#39;treeTableReady&#39;</span>,&nbsp;<span style="color:blue;">function</span>&nbsp;()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;$scope.treeTable.itens&nbsp;=&nbsp;itens;
+});</pre>
+                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">$scope.treeTable&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;itens:&nbsp;[],
+&nbsp;&nbsp;&nbsp;&nbsp;options:&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lazyLoad:&nbsp;<span style="color:blue;">true</span>
+&nbsp;&nbsp;&nbsp;&nbsp;},
+&nbsp;&nbsp;&nbsp;&nbsp;loadChildren:&nbsp;<span style="color:blue;">function</span>&nbsp;(parentItem,&nbsp;callback)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentItem.children&nbsp;=&nbsp;getChildren(parentItem.nodeId);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback(<span style="color:blue;">true</span>);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.$apply();
+&nbsp;&nbsp;&nbsp;&nbsp;}
+};</pre>
+            </div>
 
             <div data-ng-modal="" data-title="modal.title" data-show="modal.show">
                 <div data-ng-if="modal.item.level > 1">
@@ -95,9 +123,9 @@
         </div>
     </div>
 
-    <div id="footer">
+    <div class="bottom-menu bottom-menu-inverse pal">
         <div class="container">
-            <p class="text-muted credit">Keeple Controls</p>
+            <span class="text-muted">Keeple Controls</span>
         </div>
     </div>
 

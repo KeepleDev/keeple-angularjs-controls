@@ -1,10 +1,17 @@
 Running "jshint:files" (jshint) task
->> 21 files lint free.
+>> 24 files lint free.
 
 Running "jasmine:src" (jasmine) task
 Testing jasmine specs via phantom
-...................................
-35 specs in 0.529s.
->> 0 failures
+...............................x.xx
+TreeTable Row Directive:: should add an expand/collapse anchor in first cell if item is parent: failed
+  Expected 0 to be 1. (1)
+TreeTable Row Directive:: should add an collapse class if item is expanded: failed
+  Expected 0 to be 1. (1)
+TreeTable Row Directive:: should add an expand class if item is not expanded: failed
+  Expected 0 to be 1. (1)
+35 specs in 0.406s.
+>> 3 failures
+Warning: Task "jasmine:src" failed. Use --force to continue.
 
-Done, without errors.
+Aborted due to warnings.

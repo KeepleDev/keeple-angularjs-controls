@@ -9,19 +9,22 @@ angular.module('project', ['keeple.controls.tree-table']).controller('project.co
 
     $scope.treeTable = {};
     $scope.treeTable.itens = [];
-    $scope.treeTable.columns = [{ line: 1, value: 'Fabricante/Celular' }, { line: 1, value: 'Ano de Fabricação' }, { line: 1, value: 'CPU' }, { line: 1, value: 'Memoria' }];
-    $scope.treeTable.options = {};
-    $scope.treeTable.options.lazyLoad = true;
-    $scope.treeTable.loadChildren = function (parentItem, callback) {
-        /// <param name="callback" type="Function">Description</param>
-        if (callback) {
-            setTimeout(function () {
-                parentItem.children = children[parentItem.nodeId];
-                callback(true);
-                $scope.$apply();
-            }, 300);
+    $scope.treeTable = {
+        itens: [],
+        options: {
+            lazyLoad: true
+        },
+        loadChildren: function (parentItem, callback) {
+            if (callback) {
+                setTimeout(function () {
+                    parentItem.children = children[parentItem.nodeId];
+                    callback(true);
+                    $scope.$apply();
+                }, 300);
+            }
         }
     };
+
     $rootScope.$on('treeTableReady', function () {
         var salt = Math.floor(Math.random() * 100000);
         $http.get('data/itens.js?' + salt).success(function (response) {

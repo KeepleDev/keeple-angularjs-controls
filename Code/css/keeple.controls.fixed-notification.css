@@ -4,12 +4,9 @@
     left: 0;
     right: 0;
     width: 100%;
-    text-align: center;
-    -ms-border-bottom-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    -ms-border-bottom-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    text-align: left;
     vertical-align: middle;
+    z-index: 999;
 }
 
     .fixed-notification > ul {
@@ -24,10 +21,7 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     display: block;
-    padding: 0 10px;
     position: relative;
-    margin: 5px;
-    line-height: 30px;
 }
 
     .fixed-notification-repeat.ng-move,
@@ -56,19 +50,25 @@
                 max-height: 40px;
             }
 
-.fixed-notification-message-icon {
-    display: inline-block;
+/*.fixed-notification-message-icon {
+    display: block;
     width: 16px;
     height: 16px;
-    margin-right: 10px;
-    vertical-align: text-bottom;
+    left: 10px;
+    position: absolute;
+    top: 8px;
 }
 
 .fixed-notification-message-text {
     display: inline-block;
     vertical-align: middle;
     line-height: 30px;
-    vertical-align: top;
+    vertical-align: middle;
+    margin: 0 30px;
+    max-width: 90%;
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
 .fixed-notification-close-button {
@@ -78,7 +78,6 @@
     background: url(images/fixed-notification-close-button.png) no-repeat center;
     position: absolute;
     right: 10px;
-    top: 50%;
-    margin-top: -8px;
+    top: 8px;
     cursor: pointer;
-}
+}*/

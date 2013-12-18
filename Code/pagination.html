@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-ng-app="project">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Keeple Controls - Pagination</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/project.css" rel="stylesheet" />
+    <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="css/flat-ui/flat-ui.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .label-key {
+            display: block;
+        }
+
+        .pagination {
+            width: 100%;
+        }
+
+            .pagination .next {
+                float: right;
+            }
+    </style>
+</head>
+
+<body style="">
+
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+
+        <!-- Fixed navbar -->
+
+        <!-- Begin page content -->
+        <div class="container" data-ng-controller="project.controller.pagination.main">
+            <div class="page-header primary mtn">
+                <h1>Demonstração Pagination</h1>
+            </div>
+            <p class="lead">Paginação feita usando Angular JS e Bootstrap.</p>
+            <div class="row">
+                <div class="mbl col-sm-6">
+                    <div class="form-group row">
+                        <span class="col-sm-6">Número de itens:</span>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control flat" data-ng-model="itensCount" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <span class="col-sm-6">Tamanho da página:</span>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control flat" data-ng-model="pageSize" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <span class="col-sm-6">Página Atual:</span>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control flat" data-ng-model="currentPage" />
+                        </div>
+                    </div>
+                    <button class="btn btn-primary pull-right" data-ng-click="updateOptions()">Atualizar Paginação</button>
+                    <div>
+                        <div data-pagination="" data-options="options"></div>
+                    </div>
+                </div>
+                <div class="mbl col-sm-6">
+                    <h6 class="mtn">HTML:</h6>
+                    <pre style="font-family: Consolas; font-size: 13; color: black; background: white;"><span style="color:blue;">&lt;</span><span style="color:maroon;">div</span>&nbsp;<span style="color:red;">data-pagination</span><span style="color:blue;">=</span><span style="color:blue;">&quot;&quot;</span>&nbsp;<span style="color:red;">data-options</span><span style="color:blue;">=</span><span style="color:blue;">&quot;options&quot;</span><span style="color:blue;">&gt;&lt;/</span><span style="color:maroon;">div</span><span style="color:blue;">&gt;</span>
+</pre>
+                    <h6>JS:</h6>
+                    <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">angular.module(<span style="color:#a31515;">&#39;project&#39;</span>,&nbsp;[<span style="color:#a31515;">&#39;keeple.controls.pagination&#39;</span>])
+</pre>
+                    <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">$scope.options&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;currentPage:&nbsp;$scope.currentPage,
+&nbsp;&nbsp;&nbsp;&nbsp;pageSize:&nbsp;$scope.pageSize,
+&nbsp;&nbsp;&nbsp;&nbsp;itensCount:&nbsp;$scope.itensCount,
+&nbsp;&nbsp;&nbsp;&nbsp;prevText:&nbsp;<span style="color:#a31515;">&#39;Anterior&#39;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;nextText:&nbsp;<span style="color:#a31515;">&#39;Próximo&#39;</span>,
+&nbsp;&nbsp;&nbsp;&nbsp;onPaginationChange:&nbsp;<span style="color:blue;">function</span>&nbsp;(pageNumber)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.currentPage&nbsp;=&nbsp;pageNumber;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+};</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-menu bottom-menu-inverse pal">
+        <div class="container">
+            <span class="text-muted">Keeple Controls</span>
+        </div>
+    </div>
+
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/3rd/jquery-2.0.3.js"></script>
+    <script src="js/development/3rd/jquery-ui-1.10.3.custom.js"></script>
+    <script src="js/development/3rd/angular.js"></script>
+    <script src="js/development/3rd/angular-animate.js"></script>
+    <script src="js/development/3rd/bootstrap.js"></script>
+    <script src="js/development/3rd/angular-sanitize.js"></script>
+    <!--Arquivo gerado pelo grunt: "grunt dev"-->
+    <script src="js/development/controls/pagination/pagination.module.initialization.js"></script>
+    <script src="js/development/controls/pagination/pagination.directive.main.js"></script>
+
+    <script src="js/development/pages/pagination.js"></script>
+</body>
+</html>

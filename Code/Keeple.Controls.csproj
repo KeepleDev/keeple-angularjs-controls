@@ -57,6 +57,18 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\flat-ui\flat-ui.css" />
+    <Content Include="css\fonts\Flat-UI-Icons.dev.svg" />
+    <Content Include="css\fonts\Flat-UI-Icons.svg" />
+    <Content Include="css\fonts\lato\lato-black-webfont.svg" />
+    <Content Include="css\fonts\lato\lato-bold-webfont.svg" />
+    <Content Include="css\fonts\lato\lato-bolditalic-webfont.svg" />
+    <Content Include="css\fonts\lato\lato-italic-webfont.svg" />
+    <Content Include="css\fonts\lato\lato-light-webfont.svg" />
+    <Content Include="css\fonts\lato\lato-regular-webfont.svg" />
+    <Content Include="js\development\3rd\bootstrap-select.js" />
+    <Content Include="js\development\pages\pagination.js" />
+    <Content Include="pagination.html" />
     <Content Include="css\images\fixed-notification-close-button.png" />
     <Content Include="css\images\fixed-notification-message-icons.png" />
     <Content Include="fixednotification.html" />
@@ -75,6 +87,8 @@
     <Content Include="css\keeple.controls.tree-table.css" />
     <Content Include="data\tests\itens.js" />
     <Content Include="fixedtable.html" />
+    <Content Include="js\development\controls\pagination\pagination.directive.main.js" />
+    <Content Include="js\development\controls\pagination\pagination.module.initialization.js" />
     <Content Include="treetable.html" />
     <Content Include="js\development\3rd\angular-animate.js" />
     <Content Include="js\development\3rd\angular-cookies.js" />
@@ -120,6 +134,28 @@
     <Content Include="css\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="data\itens.js" />
     <Content Include="js\development\controls\fixed-notification\fixed-notification.module.initialization.js" />
+    <Content Include="css\fonts\Flat-UI-Icons.eot" />
+    <Content Include="css\fonts\Flat-UI-Icons.ttf" />
+    <Content Include="css\fonts\Flat-UI-Icons.woff" />
+    <Content Include="css\fonts\icomoon-session.json" />
+    <Content Include="css\fonts\lato\lato-black-webfont.eot" />
+    <Content Include="css\fonts\lato\lato-black-webfont.ttf" />
+    <Content Include="css\fonts\lato\lato-black-webfont.woff" />
+    <Content Include="css\fonts\lato\lato-bold-webfont.eot" />
+    <Content Include="css\fonts\lato\lato-bold-webfont.ttf" />
+    <Content Include="css\fonts\lato\lato-bold-webfont.woff" />
+    <Content Include="css\fonts\lato\lato-bolditalic-webfont.eot" />
+    <Content Include="css\fonts\lato\lato-bolditalic-webfont.ttf" />
+    <Content Include="css\fonts\lato\lato-bolditalic-webfont.woff" />
+    <Content Include="css\fonts\lato\lato-italic-webfont.eot" />
+    <Content Include="css\fonts\lato\lato-italic-webfont.ttf" />
+    <Content Include="css\fonts\lato\lato-italic-webfont.woff" />
+    <Content Include="css\fonts\lato\lato-light-webfont.eot" />
+    <Content Include="css\fonts\lato\lato-light-webfont.ttf" />
+    <Content Include="css\fonts\lato\lato-light-webfont.woff" />
+    <Content Include="css\fonts\lato\lato-regular-webfont.eot" />
+    <Content Include="css\fonts\lato\lato-regular-webfont.ttf" />
+    <Content Include="css\fonts\lato\lato-regular-webfont.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

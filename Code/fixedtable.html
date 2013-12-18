@@ -10,11 +10,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="css/bootstrap/bootstrap-theme.css" rel="stylesheet" />
 
     <!-- Custom styles for this template -->
     <link href="css/project.css" rel="stylesheet" />
     <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="css/flat-ui/flat-ui.css" rel="stylesheet" />
     <link href="css/keeple.controls.fixed-table.css" rel="stylesheet" />
 
     <style type="text/css">
@@ -42,25 +42,54 @@
                 <h1>Demonstração Fixed Table</h1>
             </div>
             <p class="lead">Fixed Table feita em Angular JS.</p>
-            <button data-ng-click="rowsCount = rowsCount + 1">Adicionar linha</button>
-            <button data-ng-click="rowsCount = rowsCount - 1">Remover linha</button><br />
-            <button data-ng-click="columnsCount = columnsCount + 1">Adicionar coluna</button>
-            <button data-ng-click="columnsCount = columnsCount - 1">Remover coluna</button>
-            <br />
-            <button data-ng-click="fixedColumnsCount = fixedColumnsCount + 1">Adicionar coluna fixa</button>
-            <button data-ng-click="fixedColumnsCount = fixedColumnsCount - 1">Remover coluna fixa</button>
-            <div data-fixed-table="fixedTable">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <button class="btn btn-primary" data-ng-click="rowsCount = rowsCount + 1">Adicionar linha</button>
+                        <button class="btn btn-primary mll" data-ng-click="rowsCount = rowsCount - 1">Remover linha</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" data-ng-click="columnsCount = columnsCount + 1">Adicionar coluna</button>
+                        <button class="btn btn-primary mll" data-ng-click="columnsCount = columnsCount - 1">Remover coluna</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" data-ng-click="fixedColumnsCount = fixedColumnsCount + 1">Adicionar coluna fixa</button>
+                        <button class="btn btn-primary mll" data-ng-click="fixedColumnsCount = fixedColumnsCount - 1">Remover coluna fixa</button>
+                    </div>
+                    <div class="alert-warning pal">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        A diretiva do Fixed Table necessita que a propriedade "border-collapse" seja "separate". Por esse motivo as bordas ficam dobrados no interior da tabela.
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h6 class="mtn">HTML:</h6>
+                    <pre style="font-family: Consolas; font-size: 13; color: black; background: white;"><span style="color:blue;">&lt;</span><span style="color:maroon;">div</span>&nbsp;<span style="color:red;">data-fixed-table</span><span style="color:blue;">=</span><span style="color:blue;">&quot;&quot;</span>&nbsp;<span style="color:red;">data-options</span><span style="color:blue;">=</span><span style="color:blue;">&quot;options&quot;</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">table</span>&nbsp;<span style="color:red;">class</span><span style="color:blue;">=</span><span style="color:blue;">&quot;table&nbsp;table-bordered&quot;</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">thead</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;/</span><span style="color:maroon;">thead</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;</span><span style="color:maroon;">tbody</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;/</span><span style="color:maroon;">tbody</span><span style="color:blue;">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">&lt;/</span><span style="color:maroon;">table</span><span style="color:blue;">&gt;</span>
+<span style="color:blue;">&lt;/</span><span style="color:maroon;">div</span><span style="color:blue;">&gt;</span></pre>
+                    <h6>JS:</h6>
+                    <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">$scope.options&nbsp;=&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;fixedColumns:&nbsp;2,
+&nbsp;&nbsp;&nbsp;&nbsp;useCustomScroll:&nbsp;<span style="color:blue;">true</span>
+};</pre>
+                </div>
+            </div>
+            <div data-fixed-table="" data-options="options">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th data-ng-repeat="col in columns" data-ng-if="$index % 2 == 1">{{col}}</th>
+                            <th data-ng-repeat="col in columns">{{col}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr data-ng-repeat="row in rows">
                             <td>{{row.id}}</td>
-                            <th data-ng-repeat="col in columns" data-ng-if="$index % 2 == 1">{{col}}</th>
+                            <th data-ng-repeat="col in columns">{{col}}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -68,9 +97,9 @@
         </div>
     </div>
 
-    <div id="footer">
+    <div class="bottom-menu bottom-menu-inverse pal">
         <div class="container">
-            <p class="text-muted credit">Keeple Controls</p>
+            <span class="text-muted">Keeple Controls</span>
         </div>
     </div>
 
@@ -81,15 +110,15 @@
     <script src="js/development/3rd/bootstrap.js"></script>
     <script src="js/development/3rd/angular-sanitize.js"></script>
     <!--Arquivo gerado pelo grunt: "grunt dev"-->
-    <script src="js/development/controls/fixedtable/FixedTableModulesInitialization.js"></script>
-    <script src="js/development/controls/fixedtable/directives/FixedTableDirective.js"></script>
-    <script src="js/development/controls/fixedtable/services/FixedTableHelperFactory.js"></script>
-    <script src="js/development/controls/fixedtable/services/FixedTablePositionCalculatorFactory.js"></script>
-    <script src="js/development/controls/fixedtable/services/FixedTablePositionUpdaterFactory.js"></script>
-    <script src="js/development/controls/fixedtable/services/FixedTableCustomScrollFactory.js"></script>
+    <script src="js/development/controls/fixed-table/fixed-table.module.initialization.js"></script>
+    <script src="js/development/controls/fixed-table/fixed-table.directive.main.js"></script>
+    <script src="js/development/controls/fixed-table/fixed-table.factory.custom-scroll.js"></script>
+    <script src="js/development/controls/fixed-table/fixed-table.factory.helper.js"></script>
+    <script src="js/development/controls/fixed-table/fixed-table.factory.position-calculator.js"></script>
+    <script src="js/development/controls/fixed-table/fixed-table.factory.position-updater.js"></script>
 
 
-    <script src="js/development/pages/fixedtable.js"></script>
+    <script src="js/development/pages/fixed-table.js"></script>
     <script src="data/tests/itens.js"></script>
 </body>
 </html>

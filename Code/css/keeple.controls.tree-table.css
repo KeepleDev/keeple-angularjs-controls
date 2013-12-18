@@ -6,99 +6,35 @@
         background-image: url(images/loader.gif);
     }
 
-.tree-table {
+.tree-table > tbody > tr.l2 > td:first-child {
+    padding-left: 20px;
 }
 
-    .tree-table > thead > tr span.tree-table-sort {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        background-position: center center;
-        vertical-align: middle;
-    }
+.tree-table > tbody > tr.l3 > td:first-child {
+    padding-left: 40px;
+}
 
-        .tree-table > thead > tr span.tree-table-sort.sort-asc {
-            background-image: url(images/asc.png);
-        }
+.tree-table > tbody > tr.l4 > td:first-child {
+    padding-left: 60px;
+}
 
-        .tree-table > thead > tr span.tree-table-sort.sort-desc {
-            background-image: url(images/desc.png);
-        }
+.tree-table > tbody > tr.l5 > td:first-child {
+    padding-left: 80px;
+}
 
-    .tree-table > tbody > tr {
-    }
+.tree-table > tbody > tr.l6 > td:first-child {
+    padding-left: 100px;
+}
 
-        .tree-table > tbody > tr.l1 {
-            background-color: #d1d1d1;
-            font-weight: bold;
-        }
+.tree-table > tbody > tr.l7 > td:first-child {
+    padding-left: 120px;
+}
 
-            .tree-table > tbody > tr.l1 > td:first-child {
-            }
-
-        .tree-table > tbody > tr.l2 {
-            background-color: #d8d8d8;
-        }
-
-            .tree-table > tbody > tr.l2 > td:first-child {
-                padding-left: 20px;
-            }
-
-        .tree-table > tbody > tr.l3 {
-            background-color: #e1e1e1;
-        }
-
-            .tree-table > tbody > tr.l3 > td:first-child {
-                padding-left: 40px;
-            }
-
-        .tree-table > tbody > tr.l4 {
-            background-color: #e8e8e8;
-        }
-
-            .tree-table > tbody > tr.l4 > td:first-child {
-                padding-left: 60px;
-            }
-
-        .tree-table > tbody > tr.l5 {
-            background-color: #f1f1f1;
-        }
-
-            .tree-table > tbody > tr.l5 > td:first-child {
-                padding-left: 80px;
-            }
-
-        .tree-table > tbody > tr.l6 {
-            background-color: #f8f8f8;
-        }
-
-            .tree-table > tbody > tr.l6 > td:first-child {
-                padding-left: 100px;
-            }
-
-        .tree-table > tbody > tr.l7 {
-            background-color: #fbfbfb;
-        }
-
-            .tree-table > tbody > tr.l7 > td:first-child {
-                padding-left: 120px;
-            }
-
-        .tree-table > tbody > tr > td:first-child > a.tree-table-toggle {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-position: center center;
-            vertical-align: middle;
-            cursor: default;
-        }
-
-            .tree-table > tbody > tr > td:first-child > a.tree-table-toggle.expand {
-                background-image: url(images/toggle-exp-dark.png);
-                cursor: pointer;
-            }
-
-            .tree-table > tbody > tr > td:first-child > a.tree-table-toggle.collapse {
-                background-image: url(images/toggle-col-dark.png);
-                cursor: pointer;
-            }
+.tree-table > tbody > tr > td:first-child > .tree-table-toggle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-position: center center;
+    vertical-align: middle;
+    cursor: pointer;
+}

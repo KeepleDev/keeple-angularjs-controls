@@ -142,6 +142,13 @@ function GoppHelper(grunt) {
                     scriptsDevelopmentFolder + '/controls/fixed-notification/fixed-notification.directive.main.js',
                     scriptsDevelopmentFolder + '/controls/fixed-notification/fixed-notification.directive.message.js'
                 ]
+            },
+            pagination: {
+                dest: scriptsProductionFolder + '/keeple.controls.pagination.js',
+                src: [
+                    scriptsDevelopmentFolder + '/controls/pagination/pagination.module.initialization.js',
+                    scriptsDevelopmentFolder + '/controls/pagination/pagination.directive.main.js'
+                ]
             }
         };
     }
