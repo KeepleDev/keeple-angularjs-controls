@@ -1,1 +1,1 @@
-﻿angular.module('keeple.controls.tree-table', []);
+﻿angular.module('keeple.controls.tree-table', ['templates-tree-table']);

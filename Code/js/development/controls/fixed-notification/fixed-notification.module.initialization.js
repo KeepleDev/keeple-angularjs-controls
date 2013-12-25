@@ -1,1 +1,1 @@
-﻿angular.module('keeple.controls.fixed-notification', ['ngAnimate', 'ngSanitize']);
+﻿angular.module('keeple.controls.fixed-notification', ['ngAnimate', 'ngSanitize', 'templates-fixed-notification']);

@@ -1,1 +1,1 @@
-﻿angular.module('keeple.controls.pagination', []);
+﻿angular.module('keeple.controls.pagination', ['templates-pagination']);

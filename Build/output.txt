@@ -1,5 +1,8 @@
+Running "html2js:tree-table" (html2js) task
+Successfully converted 2 html templates to js.
+
 Running "jshint:files" (jshint) task
->> 24 files lint free.
+>> 26 files lint free.
 
 Running "jasmine:src" (jasmine) task
 Testing jasmine specs via phantom
@@ -10,7 +13,7 @@ TreeTable Row Directive:: should add an collapse class if item is expanded: fail
   Expected 0 to be 1. (1)
 TreeTable Row Directive:: should add an expand class if item is not expanded: failed
   Expected 0 to be 1. (1)
-35 specs in 0.406s.
+35 specs in 0.547s.
 >> 3 failures
 Warning: Task "jasmine:src" failed. Use --force to continue.
 

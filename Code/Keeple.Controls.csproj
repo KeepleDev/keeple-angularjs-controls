@@ -67,6 +67,8 @@
     <Content Include="css\fonts\lato\lato-light-webfont.svg" />
     <Content Include="css\fonts\lato\lato-regular-webfont.svg" />
     <Content Include="js\development\3rd\bootstrap-select.js" />
+    <Content Include="js\development\controls\tree-table\templates\toggle-span.tpl.html" />
+    <Content Include="js\development\controls\tree-table\templates\loading-row.tpl.html" />
     <Content Include="js\development\pages\pagination.js" />
     <Content Include="pagination.html" />
     <Content Include="css\images\fixed-notification-close-button.png" />
