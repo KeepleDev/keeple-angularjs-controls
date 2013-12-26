@@ -30,11 +30,11 @@
         if ($scope.treeTable.options.lazyLoad && !item.isLoaded) {
             if (item.isExpanded && !item.isLoading && item.isParent) {
                 item.isLoading = true;
-                $scope.treeTable.loadChildren(item, function (success) {
+                $scope.treeTable.loadChildren(item).then(function (itens) {
+                    item.isLoaded = true;
+                    item.children = itens;
+                }).finally(function () {
                     item.isLoading = false;
-                    if (success) {
-                        item.isLoaded = true;
-                    }
                 });
             }
         }
@@ -80,14 +80,16 @@
     }
 
     function processItens() {
-        var itensToInsert = $scope.treeTable.itens.slice(0).reverse();
-        preProcessedItens = [];
-        for (var i = 0; i < itensToInsert.length; i++) {
-            var item = itensToInsert[i];
-            addItem(item);
+        if (angular.isArray($scope.treeTable.itens) && $scope.treeTable.itens !== null) {
+            var itensToInsert = $scope.treeTable.itens.slice(0).reverse();
+            preProcessedItens = [];
+            for (var i = 0; i < itensToInsert.length; i++) {
+                var item = itensToInsert[i];
+                addItem(item);
+            }
+            $scope.treeTable.preProcessedItens = preProcessedItens;
+            $scope.treeTable.processedItens = treetableRowFilter(preProcessedItens);
         }
-        $scope.treeTable.preProcessedItens = preProcessedItens;
-        $scope.treeTable.processedItens = treetableRowFilter(preProcessedItens);
     }
 
     function treetableRowFilter(itens) {
@@ -108,5 +110,9 @@
         processItens();
     }, true);
 
-    $rootScope.$emit('treeTableReady');
+    if (angular.isFunction($scope.treeTable.loadChildren)) {
+        $scope.treeTable.loadChildren(null).then(function (itens) {
+            $scope.treeTable.itens = itens;
+        });
+    }
 }]);

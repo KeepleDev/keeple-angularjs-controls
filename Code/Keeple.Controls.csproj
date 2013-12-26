@@ -67,8 +67,13 @@
     <Content Include="css\fonts\lato\lato-light-webfont.svg" />
     <Content Include="css\fonts\lato\lato-regular-webfont.svg" />
     <Content Include="js\development\3rd\bootstrap-select.js" />
+    <Content Include="js\development\controls\fixed-notification\fixed-notification.templates.js" />
+    <Content Include="js\development\controls\fixed-notification\templates\fixed-notification.message.tpl.html" />
+    <Content Include="js\development\controls\pagination\pagination.templates.js" />
+    <Content Include="js\development\controls\pagination\templates\pagination.main.tpl.html" />
     <Content Include="js\development\controls\tree-table\templates\toggle-span.tpl.html" />
     <Content Include="js\development\controls\tree-table\templates\loading-row.tpl.html" />
+    <Content Include="js\development\controls\tree-table\tree-table.templates.js" />
     <Content Include="js\development\pages\pagination.js" />
     <Content Include="pagination.html" />
     <Content Include="css\images\fixed-notification-close-button.png" />
@@ -158,6 +163,7 @@
     <Content Include="css\fonts\lato\lato-regular-webfont.eot" />
     <Content Include="css\fonts\lato\lato-regular-webfont.ttf" />
     <Content Include="css\fonts\lato\lato-regular-webfont.woff" />
+    <Content Include="js\development\controls\fixed-notification\templates\fixed-notification.main.tpl.html" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

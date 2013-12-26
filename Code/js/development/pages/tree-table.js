@@ -1,68 +1,46 @@
 ﻿/// <reference path="../3rd/angular.js" />
-angular.module('project', ['keeple.controls.tree-table']).controller('project.controller.tree-table.main', ['$rootScope', '$http', '$scope', function ($rootScope, $http, $scope) {
-    /// <param name="$scope" type="Object"></param>
-    var children = {};
+angular.module('project', ['keeple.controls.tree-table']).controller('project.controller.tree-table.main', [
+    '$rootScope',
+    '$http',
+    '$scope',
+    '$q',
+    '$timeout',
+    function ($rootScope, $http, $scope, $q, $timeout) {
+        /// <param name="$scope" type="Object"></param>
+        var children = {};
 
-    $scope.modal = {};
-    $scope.modal.title = 'Dados do Celular';
-    $scope.modal.show = false;
+        $scope.modal = {};
+        $scope.modal.title = 'Dados do Celular';
+        $scope.modal.show = false;
 
-    $scope.treeTable = {};
-    $scope.treeTable.itens = [];
-    $scope.treeTable = {
-        itens: [],
-        options: {
-            lazyLoad: true
-        },
-        loadChildren: function (parentItem, callback) {
-            if (callback) {
-                setTimeout(function () {
-                    parentItem.children = children[parentItem.nodeId];
-                    callback(true);
-                    $scope.$apply();
+        $scope.treeTable = {};
+        $scope.treeTable.itens = [];
+        $scope.treeTable = {
+            itens: [],
+            options: {
+                lazyLoad: true
+            },
+            loadChildren: function (parentItem) {
+                var defered = $q.defer();
+                $timeout(function () {
+                    if (parentItem === null) {
+                        var salt = Math.floor(Math.random() * 100000);
+                        $http.get('data/itens.js?' + salt).success(function (response) {
+                            for (var i = 0; i < response.itens.length; i++) {
+                                var item = response.itens[i];
+                                if (item.children) {
+                                    children[item.nodeId] = item.children;
+                                    item.children = [];
+                                }
+                            }
+                            defered.resolve(response.itens);
+                        });
+                    } else {
+                        defered.resolve(children[parentItem.nodeId]);
+                    }
                 }, 300);
+                return defered.promise;
             }
-        }
-    };
-
-    $rootScope.$on('treeTableReady', function () {
-        var salt = Math.floor(Math.random() * 100000);
-        $http.get('data/itens.js?' + salt).success(function (response) {
-            for (var i = 0; i < response.itens.length; i++) {
-                var item = response.itens[i];
-                item.colspan = item.tipo === 'Fabricante' ? 4 : 1;
-                if (item.children) {
-                    children[item.nodeId] = item.children;
-                    item.children = [];
-                }
-            }
-            //angular.copy(response.itens, $scope.treeTable.itens);
-            $scope.treeTable.itens = response.itens;
-            $scope.treeTable.itens[0].test = 'true';
-        });
-    });
-
-    $rootScope.$on('imageButtonClick', function (e, identifier) {
-        var item = findItem($scope.treeTable.itens, identifier);
-        if (item) {
-            $scope.modal.show = true;
-            $scope.modal.item = item;
-        }
-    });
-
-    function findItem(itens, itemNodeId) {
-        for (var i = 0; i < itens.length; i++) {
-            var item = itens[i];
-            if (item.nodeId == itemNodeId) {
-                return item;
-            }
-            else if (item.children) {
-                var itemFound = findItem(item.children, itemNodeId);
-                if (itemFound !== null) {
-                    return itemFound;
-                }
-            }
-        }
-        return null;
+        };
     }
-}]);
+]);

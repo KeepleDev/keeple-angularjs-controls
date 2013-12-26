@@ -96,18 +96,13 @@
                 <h6>JS:</h6>
                 <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">angular.module(<span style="color:#a31515;">&#39;project&#39;</span>,&nbsp;[<span style="color:#a31515;">&#39;keeple.controls.tree-table&#39;</span>])
 </pre>
-                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">$rootScope.$on(<span style="color:#a31515;">&#39;treeTableReady&#39;</span>,&nbsp;<span style="color:blue;">function</span>&nbsp;()&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;$scope.treeTable.itens&nbsp;=&nbsp;itens;
-});</pre>
-                <pre style="font-family: Consolas; font-size: 13; color: black; background: white;">$scope.treeTable&nbsp;=&nbsp;{
+                <pre style="font-family:Consolas;font-size:13;color:black;background:white;">$scope.treeTable&nbsp;=&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;itens:&nbsp;[],
 &nbsp;&nbsp;&nbsp;&nbsp;options:&nbsp;{
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lazyLoad:&nbsp;<span style="color:blue;">true</span>
 &nbsp;&nbsp;&nbsp;&nbsp;},
-&nbsp;&nbsp;&nbsp;&nbsp;loadChildren:&nbsp;<span style="color:blue;">function</span>&nbsp;(parentItem,&nbsp;callback)&nbsp;{
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentItem.children&nbsp;=&nbsp;getChildren(parentItem.nodeId);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;callback(<span style="color:blue;">true</span>);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$scope.$apply();
+&nbsp;&nbsp;&nbsp;&nbsp;loadChildren:&nbsp;<span style="color:blue;">function</span>&nbsp;(parentItem)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:blue;">return</span>&nbsp;getChildren(parentItem.nodeId);<span style="color:green;">//promise(children)</span>
 &nbsp;&nbsp;&nbsp;&nbsp;}
 };</pre>
             </div>
