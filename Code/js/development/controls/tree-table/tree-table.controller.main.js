@@ -3,25 +3,24 @@
 
     var preProcessedItens = [];
 
-    function addItem(item) {
+    function addItem(parentItem, item) {
         /// <param name="item" type="Object"></param>
         item.hasTemplate = !!item.template;
         item.children = item.children || [];
-        if (item.parentNodeId === null) {
+        if (parentItem === null) {
             item.isVisible = true;
             item.level = 1;
             if (item.isExpanded === undefined) {
                 item.isExpanded = false;
             }
-            insertItemInProcessedItens(item);
+            insertItemInProcessedItens(null, item);
         }
         else {
-            var parent = getItem(item.parentNodeId);
-            if (parent) {
-                item.isVisible = !!parent.isExpanded && parent.isVisible;
-                item.level = parent.level + 1;
+            if (parentItem) {
+                item.isVisible = !!parentItem.isExpanded && parentItem.isVisible;
+                item.level = parentItem.level + 1;
                 item.isExpanded = !!item.isExpanded;
-                insertItemInProcessedItens(item);
+                insertItemInProcessedItens(parentItem, item);
             }
             else {
                 return;
@@ -43,40 +42,29 @@
             childrenToInsert.reverse();
             for (var j = 0; j < childrenToInsert.length; j++) {
                 var childItem = childrenToInsert[j];
-                addItem(childItem);
+                addItem(item, childItem);
             }
         }
     }
 
-    function insertItemInProcessedItens(item) {
-        var indexToInsert = getIndexToInsertItem(item);
+    function insertItemInProcessedItens(parentItem, item) {
+        var indexToInsert = getIndexToInsertItem(parentItem, item);
         preProcessedItens.splice(indexToInsert, 0, item);
         item.hasBeenAddedInTreeTable = true;
     }
 
-    function getIndexToInsertItem(item) {
+    function getIndexToInsertItem(parentItem) {
         var i = 0;
-        if (item.parentNodeId === null) {
+        if (parentItem === null) {
             return i;
         }
         for (i = 0; i < preProcessedItens.length; i++) {
             var processedItem = preProcessedItens[i];
-            if (processedItem.nodeId == item.parentNodeId) {
+            if (processedItem.nodeId == parentItem.nodeId) {
                 return i + 1;
             }
         }
         return i;
-    }
-
-    function getItem(itemNodeId) {
-        /// <returns type="Object" />
-        for (var i = 0; i < preProcessedItens.length; i++) {
-            var processedItem = preProcessedItens[i];
-            if (processedItem.nodeId == itemNodeId) {
-                return processedItem;
-            }
-        }
-        return null;
     }
 
     function processItens() {
@@ -85,7 +73,7 @@
             preProcessedItens = [];
             for (var i = 0; i < itensToInsert.length; i++) {
                 var item = itensToInsert[i];
-                addItem(item);
+                addItem(null, item);
             }
             $scope.treeTable.preProcessedItens = preProcessedItens;
             $scope.treeTable.processedItens = treetableRowFilter(preProcessedItens);
