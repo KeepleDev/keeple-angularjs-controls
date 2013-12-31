@@ -1,20 +1,19 @@
 Running "html2js:tree-table" (html2js) task
 Successfully converted 2 html templates to js.
 
+Running "html2js:fixed-notification" (html2js) task
+Successfully converted 2 html templates to js.
+
+Running "html2js:pagination" (html2js) task
+Successfully converted 1 html templates to js.
+
 Running "jshint:files" (jshint) task
->> 26 files lint free.
+>> 27 files lint free.
 
 Running "jasmine:src" (jasmine) task
 Testing jasmine specs via phantom
-...............................x.xx
-TreeTable Row Directive:: should add an expand/collapse anchor in first cell if item is parent: failed
-  Expected 0 to be 1. (1)
-TreeTable Row Directive:: should add an collapse class if item is expanded: failed
-  Expected 0 to be 1. (1)
-TreeTable Row Directive:: should add an expand class if item is not expanded: failed
-  Expected 0 to be 1. (1)
-35 specs in 0.547s.
->> 3 failures
-Warning: Task "jasmine:src" failed. Use --force to continue.
+...................................
+35 specs in 0.419s.
+>> 0 failures
 
-Aborted due to warnings.
+Done, without errors.

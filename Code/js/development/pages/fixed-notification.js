@@ -7,7 +7,7 @@ angular.module('project', ['keeple.controls.fixed-notification', 'ngSanitize']).
             $scope.type = 'success';
 
             $scope.sendNotification = function () {
-                fixedNotificationHelper.showNotifcation($scope.message, $scope.type);
+                fixedNotificationHelper.showNotification($scope.message, $scope.type);
             };
         }
     ]);

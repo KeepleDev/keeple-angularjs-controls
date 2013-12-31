@@ -20,5 +20,5 @@
         }
     }
 
-    this.showNotifcation = showNotification;
+    this.showNotification = showNotification;
 }]);
