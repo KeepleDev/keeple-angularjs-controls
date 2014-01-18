@@ -78,21 +78,23 @@
 };</pre>
                 </div>
             </div>
-            <div data-fixed-table="" data-options="options">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th data-ng-repeat="col in columns">{{col}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-ng-repeat="row in rows">
-                            <td>{{row.id}}</td>
-                            <th data-ng-repeat="col in columns">{{col}}</th>
-                        </tr>
-                    </tbody>
-                </table>
+            <div data-fixed-table-parent="" style="width: 600px; height: 400px; overflow: auto;">
+                <div data-fixed-table="" data-options="options">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th data-ng-repeat="col in columns">{{col}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="row in rows">
+                                <td>{{row.id}}</td>
+                                <th data-ng-repeat="col in columns">{{col}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

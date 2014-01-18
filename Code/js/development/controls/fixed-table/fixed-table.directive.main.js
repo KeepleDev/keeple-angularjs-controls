@@ -30,20 +30,34 @@
                         table.attr('cellspacing', 0);
                     }
 
+                    settings.parentContainerX = tElement.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
+                    settings.parentContainerY = tElement.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
+
+                    if (settings.parentContainerX.length === 0) {
+                        settings.parentContainerX = $(window);
+                    }
+                    if (settings.parentContainerY.length === 0) {
+                        settings.parentContainerY = $(window);
+                    } else {
+                        table.css('margin', 0);
+                    }
+
                     var helperService = new HelperFactory(settings, wrapper);
                     var positionCalculatorService = new PositionCalculatorFactory(helperService);
                     var positionsUpdaterService = new PositionUpdaterFactory(helperService);
                     var customScrollService = new CustomScrollFactory(helperService);
 
+                    settings.parentContainerX.on('scroll', onScroll);
+                    if (settings.parentContainerY[0] != settings.parentContainerX[0]) {
+                        settings.parentContainerY.on('scroll', onScroll);
+                    }
+
                     if (settings.useCustomScroll) {
                         customScrollService.addCustomScroll();
                         wrapper.addClass('custom-scroll');
+                        wrapper.on('scroll', onScroll);
                     }
 
-                    var $window = $(window);
-
-                    $window.on('scroll', onScroll);
-                    wrapper.on('scroll', onScroll);
                     wrapper.on('fixedColumnsCellsChanged', updateCustomScroller);
 
                     function onScroll() {
