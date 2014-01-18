@@ -26,6 +26,9 @@
                 return;
             }
         }
+        if (!item.isParent) {
+            item.isLoaded = true;
+        }
         if ($scope.treeTable.options.lazyLoad && !item.isLoaded) {
             if (item.isExpanded && !item.isLoading && item.isParent) {
                 item.isLoading = true;
