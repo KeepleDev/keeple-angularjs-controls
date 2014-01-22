@@ -11,6 +11,8 @@ angular.module('keeple.controls.fixed-table').factory('fixed-table.factory.custo
         var isFocusInsideWrapper = false;
         var updateScrollerTimeOutId;
         var updateWrapperWidthTimeoutId;
+        var containerY = helperService.getParentContainerY();
+        var containerX = helperService.getParentContainerX();
 
         function addCustomScroll() {
             if (helperService.getSettings().useCustomScrollOnPageBottom) {
@@ -31,13 +33,15 @@ angular.module('keeple.controls.fixed-table').factory('fixed-table.factory.custo
 
         function addEventHandlers() {
             var scroller = helperService.getScrollSlider();
-            var $window = $(window);
 
             wrapper.on('focusout', onFocusOut);
             wrapper.on('focusin', onFocusIn);
             scroller.on('slide', onSlide);
             scroller.on('slidestop', onSlideEnd);
-            $window.on('resize', onWindowResize);
+            containerY.on('resize', onWindowResize);
+            if (containerY[0] !== containerX[0]) {
+                containerX.on('resize', onWindowResize);
+            }
         }
 
         function onFocusOut() {
@@ -132,7 +136,7 @@ angular.module('keeple.controls.fixed-table').factory('fixed-table.factory.custo
                 var elementWithFocus = document.activeElement;
 
                 var auxDiv = $('<div>');
-                var originalScrollTop = $(window).scrollTop();
+                var originalScrollTop = $(containerY).scrollTop();
                 wrapper.after(auxDiv);
                 wrapper.detach();
 
@@ -154,7 +158,7 @@ angular.module('keeple.controls.fixed-table').factory('fixed-table.factory.custo
                     }
                 }
 
-                $(window).scrollTop(originalScrollTop);
+                $(containerY).scrollTop(originalScrollTop);
                 wrapper[0].scrollLeft = 0;
             }, 50);
         }

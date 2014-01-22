@@ -66,7 +66,7 @@
                     offsetParent = offsetParent.offsetParent();
                 }
 
-                positionY = containerY.scrollTop() - table.position().top - tableInitialPositionY;
+                positionY = containerY.scrollTop() - wrapper.position().top - tableInitialPositionY;
             }
             if (positionY < 0) {
                 positionY = 0;

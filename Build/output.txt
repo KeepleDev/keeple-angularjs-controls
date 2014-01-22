@@ -13,7 +13,7 @@ Running "jshint:files" (jshint) task
 Running "jasmine:src" (jasmine) task
 Testing jasmine specs via phantom
 ..................................
-34 specs in 0.431s.
+34 specs in 0.725s.
 >> 0 failures
 
 Done, without errors.

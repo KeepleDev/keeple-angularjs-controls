@@ -25,7 +25,7 @@
                             scope.closeNotification(scope.notification);
                         }, 3000);
                     } else {
-                        document.on('focus', function () {
+                        $(document).on('focus', function () {
                             timeoutId = $timeout(function () {
                                 scope.closeNotification(scope.notification);
                             }, 3000);

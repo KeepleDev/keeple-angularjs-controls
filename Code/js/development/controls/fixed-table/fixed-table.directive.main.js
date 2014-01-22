@@ -58,7 +58,11 @@
                         wrapper.on('scroll', onScroll);
                     }
 
-                    wrapper.on('fixedColumnsCellsChanged', updateCustomScroller);
+                    if (settings.useCustomScroll) {
+                        wrapper.on('fixedColumnsCellsChanged', updateCustomScroller);
+                    } else {
+                        wrapper.on('fixedColumnsCellsChanged', updatePositions);
+                    }
 
                     function onScroll() {
                         var position = positionCalculatorService.calculatePositions();
@@ -70,8 +74,7 @@
                             customScrollService.updateWrapperWidth();
                             customScrollService.updateScroller();
 
-                            var position = positionCalculatorService.calculatePositions();
-                            positionsUpdaterService.updatePositions(position.X, position.Y);
+                            updatePositions();
                         }
                         if (helperService.isCustomScrollEnabled()) {
                             wrapper.addClass('custom-scroll');
@@ -79,6 +82,11 @@
                         else {
                             wrapper.removeClass('custom-scroll');
                         }
+                    }
+
+                    function updatePositions() {
+                        var position = positionCalculatorService.calculatePositions();
+                        positionsUpdaterService.updatePositions(position.X, position.Y);
                     }
 
                     scope.$watch('fixedTable', function () {

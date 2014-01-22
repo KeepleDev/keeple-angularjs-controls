@@ -240,7 +240,7 @@
             }
             fixedColumnsCellsChangedTimeoutId = setTimeout(function () {
                 helperService.getWrapper().trigger('fixedColumnsCellsChanged');
-            }, 50);
+            }, 30);
         }
 
         function getVirtualColumnCount(cells) {
