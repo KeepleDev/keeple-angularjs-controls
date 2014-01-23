@@ -38,7 +38,7 @@
             else {
                 var tableInitialPositionX = 0;
                 var offsetParent = table.offsetParent();
-                while (offsetParent.offsetParent()[0] !== containerY[0]) {
+                while (offsetParent.offsetParent()[0] !== containerX[0] && offsetParent.offsetParent().find(containerX).length === 0) {
                     tableInitialPositionX += offsetParent.position().left;
                     offsetParent = offsetParent.offsetParent();
                 }
@@ -61,7 +61,7 @@
                     tableInitialPositionY = containerY.scrollTop() + wrapper.position().top;
                 }
                 var offsetParent = wrapper.offsetParent();
-                while (offsetParent.offsetParent()[0] !== containerY[0]) {
+                while (offsetParent.offsetParent()[0] !== containerY[0] && offsetParent.offsetParent().find(containerY).length === 0) {
                     tableInitialPositionY += offsetParent.position().top;
                     offsetParent = offsetParent.offsetParent();
                 }

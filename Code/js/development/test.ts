@@ -1,4 +1,4 @@
-﻿module TypeScript.Tests {
+﻿module gopp {
     class Person {
         nome: string = '';
         sobrenome: string = '';
