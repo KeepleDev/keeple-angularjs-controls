@@ -30,8 +30,8 @@
                         table.attr('cellspacing', 0);
                     }
 
-                    settings.parentContainerX = tElement.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
-                    settings.parentContainerY = tElement.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
+                    settings.parentContainerX = wrapper.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
+                    settings.parentContainerY = wrapper.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
 
                     if (settings.parentContainerX.length === 0) {
                         settings.parentContainerX = $(window);
