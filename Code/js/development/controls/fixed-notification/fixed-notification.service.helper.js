@@ -6,10 +6,7 @@
         ERROR: 'error'
     };
 
-    function showNotification(message, type) {
-        /// <summary></summary>
-        /// <param name="message" type="String"></param>
-        /// <param name="type" type="string"></param>
+    this.showNotification = function (message, type) {
         var notification = {
             message: message,
             type: type,
@@ -18,7 +15,5 @@
         if (angular.isFunction(this.addNotification)) {
             this.addNotification(notification);
         }
-    }
-
-    this.showNotification = showNotification;
+    };
 }]);

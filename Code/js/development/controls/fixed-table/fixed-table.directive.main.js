@@ -89,13 +89,13 @@
                         positionsUpdaterService.updatePositions(position.X, position.Y);
                     }
 
-                    scope.$watch('fixedTable', function () {
-                        helperService.setSettings(scope.options || {});
-                        positionsUpdaterService.updateFixedColumns();
+                    //scope.$watch('fixedTable', function () {
+                    //    helperService.setSettings(scope.options || {});
+                    //    positionsUpdaterService.updateFixedColumns();
 
-                        var position = positionCalculatorService.calculatePositions();
-                        positionsUpdaterService.updatePositions(position.X, position.Y);
-                    }, true);
+                    //    var position = positionCalculatorService.calculatePositions();
+                    //    positionsUpdaterService.updatePositions(position.X, position.Y);
+                    //}, true);
 
                     /// <param name="element" type="jQuery"></param>
                 };

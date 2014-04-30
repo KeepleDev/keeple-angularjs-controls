@@ -39,10 +39,21 @@
                 var tableInitialPositionX = 0;
                 var offsetParent = table.offsetParent();
                 while (offsetParent.offsetParent()[0] !== containerX[0] && offsetParent.offsetParent().find(containerX).length === 0) {
-                    tableInitialPositionX += offsetParent.position().left;
+                    tableInitialPositionX += offsetParent.position().left * (1 / parseFloat(offsetParent.css("zoom")));
                     offsetParent = offsetParent.offsetParent();
                 }
-                positionX = containerX.scrollLeft() - table.position().left - tableInitialPositionX;
+
+                var zoomParent = wrapper;
+                var zoom = 1;
+                while (zoomParent.parent()[0] != containerX[0] && zoomParent.parent().length > 0) {
+                    zoomParent = zoomParent.parent();
+                    zoom = zoom * parseFloat(zoomParent.css('zoom'));
+                }
+                if (!zoom) {
+                    zoom = 1;
+                }
+
+                positionX = (containerX.scrollLeft() * (1 / zoom)) - table.position().left - tableInitialPositionX;
             }
             if (positionX < 0) {
                 positionX = 0;
@@ -62,11 +73,21 @@
                 }
                 var offsetParent = wrapper.offsetParent();
                 while (offsetParent.offsetParent()[0] !== containerY[0] && offsetParent.offsetParent().find(containerY).length === 0) {
-                    tableInitialPositionY += offsetParent.position().top;
+                    tableInitialPositionY += offsetParent.position().top * (1 / parseFloat(offsetParent.css("zoom")));
                     offsetParent = offsetParent.offsetParent();
                 }
 
-                positionY = containerY.scrollTop() - wrapper.position().top - tableInitialPositionY;
+                var zoomParent = wrapper;
+                var zoom = 1;
+                while (zoomParent.parent()[0] != containerY[0] && zoomParent.parent().length > 0) {
+                    zoomParent = zoomParent.parent();
+                    zoom = zoom * parseFloat(zoomParent.css('zoom'));
+                }
+                if (!zoom) {
+                    zoom = 1;
+                }
+
+                positionY = (containerY.scrollTop() * (1 / zoom)) - wrapper.position().top - tableInitialPositionY;
             }
             if (positionY < 0) {
                 positionY = 0;
