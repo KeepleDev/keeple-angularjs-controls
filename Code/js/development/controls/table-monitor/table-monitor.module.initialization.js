@@ -1,0 +1,1 @@
+﻿angular.module('keeple.controls.table-monitor', []);

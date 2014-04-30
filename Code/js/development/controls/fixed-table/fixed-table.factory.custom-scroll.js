@@ -132,7 +132,7 @@ angular.module('keeple.controls.fixed-table').factory('fixed-table.factory.custo
                     wrapper.css('max-width', '');
                     return;
                 }
-                
+
                 var elementWithFocus = document.activeElement;
 
                 var auxDiv = $('<div>');

@@ -3,18 +3,18 @@
     'fixed-table.factory.position-calculator',
     'fixed-table.factory.position-updater',
     'fixed-table.factory.custom-scroll',
-    function (HelperFactory, PositionCalculatorFactory, PositionUpdaterFactory, CustomScrollFactory) {
+    function(HelperFactory, PositionCalculatorFactory, PositionUpdaterFactory, CustomScrollFactory) {
         return {
             restrict: 'A',
             replace: true,
             scope: {
                 options: '=options'
             },
-            compile: function (tElement) {
+            compile: function(tElement) {
 
                 tElement.addClass('fixed-table');
 
-                return function (scope, wrapper) {
+                return function(scope, wrapper) {
                     /// <param name="wrapper" type="jQuery"></param>
                     var settings = scope.options || {};
 
@@ -31,7 +31,7 @@
                     }
 
                     settings.parentContainerX = wrapper.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
-                    settings.parentContainerY = wrapper.closest('[data-fixed-table-parent], [data-fixed-table-parent-x]');
+                    settings.parentContainerY = wrapper.closest('[data-fixed-table-parent], [data-fixed-table-parent-y]');
 
                     if (settings.parentContainerX.length === 0) {
                         settings.parentContainerX = $(window);
@@ -67,6 +67,7 @@
                     function onScroll() {
                         var position = positionCalculatorService.calculatePositions();
                         positionsUpdaterService.updatePositions(position.X, position.Y);
+                        wrapper.trigger('fixedTablePositionUpdated', position);
                     }
 
                     function updateCustomScroller() {
@@ -78,8 +79,7 @@
                         }
                         if (helperService.isCustomScrollEnabled()) {
                             wrapper.addClass('custom-scroll');
-                        }
-                        else {
+                        } else {
                             wrapper.removeClass('custom-scroll');
                         }
                     }
@@ -89,15 +89,15 @@
                         positionsUpdaterService.updatePositions(position.X, position.Y);
                     }
 
-                    //scope.$watch('fixedTable', function () {
-                    //    helperService.setSettings(scope.options || {});
-                    //    positionsUpdaterService.updateFixedColumns();
+                    scope.$watch('options.fixedColumns', function() {
+                        setTimeout(function() {
+                            helperService.setSettings(scope.options || {});
+                            positionsUpdaterService.updateFixedColumns();
 
-                    //    var position = positionCalculatorService.calculatePositions();
-                    //    positionsUpdaterService.updatePositions(position.X, position.Y);
-                    //}, true);
-
-                    /// <param name="element" type="jQuery"></param>
+                            var position = positionCalculatorService.calculatePositions();
+                            positionsUpdaterService.updatePositions(position.X, position.Y);
+                        }, 1);
+                    }, true);
                 };
             }
         };
