@@ -77,16 +77,19 @@
     <Content Include="js\development\controls\fixed-notification\templates\fixed-notification.message.tpl.html" />
     <Content Include="js\development\controls\pagination\pagination.templates.js" />
     <Content Include="js\development\controls\pagination\templates\pagination.main.tpl.html" />
+    <Content Include="js\development\controls\table-monitor\table-monitor.module.initialization.js" />
+    <Content Include="js\development\controls\table-monitor\table-monitor.service.main.js" />
     <Content Include="js\development\controls\tree-table\templates\toggle-span.tpl.html" />
     <Content Include="js\development\controls\tree-table\templates\loading-row.tpl.html" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.controller.main.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.model.d.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.controller.row.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.directive.main.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.directive.row.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.module.initialization.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tree-table.templates.ts" />
-    <TypeScriptCompile Include="js\development\controls\tree-table\tests\tree-table.controller.main.spec.ts" />
+    <Content Include="js\development\controls\tree-table\tests\tree-table.controller.main.spec.js" />
+    <Content Include="js\development\controls\tree-table\tests\tree-table.directive.main.spec.js" />
+    <Content Include="js\development\controls\tree-table\tests\tree-table.directive.row.spec.js" />
+    <Content Include="js\development\controls\tree-table\tree-table.controller.main.js" />
+    <Content Include="js\development\controls\tree-table\tree-table.controller.row.js" />
+    <Content Include="js\development\controls\tree-table\tree-table.directive.main.js" />
+    <Content Include="js\development\controls\tree-table\tree-table.directive.row.js" />
+    <Content Include="js\development\controls\tree-table\tree-table.module.initialization.js" />
+    <Content Include="js\development\controls\tree-table\tree-table.templates.js" />
     <Content Include="js\development\pages\pagination.js" />
     <Content Include="pagination.html" />
     <Content Include="css\images\fixed-notification-close-button.png" />
@@ -109,6 +112,7 @@
     <Content Include="fixedtable.html" />
     <Content Include="js\development\controls\pagination\pagination.directive.main.js" />
     <Content Include="js\development\controls\pagination\pagination.module.initialization.js" />
+    <Content Include="teste.html" />
     <Content Include="treetable.html" />
     <Content Include="js\development\3rd\angular-animate.js" />
     <Content Include="js\development\3rd\angular-cookies.js" />
@@ -206,7 +210,17 @@
     </VisualStudio>
   </ProjectExtensions>
   <ItemGroup>
-    <TypeScriptCompile Include="$(ProjectDir)\**\*.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\3rd\angular-mocks.d.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\3rd\angular.d.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\3rd\jasmine-1.3.d.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\3rd\jasmine.d.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\3rd\jquery.d.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\controls\tree-table\tree-table.controller.row.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\controls\tree-table\tree-table.directive.main.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\controls\tree-table\tree-table.directive.row.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\controls\tree-table\tree-table.module.initialization.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\controls\tree-table\tree-table.templates.ts" />
+    <TypeScriptCompile Include="C:\Projetos\keeple-angularjs-controls\Code\\js\development\test.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

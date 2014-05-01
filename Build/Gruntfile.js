@@ -82,6 +82,13 @@ function GoppHelper() {
                     scriptsDevelopmentFolder + '/controls/fixed-notification/fixed-notification.templates.js'
                 ]
             },
+            'table-monitor': {
+                dest: scriptsProductionFolder + '/keeple.controls.table-monitor.js',
+                src: [
+                    scriptsDevelopmentFolder + '/controls/table-monitor/table-monitor.module.initialization.js',
+                    scriptsDevelopmentFolder + '/controls/table-monitor/table-monitor.service.main.js'
+                ]
+            },
             pagination: {
                 dest: scriptsProductionFolder + '/keeple.controls.pagination.js',
                 src: [

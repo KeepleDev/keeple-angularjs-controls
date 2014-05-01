@@ -1,1 +1,1 @@
-﻿angular.module('keeple.controls.fixed-table', []);
+﻿angular.module('keeple.controls.fixed-table', ['keeple.controls.table-monitor']);

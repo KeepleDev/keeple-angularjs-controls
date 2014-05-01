@@ -1,7 +1,7 @@
 ﻿/// <reference path="../3rd/angular.js" />
 angular.module('project', ['keeple.controls.fixed-table']).controller('project.controller.fixed-table.main',
-    ['$rootScope', '$http', '$scope',
-        function ($rootScope, $http, $scope) {
+    ['$rootScope', '$http', '$scope','$templateCache',
+        function ($rootScope, $http, $scope, $templateCache) {
             /// <param name="$scope" type="Object"></param>
             $scope.columnsCount = 10;
             $scope.rowsCount = 40;
@@ -56,5 +56,7 @@ angular.module('project', ['keeple.controls.fixed-table']).controller('project.c
             $scope.$watch('fixedColumnsCount', function () {
                 $scope.options.fixedColumns = $scope.fixedColumnsCount;
             });
+
+            $scope.$templateCache = $templateCache;
         }
     ]);

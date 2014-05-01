@@ -88,9 +88,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr data-ng-repeat="row in rows">
-                                <td>{{row.id}}</td>
-                                <th data-ng-repeat="col in columns">{{col}}</th>
+                            <tr data-ng-repeat="row in rows" data-ng-include="'teste.html'">
+                                <!--<td>{{row.id}}</td>
+                                <th data-ng-repeat="col in columns">{{col}}</th>-->
                             </tr>
                         </tbody>
                     </table>
@@ -118,7 +118,8 @@
     <script src="js/development/controls/fixed-table/fixed-table.factory.helper.js"></script>
     <script src="js/development/controls/fixed-table/fixed-table.factory.position-calculator.js"></script>
     <script src="js/development/controls/fixed-table/fixed-table.factory.position-updater.js"></script>
-
+    <script src="js/development/controls/table-monitor/table-monitor.module.initialization.js"></script>
+    <script src="js/development/controls/table-monitor/table-monitor.service.main.js"></script>
 
     <script src="js/development/pages/fixed-table.js"></script>
     <script src="data/tests/itens.js"></script>
